@@ -1,0 +1,4 @@
+Ejemplos de uso
+===============
+
+Para ejemplos de uso de la librería favor consultar con los archivos Jupyter provistos.

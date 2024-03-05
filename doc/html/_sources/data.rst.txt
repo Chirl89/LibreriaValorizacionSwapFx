@@ -1,0 +1,42 @@
+Paquete de Datos
+================
+
+El paquete de datos se encuentra dedicado al manejo y extracción de datos desde servidores como desde archivos con
+formato especifico.
+
+La finalidad del paquete es la estandarización de la obtención de datos, al igual que centralizar y simplificar la
+traducción de archivos y consultas SQL en objetos nativos de la librería.
+
+Las módulos que se se encuentran en el paquete son:
+
+- :ref:`conexion`: Clases dedicada a la conexión y obtención de datos abstractos desde servidores SQL.
+- :ref:`lector_archivos`: Clase dedicada a la lectura de datos desde archivos con formato estandarizado.
+- :ref:`lector_sql`: Clase dedicada a la lectura de datos desde los servidores internos.
+
+
+.. _conexion:
+
+**Conexión**
+------------
+
+.. automodule:: data.dbconnection
+   :members:
+   :member-order: bysource
+
+.. _lector_archivos:
+
+**Lector de Archivos**
+----------------------
+
+.. automodule:: data.filereader
+   :members:
+   :member-order: bysource
+
+.. _lector_sql:
+
+**Lector Servidores**
+---------------------
+
+.. automodule:: data.dbreader
+   :members:
+   :member-order: bysource

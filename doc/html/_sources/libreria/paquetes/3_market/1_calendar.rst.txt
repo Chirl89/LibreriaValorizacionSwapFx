@@ -1,0 +1,20 @@
+.. _Módulo Calendarios:
+
+**Módulo Calendarios**
+----------------------
+
+.. automodule:: market.tradingcalendar
+
+La principal clase de este módulo es:
+
+- :ref:`calendario` (:class:`TradingCalendar`): Clase dedicada al manejo de días hábiles.
+
+.. _calendario:
+
+Calendario
+----------
+
+.. autoclass:: market.tradingcalendar.TradingCalendar
+   :members:
+   :member-order: bysource
+

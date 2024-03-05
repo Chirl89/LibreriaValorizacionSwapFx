@@ -1,0 +1,19 @@
+.. _Módulo Interpolación:
+
+**Módulo de Interpolación**
+---------------------------
+
+.. automodule:: finmath.interpolator
+
+La principal clase de este módulo es:
+
+- :ref:`interpolador` (:class:`Interpolator`): Clase dedicada a la interpolación de vectores.
+
+.. _interpolador:
+
+Interpolación
+-------------
+
+.. autoclass:: finmath.interpolator.Interpolator
+   :members:
+   :member-order: bysource

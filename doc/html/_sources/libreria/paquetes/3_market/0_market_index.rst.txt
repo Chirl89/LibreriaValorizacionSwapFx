@@ -1,0 +1,44 @@
+Paquete de Mercado
+==================
+
+El paquete de mercado se encuentra dedicado a almacenar clases que representen información de mercado. Dentro de este
+paquete contamos con los siguientes módulos:
+
+
+:ref:`Módulo Calendarios`
+-------------------------
+
+Módulo dedicado a la generación, almacenamiento y manejo de días hábiles y feriados.
+
+:ref:`Módulo Curvas`
+--------------------
+
+Módulo dedicado a la generación, almacenamiento y construcción de curvas de valorización y proyección.
+
+:ref:`Módulo Tasas de Cambio`
+-----------------------------
+
+Módulo dedicado al manejo de Pares de Monedas.
+
+:ref:`Módulo Indices Financieros`
+---------------------------------
+
+Módulo dedicado al manejo de indices de mercado.
+
+:ref:`Módulo Dataset`
+---------------------
+
+Módulo dedicado al almacenamiento, manejo y utilización conjunta de los datos de mercado.
+
+.. toctree::
+    :hidden:
+
+    1_calendar
+    2_curvas
+    3_fx
+    4_indices
+    5_dataset
+
+
+
+

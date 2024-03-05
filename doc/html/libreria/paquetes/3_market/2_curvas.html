@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Módulo Curvas &#8212; documentación de Finlib - beta</title>
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/haiku.css" />
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/translations.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="index" title="Índice" href="../../../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../../../search.html" />
+    <link rel="next" title="Módulos Tipo de cambio" href="3_fx.html" />
+    <link rel="prev" title="Módulo Calendarios" href="1_calendar.html" /> 
+  </head><body>
+      <div class="header" role="banner"><h1 class="heading"><a href="../../../index.html">
+          <span>documentación de Finlib - beta</span></a></h1>
+        <h2 class="heading"><span>Módulo Curvas</span></h2>
+      </div>
+      <div class="topnav" role="navigation" aria-label="top navigation">
+      
+        <p>
+        «&#160;&#160;<a href="1_calendar.html"><strong>Módulo Calendarios</strong></a>
+        &#160;&#160;::&#160;&#160;
+        <a class="uplink" href="../../../index.html">Contenidos</a>
+        &#160;&#160;::&#160;&#160;
+        <a href="3_fx.html"><strong>Módulos Tipo de cambio</strong></a>&#160;&#160;»
+        </p>
+
+      </div>
+      <div class="content" role="main">
+        
+        
+  <section id="modulo-curvas">
+<span id="id1"></span><h1><strong>Módulo Curvas</strong><a class="headerlink" href="#modulo-curvas" title="Enlace permanente a este encabezado">¶</a></h1>
+<span class="target" id="module-market.curve"></span><p>Este módulo contiene los objetos necesarios para poder representar curvas de descuento y proyección.</p>
+<p>La principal clase de este módulo es:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#curva"><span class="std std-ref">Curva</span></a> (<a class="reference internal" href="#market.curve.Curve" title="market.curve.Curve"><code class="xref py py-class docutils literal notranslate"><span class="pre">Curve</span></code></a>): Clase dedicada a representación de curvas de proyección y descuento.</p></li>
+</ul>
+</section>
+<section id="curva">
+<span id="id2"></span><h1>Curva<a class="headerlink" href="#curva" title="Enlace permanente a este encabezado">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="market.curve.Curve">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">market.curve.</span></span><span class="sig-name descname"><span class="pre">Curve</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">curve_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">process_date</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tenors</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">discount_factors</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">curve_config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#market.curve.Curve" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Curva</p>
+<p>Clase dedicada a la representación de curvas de descuento y de proyección</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>curve_name</strong> (<em>str</em>) – Identificador de la curva.</p></li>
+<li><p><strong>process_date</strong> (<em>date</em>) – Fecha de proceso de la curva actual.</p></li>
+<li><p><strong>tenors</strong> (<em>list</em><em>[</em><em>int</em><em>]</em>) – Lista de tenors asignados.</p></li>
+<li><p><strong>discount_factors</strong> (<em>list</em><em>[</em><em>float</em><em>]</em>) – Lista de factores de descuento mid.</p></li>
+<li><p><strong>curve_config</strong> (<em>dict</em>) – Diccionario con configuración de curva (Default: None)</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="market.curve.Curve.get_discount_factor">
+<span class="sig-name descname"><span class="pre">get_discount_factor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#market.curve.Curve.get_discount_factor" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Obtener factor de descuento</p>
+<p>Obtiene el factor de descuento al tenor especificado</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>t</strong> (<em>int</em>) – tenor especificado.</p>
+</dd>
+<dt class="field-even">Devuelve<span class="colon">:</span></dt>
+<dd class="field-even"><p>Factor de descuento</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="market.curve.Curve.get_cap_factor">
+<span class="sig-name descname"><span class="pre">get_cap_factor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#market.curve.Curve.get_cap_factor" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Obtener factor de capitalización</p>
+<p>Obtiene el factor de capitalización a un tenor especificado</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>t</strong> (<em>int</em>) – tenor especificado</p>
+</dd>
+<dt class="field-even">Devuelve<span class="colon">:</span></dt>
+<dd class="field-even"><p>Factor de capitalización</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="market.curve.Curve.get_forward_factor">
+<span class="sig-name descname"><span class="pre">get_forward_factor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t_start</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t_end</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#market.curve.Curve.get_forward_factor" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Obtener Factor Forward</p>
+<p>Obtiene el factor forward entre los tenors especificados</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>t_start</strong> – tenor de inicio</p></li>
+<li><p><strong>t_end</strong> – tenor de final</p></li>
+</ul>
+</dd>
+<dt class="field-even">Devuelve<span class="colon">:</span></dt>
+<dd class="field-even"><p>Factor Forward</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="market.curve.Curve.get_rate">
+<span class="sig-name descname"><span class="pre">get_rate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#market.curve.Curve.get_rate" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Obtener tasa de descuento</p>
+<p>Obtiene la tasa de descuento del tenor especificado</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>t</strong> (<em>int</em>) – tenor especificado.</p>
+</dd>
+<dt class="field-even">Devuelve<span class="colon">:</span></dt>
+<dd class="field-even"><p>Tasa de descuento</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="market.curve.Curve.get_rate_curve">
+<span class="sig-name descname"><span class="pre">get_rate_curve</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#market.curve.Curve.get_rate_curve" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Obtener curva de tasas</p>
+<p>Obtiene la curva expresada en tasa</p>
+<dl class="field-list simple">
+<dt class="field-odd">Devuelve<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Tuple con tenors y tasa.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="market.curve.Curve.to_dict">
+<span class="sig-name descname"><span class="pre">to_dict</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#market.curve.Curve.to_dict" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Convertir en diccionario</p>
+<p>Convierte los datos de la curva en un diccionario</p>
+<dl class="field-list simple">
+<dt class="field-odd">Devuelve<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Diccionario con datos de la curva</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="market.curve.Curve.rates_to_dict">
+<span class="sig-name descname"><span class="pre">rates_to_dict</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#market.curve.Curve.rates_to_dict" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Convertir a un diccionario de tasas</p>
+<p>Convierte la curva en un diccionario de tasas</p>
+<dl class="field-list simple">
+<dt class="field-odd">Devuelve<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Diccionario de tasas</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="market.curve.Curve.to_dataframe">
+<span class="sig-name descname"><span class="pre">to_dataframe</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#market.curve.Curve.to_dataframe" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Convertir a dataframe</p>
+<p>Convierte los datos de la curva a un dataframe</p>
+<dl class="field-list simple">
+<dt class="field-odd">Devuelve<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Dataframe con datos de la curva</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="market.curve.Curve.rates_to_dataframe">
+<span class="sig-name descname"><span class="pre">rates_to_dataframe</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#market.curve.Curve.rates_to_dataframe" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Convertir tasas a dataframe</p>
+<p>Convierte las tasas de la curva a un dataframe</p>
+<dl class="field-list simple">
+<dt class="field-odd">Devuelve<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Dataframe con tasas de la curva</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="market.curve.Curve.df_to_rate">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">df_to_rate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">discount_factor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rate_compounding</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rate_day_count</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#market.curve.Curve.df_to_rate" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Convertir Factor de Descuento a Tasa</p>
+<p>Convierte el factor de descuento provisto a una tasa utilizando las convenciones de composición y
+conteo de días provistas.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>discount_factor</strong> (<em>float.</em>) – Factor de descuento.</p></li>
+<li><p><strong>start_date</strong> (<em>date.</em>) – fecha de inicio.</p></li>
+<li><p><strong>end_date</strong> (<em>date.</em>) – fecha de fin.</p></li>
+<li><p><strong>rate_compounding</strong> (<em>Compounding.</em>) – Convención de composición de Tasa.</p></li>
+<li><p><strong>rate_day_count</strong> (<em>DayCount.</em>) – Convención de conteo de días.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Devuelve<span class="colon">:</span></dt>
+<dd class="field-even"><p>Tasa de interés.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="market.curve.Curve.rate_to_df">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">rate_to_df</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">annual_rate</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_date</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_date</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rate_compounding</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Compounding</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rate_day_count</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DayCount</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#market.curve.Curve.rate_to_df" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Convertir Tasa a Factor de Descuento</p>
+<p>Convierte la tasa a factor de descuento utilizando las convenciones de composición y conteo de días
+provisto.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>annual_rate</strong> – Tasa Anual.</p></li>
+<li><p><strong>start_date</strong> (<em>date.</em>) – fecha de inicio.</p></li>
+<li><p><strong>end_date</strong> (<em>date.</em>) – fecha de fin.</p></li>
+<li><p><strong>rate_compounding</strong> (<em>Compounding.</em>) – Convención de composición de Tasa.</p></li>
+<li><p><strong>rate_day_count</strong> (<em>DayCount.</em>) – Convención de conteo de días.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Devuelve<span class="colon">:</span></dt>
+<dd class="field-even"><p>Factor de descuento</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="market.curve.Curve.rate_to_cap_factor">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">rate_to_cap_factor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">annual_rate</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rate_compounding</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rate_day_count</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#market.curve.Curve.rate_to_cap_factor" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Convertir Tasa a Factor de Capitalización</p>
+<p>Convierte la tasa a factor de capitalización utilizando las convenciones de composición y conteo de días
+provisto.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>annual_rate</strong> – Tasa Anual.</p></li>
+<li><p><strong>start_date</strong> (<em>date</em>) – fecha de inicio.</p></li>
+<li><p><strong>end_date</strong> (<em>date</em>) – fecha de fin.</p></li>
+<li><p><strong>rate_compounding</strong> (<a class="reference internal" href="../0_base/1_enums.html#enums.Compounding" title="enums.Compounding"><em>Compounding</em></a>) – Convención de composición de Tasa.</p></li>
+<li><p><strong>rate_day_count</strong> (<a class="reference internal" href="../0_base/1_enums.html#enums.DayCount" title="enums.DayCount"><em>DayCount</em></a>) – Convención de conteo de días.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Devuelve<span class="colon">:</span></dt>
+<dd class="field-even"><p>Factor de capitalización</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+      </div>
+      <div class="bottomnav" role="navigation" aria-label="bottom navigation">
+      
+        <p>
+        «&#160;&#160;<a href="1_calendar.html"><strong>Módulo Calendarios</strong></a>
+        &#160;&#160;::&#160;&#160;
+        <a class="uplink" href="../../../index.html">Contenidos</a>
+        &#160;&#160;::&#160;&#160;
+        <a href="3_fx.html"><strong>Módulos Tipo de cambio</strong></a>&#160;&#160;»
+        </p>
+
+      </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Derechos de autor 2022, Riesgo Financiero.
+      Creado usando <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.0.0.
+    </div>
+  </body>
+</html>

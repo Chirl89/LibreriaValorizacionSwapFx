@@ -1,0 +1,19 @@
+.. _Módulo Conexión:
+
+**Módulo de Conexión**
+----------------------
+
+.. automodule:: data.dbconnection
+
+La principal clase de este módulo es:
+
+- :ref:`conexión_sql` (:class:`SQLConn`): Clase dedicada al manejo de conexiones a servidores SQL.
+
+.. _conexión_sql:
+
+Conexión SQL
+------------
+
+.. autoclass:: data.dbconnection.SQLConn
+    :members:
+    :member-order: bysource

@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Módulo Datasets &#8212; documentación de Finlib - beta</title>
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/haiku.css" />
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/translations.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Índice" href="../../../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../../../search.html" />
+    <link rel="next" title="Paquete de Instrumentos" href="../4_instruments/0_instruments_index.html" />
+    <link rel="prev" title="Módulos Índices Financieros" href="4_indices.html" /> 
+  </head><body>
+      <div class="header" role="banner"><h1 class="heading"><a href="../../../index.html">
+          <span>documentación de Finlib - beta</span></a></h1>
+        <h2 class="heading"><span>Módulo Datasets</span></h2>
+      </div>
+      <div class="topnav" role="navigation" aria-label="top navigation">
+      
+        <p>
+        «&#160;&#160;<a href="4_indices.html"><strong>Módulos Índices Financieros</strong></a>
+        &#160;&#160;::&#160;&#160;
+        <a class="uplink" href="../../../index.html">Contenidos</a>
+        &#160;&#160;::&#160;&#160;
+        <a href="../4_instruments/0_instruments_index.html">Paquete de Instrumentos</a>&#160;&#160;»
+        </p>
+
+      </div>
+      <div class="content" role="main">
+        
+        
+  <section id="module-market.dataset">
+<span id="modulo-datasets"></span><span id="modulo-dataset"></span><h1><strong>Módulo Datasets</strong><a class="headerlink" href="#module-market.dataset" title="Enlace permanente a este encabezado">¶</a></h1>
+<p>Este módulo está enfocado en la creación de datasets, es decir objetos que contengan y ayuden a manejar la
+información dentro de los mismos.</p>
+<p>Las principales clases de este módulo son:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#dataset"><span class="std std-ref">Dataset de Mercado</span></a> (<a class="reference internal" href="#market.dataset.DataSet" title="market.dataset.DataSet"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataSet</span></code></a>): Clase dedicada de datos de mercado.</p></li>
+<li><p><a class="reference internal" href="#dataset-curvas"><span class="std std-ref">Dataset de Curvas</span></a> (<a class="reference internal" href="#market.dataset.CurveDataSet" title="market.dataset.CurveDataSet"><code class="xref py py-class docutils literal notranslate"><span class="pre">CurveDataSet</span></code></a>): Clase dedicada al manejo de datos de curvas.</p></li>
+<li><p><a class="reference internal" href="#dataset-fx"><span class="std std-ref">Dataset de Pares de Moneda</span></a> (<a class="reference internal" href="#market.dataset.FxDataSet" title="market.dataset.FxDataSet"><code class="xref py py-class docutils literal notranslate"><span class="pre">FxDataSet</span></code></a>): Clase dedicada al manejo de datos de pares de moneda.</p></li>
+<li><p><a class="reference internal" href="#dataset-indices"><span class="std std-ref">Dataset de Índices Financieros</span></a> (<a class="reference internal" href="#market.dataset.IndexDataSet" title="market.dataset.IndexDataSet"><code class="xref py py-class docutils literal notranslate"><span class="pre">IndexDataSet</span></code></a>): Clase dedicada al manejo de datos de índices financieros.</p></li>
+</ul>
+</section>
+<section id="dataset-de-mercado">
+<span id="dataset"></span><h1>Dataset de Mercado<a class="headerlink" href="#dataset-de-mercado" title="Enlace permanente a este encabezado">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="market.dataset.DataSet">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">market.dataset.</span></span><span class="sig-name descname"><span class="pre">DataSet</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">process_date</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">curve_dataset</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#market.dataset.CurveDataSet" title="market.dataset.CurveDataSet"><span class="pre">CurveDataSet</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">fx_dataset</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#market.dataset.FxDataSet" title="market.dataset.FxDataSet"><span class="pre">FxDataSet</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">index_dataset</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#market.dataset.IndexDataSet" title="market.dataset.IndexDataSet"><span class="pre">IndexDataSet</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">calendar_dataset</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">CalendarDataSet</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#market.dataset.DataSet" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Clase dedicada al almacenamiento de información de mercado.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>process_date</strong> (<em>date</em>) – Fecha de la información de mercado.</p></li>
+<li><p><strong>curve_dataset</strong> (<a class="reference internal" href="#market.dataset.CurveDataSet" title="market.dataset.CurveDataSet"><em>CurveDataSet</em></a>) – (Opcional) Set de datos de Curvas.</p></li>
+<li><p><strong>fx_dataset</strong> (<a class="reference internal" href="#market.dataset.FxDataSet" title="market.dataset.FxDataSet"><em>FxDataSet</em></a>) – (Opcional) Set de datos de Tasas de Cambio.</p></li>
+<li><p><strong>index_dataset</strong> (<a class="reference internal" href="#market.dataset.IndexDataSet" title="market.dataset.IndexDataSet"><em>IndexDataSet</em></a>) – (Opcional) Set de datos de Índices Financieros.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="market.dataset.DataSet.set_default_valuation_currency">
+<span class="sig-name descname"><span class="pre">set_default_valuation_currency</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">valuation_currency</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#market.dataset.DataSet.set_default_valuation_currency" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Asigna la moneda default de valorización</p>
+<p>Asigna una moneda default para generar los calculos de valorización</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>valuation_currency</strong> (<a class="reference internal" href="../0_base/1_enums.html#enums.Currency" title="enums.Currency"><em>Currency</em></a>) – Moneda de valorización.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="market.dataset.DataSet.get_default_valuation_currency">
+<span class="sig-name descname"><span class="pre">get_default_valuation_currency</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#market.dataset.DataSet.get_default_valuation_currency" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Obtener la moneda default de valorización</p>
+<p>Obtiene la moneda asignada como moneda default para generar los calculos de valorización</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="market.dataset.DataSet.set_curve_dataset">
+<span class="sig-name descname"><span class="pre">set_curve_dataset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">curve_dataset</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#market.dataset.CurveDataSet" title="market.dataset.CurveDataSet"><span class="pre">CurveDataSet</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#market.dataset.DataSet.set_curve_dataset" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Asignar dataset de Curvas</p>
+<p>Asigna un dataset de curvas</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>curve_dataset</strong> (<a class="reference internal" href="#market.dataset.CurveDataSet" title="market.dataset.CurveDataSet"><em>CurveDataSet</em></a>) – dataset de curvas</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="market.dataset.DataSet.set_fx_dataset">
+<span class="sig-name descname"><span class="pre">set_fx_dataset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fx_dataset</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#market.dataset.FxDataSet" title="market.dataset.FxDataSet"><span class="pre">FxDataSet</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#market.dataset.DataSet.set_fx_dataset" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Asignar dataset de Tipos de Cambio</p>
+<p>Asigna un dataset de Tipos de Cambio</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>fx_dataset</strong> (<a class="reference internal" href="#market.dataset.CurveDataSet" title="market.dataset.CurveDataSet"><em>CurveDataSet</em></a>) – dataset de tipos de cambio</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="market.dataset.DataSet.set_index_dataset">
+<span class="sig-name descname"><span class="pre">set_index_dataset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">index_dataset</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#market.dataset.IndexDataSet" title="market.dataset.IndexDataSet"><span class="pre">IndexDataSet</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#market.dataset.DataSet.set_index_dataset" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Asignar dataset de Índices</p>
+<p>Asigna un dataset de Índices</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>index_dataset</strong> (<a class="reference internal" href="#market.dataset.CurveDataSet" title="market.dataset.CurveDataSet"><em>CurveDataSet</em></a>) – dataset de Índices</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="market.dataset.DataSet.disable_discounted_spot">
+<span class="sig-name descname"><span class="pre">disable_discounted_spot</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#market.dataset.DataSet.disable_discounted_spot" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Desactiva el uso de spot descontado.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="market.dataset.DataSet.enable_discounted_spot">
+<span class="sig-name descname"><span class="pre">enable_discounted_spot</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#market.dataset.DataSet.enable_discounted_spot" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Activa el uso de spot descontado.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="market.dataset.DataSet.get_fx_rate">
+<span class="sig-name descname"><span class="pre">get_fx_rate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fx_pair</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">FxPair</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#market.dataset.DataSet.get_fx_rate" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Obtener tipo de cambio</p>
+<p>Obtiene tipo de cambio a la fecha del dataset.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>fx_pair</strong> (<a class="reference internal" href="3_fx.html#market.fxrate.FxPair" title="market.fxrate.FxPair"><em>FxPair</em></a>) – Nombre de la tasa de cambio.</p>
+</dd>
+<dt class="field-even">Muestra<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="../0_base/2_excepciones.html#exceptions.DatasetException" title="exceptions.DatasetException"><strong>DatasetException</strong></a> – En caso no encuentre datos.</p>
+</dd>
+<dt class="field-odd">Devuelve<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Tipo de Cambio</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="market.dataset.DataSet.get_fx_forward_rate">
+<span class="sig-name descname"><span class="pre">get_fx_forward_rate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fx_pair</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">FxPair</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">forward_date</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">date</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#market.dataset.DataSet.get_fx_forward_rate" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Obtener tipo de cambio forward</p>
+<p>Obtiene el tipo de cambio a una fecha futura, utilizando la siguiente fórmula:</p>
+<div class="math notranslate nohighlight">
+\[S_t^{C_1-C_2} = S_0^{C_1-C_2}\cdot \frac{P_0^{C_1}}{P_0^{C_2}}\]</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>fx_pair</strong> (<a class="reference internal" href="3_fx.html#market.fxrate.FxPair" title="market.fxrate.FxPair"><em>FxPair</em></a>) – Tasa de Cambio.</p></li>
+<li><p><strong>forward_date</strong> (<em>date</em>) – Fecha Futura.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Muestra<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="../0_base/2_excepciones.html#exceptions.DatasetException" title="exceptions.DatasetException"><strong>DatasetException</strong></a> – En caso no se pueda realizar el cálculo solicitado.</p>
+</dd>
+<dt class="field-odd">Devuelve<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Tipo de cambio a fecha futura</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="market.dataset.DataSet.get_discount_curve">
+<span class="sig-name descname"><span class="pre">get_discount_curve</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">associated_currency</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Currency</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">associated_collateral</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Currency</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Curve</span></span></span><a class="headerlink" href="#market.dataset.DataSet.get_discount_curve" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Obtener curva de descuento</p>
+<p>Obtiene una curva de descuento de acuerdo la moneda y colateral asociada. En caso la curva no exista se
+intentará construir una curva sintética tomando como base la moneda default de las curvas. Si no es posible
+obtener un sintético se levanta una excepción.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>associated_currency</strong> (<em>Currency.</em>) – Moneda asociada.</p></li>
+<li><p><strong>associated_collateral</strong> (<a class="reference internal" href="../0_base/1_enums.html#enums.Currency" title="enums.Currency"><em>Currency</em></a>) – Colateral asociado.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Muestra<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="../0_base/2_excepciones.html#exceptions.DatasetException" title="exceptions.DatasetException"><strong>DatasetException</strong></a> – En caso la curva no pueda ser obtenida</p>
+</dd>
+<dt class="field-odd">Devuelve<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Objeto Curve</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="market.dataset.DataSet.get_projection_curve">
+<span class="sig-name descname"><span class="pre">get_projection_curve</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">associated_index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Index</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#market.dataset.DataSet.get_projection_curve" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Obtener curva de proyección</p>
+<p>Obtiene una curva de proyección para el índice señalado</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>associated_index</strong> (<a class="reference internal" href="4_indices.html#market.index.Index" title="market.index.Index"><em>Index</em></a>) – Índice asociado.</p>
+</dd>
+<dt class="field-even">Devuelve<span class="colon">:</span></dt>
+<dd class="field-even"><p>Curva de proyección</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="market.dataset.DataSet.get_index_data">
+<span class="sig-name descname"><span class="pre">get_index_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">FinancialIndex</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">idx_date</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">date</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#market.dataset.DataSet.get_index_data" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Obtener data de índices</p>
+<p>Obtiene la data de un índice a una fecha especificada.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>index</strong> (<a class="reference internal" href="4_indices.html#market.index.Index" title="market.index.Index"><em>Index</em></a>) – Indice.</p></li>
+<li><p><strong>idx_date</strong> (<em>date</em>) – Fecha requerida.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Muestra<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="../0_base/2_excepciones.html#exceptions.DatasetException" title="exceptions.DatasetException"><strong>DatasetException</strong></a> – En caso no se cuente con la información requerida.</p>
+</dd>
+<dt class="field-odd">Devuelve<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Información del índice a la fecha especificada.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="market.dataset.DataSet.get_index_data_between">
+<span class="sig-name descname"><span class="pre">get_index_data_between</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">FinancialIndex</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_date</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_date</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">date</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#market.dataset.DataSet.get_index_data_between" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Obtener data de índices entre las fechas</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>index</strong> (<a class="reference internal" href="../0_base/1_enums.html#enums.FinancialIndex" title="enums.FinancialIndex"><em>FinancialIndex</em></a>) – Índice.</p></li>
+<li><p><strong>start_date</strong> (<em>date</em>) – Fecha de inicio.</p></li>
+<li><p><strong>end_date</strong> (<em>date</em>) – Fecha de fin.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Devuelve<span class="colon">:</span></dt>
+<dd class="field-even"><p>Información entre las fechas designadas</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="market.dataset.DataSet.get_calendar">
+<span class="sig-name descname"><span class="pre">get_calendar</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">localities</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#market.dataset.DataSet.get_calendar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Obtiene un calendario dada una lista de localidades</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>localities</strong> (<em>list</em>) – Listado de localidades</p>
+</dd>
+<dt class="field-even">Devuelve<span class="colon">:</span></dt>
+<dd class="field-even"><p>TradingCalendar</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="dataset-de-curvas">
+<span id="dataset-curvas"></span><h1>Dataset de Curvas<a class="headerlink" href="#dataset-de-curvas" title="Enlace permanente a este encabezado">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="market.dataset.CurveDataSet">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">market.dataset.</span></span><span class="sig-name descname"><span class="pre">CurveDataSet</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">process_date</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">default_collateral_currency</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Currency</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">Currency.USD</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#market.dataset.CurveDataSet" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Set de Datos de Curvas</p>
+<p>Clase especializada en el almacenamiento y tratamiento de datos de curvas.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>process_date</strong> (<em>date</em>) – Fecha de Proceso.</p></li>
+<li><p><strong>default_collateral_currency</strong> (<a class="reference internal" href="../0_base/1_enums.html#enums.Currency" title="enums.Currency"><em>Currency</em></a>) – Moneda de colateral (default: USD).</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="market.dataset.CurveDataSet.set_default_collateral_currency">
+<span class="sig-name descname"><span class="pre">set_default_collateral_currency</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">collateral_currency</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Currency</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#market.dataset.CurveDataSet.set_default_collateral_currency" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Asignar moneda default de colateral</p>
+<p>Asigna una moneda como colateral default para todos los calculos internos, incluyendo la generación de curvas
+sintéticas.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>collateral_currency</strong> (<a class="reference internal" href="../0_base/1_enums.html#enums.Currency" title="enums.Currency"><em>Currency</em></a>) – Moneda de Colateral</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="market.dataset.CurveDataSet.get_default_collateral_currency">
+<span class="sig-name descname"><span class="pre">get_default_collateral_currency</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#market.dataset.CurveDataSet.get_default_collateral_currency" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Obtener moneda default de colateral</p>
+<p>Obtiene la moneda asignada como colateral default para todos los calculos internos.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Devuelve<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Moneda de colateral default</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="market.dataset.CurveDataSet.add_discount_curve">
+<span class="sig-name descname"><span class="pre">add_discount_curve</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">curve</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">associated_currency</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Currency</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">associated_collateral</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Currency</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#market.dataset.CurveDataSet.add_discount_curve" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Agregar curva de descuento</p>
+<p>Agrega una curva de descuento considerando una moneda y un colateral asociado</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>curve</strong> (<a class="reference internal" href="2_curvas.html#market.curve.Curve" title="market.curve.Curve"><em>Curve</em></a>) – Curva.</p></li>
+<li><p><strong>associated_currency</strong> (<a class="reference internal" href="../0_base/1_enums.html#enums.Currency" title="enums.Currency"><em>Currency</em></a>) – Moneda asociada a la Curva.</p></li>
+<li><p><strong>associated_collateral</strong> (<a class="reference internal" href="../0_base/1_enums.html#enums.Currency" title="enums.Currency"><em>Currency</em></a>) – Colateral asociado a la Curva.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="market.dataset.CurveDataSet.get_discount_curve">
+<span class="sig-name descname"><span class="pre">get_discount_curve</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">associated_currency</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Currency</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">associated_collateral</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Currency</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#market.dataset.CurveDataSet.get_discount_curve" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Obtener curva de descuento</p>
+<p>Obtiene una curva de descuento de acuerdo la moneda y colateral asociada. En caso la curva no exista se
+intentará construir una curva sintética tomando como base la moneda default de las curvas. Si no es posible
+obtener un sintético se levanta una excepción.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>associated_currency</strong> (<em>Currency.</em>) – Moneda asociada.</p></li>
+<li><p><strong>associated_collateral</strong> (<a class="reference internal" href="../0_base/1_enums.html#enums.Currency" title="enums.Currency"><em>Currency</em></a>) – Colateral asociado.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Muestra<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="../0_base/2_excepciones.html#exceptions.DatasetException" title="exceptions.DatasetException"><strong>DatasetException</strong></a> – En caso la curva no pueda ser obtenida</p>
+</dd>
+<dt class="field-odd">Devuelve<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Objeto Curve</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="market.dataset.CurveDataSet.add_projection_curve">
+<span class="sig-name descname"><span class="pre">add_projection_curve</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">curve</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Curve</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">associated_index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">FinancialIndex</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#market.dataset.CurveDataSet.add_projection_curve" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Agregar curva de proyección</p>
+<p>Agrega una curva de proyección</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>curve</strong> (<a class="reference internal" href="2_curvas.html#market.curve.Curve" title="market.curve.Curve"><em>Curve</em></a>) – Curva</p></li>
+<li><p><strong>associated_index</strong> – Indice asociado</p></li>
+<li><p><strong>associated_index</strong> – Index</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="market.dataset.CurveDataSet.get_projection_curve">
+<span class="sig-name descname"><span class="pre">get_projection_curve</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">associated_index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Index</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Curve</span></span></span><a class="headerlink" href="#market.dataset.CurveDataSet.get_projection_curve" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Obtener curva de proyección</p>
+<p>Obtiene una curva de proyección para el índice señalado</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>associated_index</strong> (<a class="reference internal" href="4_indices.html#market.index.Index" title="market.index.Index"><em>Index</em></a>) – Índice asociado.</p>
+</dd>
+<dt class="field-even">Devuelve<span class="colon">:</span></dt>
+<dd class="field-even"><p>Curva de proyección</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="dataset-de-pares-de-moneda">
+<span id="dataset-fx"></span><h1>Dataset de Pares de Moneda<a class="headerlink" href="#dataset-de-pares-de-moneda" title="Enlace permanente a este encabezado">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="market.dataset.FxDataSet">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">market.dataset.</span></span><span class="sig-name descname"><span class="pre">FxDataSet</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">process_date</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">date</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#market.dataset.FxDataSet" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Set de Datos de Pares de Moneda</p>
+<p>Clase especializada en el almacenamiento y tratamiento de pares de monedas.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>process_date</strong> (<em>date</em>) – Fecha de Proceso.</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="market.dataset.FxDataSet.add_fx_rate">
+<span class="sig-name descname"><span class="pre">add_fx_rate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fx_pair</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">FxPair</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fx_mid</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">discounted_fx</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#market.dataset.FxDataSet.add_fx_rate" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Agregar tipo de cambio</p>
+<p>Agrega un objeto tipo de cambio al dataset.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>fx_pair</strong> (<a class="reference internal" href="3_fx.html#market.fxrate.FxPair" title="market.fxrate.FxPair"><em>FxPair</em></a>) – Par de monedas.</p></li>
+<li><p><strong>fx_mid</strong> (<em>float</em>) – Valor mid.</p></li>
+<li><p><strong>discounted_fx</strong> (<em>float</em>) – Valor descontado (Opcional)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="market.dataset.FxDataSet.contains">
+<span class="sig-name descname"><span class="pre">contains</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fx_pair</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">FxPair</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#market.dataset.FxDataSet.contains" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Verificar contención de fx pair</p>
+<p>Verifica si el dataset contiene un par de moneda especifico</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>fx_pair</strong> (<a class="reference internal" href="3_fx.html#market.fxrate.FxPair" title="market.fxrate.FxPair"><em>FxPair</em></a>) – Par de moneda</p>
+</dd>
+<dt class="field-even">Devuelve<span class="colon">:</span></dt>
+<dd class="field-even"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="market.dataset.FxDataSet.contains_discounted">
+<span class="sig-name descname"><span class="pre">contains_discounted</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fx_pair</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">FxPair</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#market.dataset.FxDataSet.contains_discounted" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Verificar si contiene Spot Descontado</p>
+<p>Verifica si el dataset contienen la moneda y el spot descontado respectivo</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>fx_pair</strong> (<a class="reference internal" href="3_fx.html#market.fxrate.FxPair" title="market.fxrate.FxPair"><em>FxPair</em></a>) – Par de moneda</p>
+</dd>
+<dt class="field-even">Devuelve<span class="colon">:</span></dt>
+<dd class="field-even"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="market.dataset.FxDataSet.set_fx_rate">
+<span class="sig-name descname"><span class="pre">set_fx_rate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fx_pair</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">FxPair</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fx_rate</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#market.dataset.FxDataSet.set_fx_rate" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Asigna nuevo valor a tasa de cambio</p>
+<p>Asigna nuevo valor a tasa de cambio</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>fx_pair</strong> (<a class="reference internal" href="3_fx.html#market.fxrate.FxPair" title="market.fxrate.FxPair"><em>FxPair</em></a>) – Par de monedas.</p></li>
+<li><p><strong>fx_rate</strong> (<em>float</em>) – Valor mid.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="market.dataset.FxDataSet.get_fx_rate">
+<span class="sig-name descname"><span class="pre">get_fx_rate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fx_pair</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">FxPair</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#market.dataset.FxDataSet.get_fx_rate" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Obtener valor de tasa de cambio</p>
+<p>Obtiene el valor almacenado de tasa de cambio</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>fx_pair</strong> (<a class="reference internal" href="3_fx.html#market.fxrate.FxPair" title="market.fxrate.FxPair"><em>FxPair</em></a>) – Par de monedas.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="market.dataset.FxDataSet.set_discounted_fx_rate">
+<span class="sig-name descname"><span class="pre">set_discounted_fx_rate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fx_pair</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">FxPair</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">discounted_fx_rate</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#market.dataset.FxDataSet.set_discounted_fx_rate" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Asigna nuevo valor a tasa de cambio</p>
+<p>Asigna nuevo valor a tasa de cambio</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>fx_pair</strong> (<a class="reference internal" href="3_fx.html#market.fxrate.FxPair" title="market.fxrate.FxPair"><em>FxPair</em></a>) – Par de monedas.</p></li>
+<li><p><strong>discounted_fx_rate</strong> (<em>float</em>) – Valor descontado.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="market.dataset.FxDataSet.get_discounted_fx_rate">
+<span class="sig-name descname"><span class="pre">get_discounted_fx_rate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fx_pair</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">FxPair</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#market.dataset.FxDataSet.get_discounted_fx_rate" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Obtener valor descontado de tasa de cambio</p>
+<p>Obtiene el valor almacenado de tasa de cambio descontada</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>fx_pair</strong> (<a class="reference internal" href="3_fx.html#market.fxrate.FxPair" title="market.fxrate.FxPair"><em>FxPair</em></a>) – Par de monedas.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="market.dataset.FxDataSet.set_projection">
+<span class="sig-name descname"><span class="pre">set_projection</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fx_pair</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">FxPair</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">projection_date</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">projected_rate</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#market.dataset.FxDataSet.set_projection" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Asigna nuevo valor a tasa de cambio</p>
+<p>Asigna nuevo valor a tasa de cambio</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>fx_pair</strong> (<a class="reference internal" href="3_fx.html#market.fxrate.FxPair" title="market.fxrate.FxPair"><em>FxPair</em></a>) – Par de monedas.</p></li>
+<li><p><strong>projection_date</strong> (<em>date</em>) – Fecha de proyección</p></li>
+<li><p><strong>projected_rate</strong> (<em>float</em>) – Tasa Proyectada.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="market.dataset.FxDataSet.get_projection">
+<span class="sig-name descname"><span class="pre">get_projection</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fx_pair</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">FxPair</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">projection_date</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">date</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#market.dataset.FxDataSet.get_projection" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Asigna nuevo valor a tasa de cambio</p>
+<p>Asigna nuevo valor a tasa de cambio</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>fx_pair</strong> (<a class="reference internal" href="3_fx.html#market.fxrate.FxPair" title="market.fxrate.FxPair"><em>FxPair</em></a>) – Par de monedas.</p></li>
+<li><p><strong>projection_date</strong> (<em>date</em>) – Fecha de proyección</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="dataset-de-indices-financieros">
+<span id="dataset-indices"></span><h1>Dataset de Índices Financieros<a class="headerlink" href="#dataset-de-indices-financieros" title="Enlace permanente a este encabezado">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="market.dataset.IndexDataSet">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">market.dataset.</span></span><span class="sig-name descname"><span class="pre">IndexDataSet</span></span><a class="headerlink" href="#market.dataset.IndexDataSet" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Set de Datos de Índices Financieros</p>
+<p>Clase especializada en el almacenamiento y tratamiento de índices financieros.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="market.dataset.IndexDataSet.set_index_data">
+<span class="sig-name descname"><span class="pre">set_index_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">index</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">historical_data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#market.dataset.IndexDataSet.set_index_data" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Asignar data de índices</p>
+<p>Asigna la información histórica correspondiente a un índice.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>index</strong> (<a class="reference internal" href="4_indices.html#market.index.Index" title="market.index.Index"><em>Index</em></a>) – Indice.</p></li>
+<li><p><strong>historical_data</strong> (<em>dict</em>) – Data histórica.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="market.dataset.IndexDataSet.get_index_data">
+<span class="sig-name descname"><span class="pre">get_index_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">FinancialIndex</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">idx_date</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">date</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#market.dataset.IndexDataSet.get_index_data" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Obtener data de índices</p>
+<p>Obtiene la data de un índice a una fecha especificada.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>index</strong> (<a class="reference internal" href="4_indices.html#market.index.Index" title="market.index.Index"><em>Index</em></a>) – Indice.</p></li>
+<li><p><strong>idx_date</strong> (<em>date</em>) – Fecha requerida.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Muestra<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="../0_base/2_excepciones.html#exceptions.DatasetException" title="exceptions.DatasetException"><strong>DatasetException</strong></a> – En caso no se cuente con la información requerida.</p>
+</dd>
+<dt class="field-odd">Devuelve<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Información del índice a la fecha especificada.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="market.dataset.IndexDataSet.get_index_data_between">
+<span class="sig-name descname"><span class="pre">get_index_data_between</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">FinancialIndex</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_date</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_date</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">date</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="headerlink" href="#market.dataset.IndexDataSet.get_index_data_between" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Obtener data de índices entre las fechas</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>index</strong> (<a class="reference internal" href="../0_base/1_enums.html#enums.FinancialIndex" title="enums.FinancialIndex"><em>FinancialIndex</em></a>) – Indice.</p></li>
+<li><p><strong>start_date</strong> (<em>date</em>) – Fecha de inicio.</p></li>
+<li><p><strong>end_date</strong> (<em>date</em>) – Fecha de fin.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Devuelve<span class="colon">:</span></dt>
+<dd class="field-even"><p>Información entre las fechas designadas</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+      </div>
+      <div class="bottomnav" role="navigation" aria-label="bottom navigation">
+      
+        <p>
+        «&#160;&#160;<a href="4_indices.html"><strong>Módulos Índices Financieros</strong></a>
+        &#160;&#160;::&#160;&#160;
+        <a class="uplink" href="../../../index.html">Contenidos</a>
+        &#160;&#160;::&#160;&#160;
+        <a href="../4_instruments/0_instruments_index.html">Paquete de Instrumentos</a>&#160;&#160;»
+        </p>
+
+      </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Derechos de autor 2022, Riesgo Financiero.
+      Creado usando <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.0.0.
+    </div>
+  </body>
+</html>

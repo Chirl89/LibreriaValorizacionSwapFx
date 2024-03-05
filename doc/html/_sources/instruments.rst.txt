@@ -1,0 +1,54 @@
+Modulo de Instrumentos
+======================
+
+El modulo de instrumentos esta dedicado a la generación de objetos estandarizados que posibiliten el trabajo con los
+distintos instrumentos de mercado. Esto permite la valorización y obtención de riesgos de manera mas rápida y
+estandarizada.
+
+Los instrumentos representados en este módulo son:
+
+- :ref:`flujos`: Clases dedicadas a la representación de flujos de caja.
+- :ref:`spot`: Clases enfocadas en la representación de compra y venta de monedas.
+- :ref:`forward`: Clases enfocadas en la representación de compras y ventas de forwards.
+- :ref:`opciones`: Clases enfocadas en la representación de compras y ventas de Opciones.
+- :ref:`swaps`: Clases enfocadas en la representación de compras y ventas de Swaps.
+
+.. _flujos:
+
+**Flujos**
+----------
+
+.. automodule:: instruments.flow
+   :members:
+
+.. _spot:
+
+**Spots**
+---------
+
+.. automodule:: instruments.spot
+   :members:
+
+.. _forward:
+
+**Forwards**
+------------
+
+.. automodule:: instruments.forward
+   :members:
+
+.. _opciones:
+
+**Opciones**
+------------
+
+.. automodule:: instruments.options
+   :members:
+
+.. _swaps:
+
+**Swaps**
+---------
+
+.. automodule:: instruments.swap
+   :members:

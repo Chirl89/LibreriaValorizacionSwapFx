@@ -1,0 +1,39 @@
+.. _Módulo Swaps:
+
+**Módulo Swaps**
+----------------
+
+.. automodule:: instruments.swap
+
+Las clases dentro de este módulo son:
+
+- :ref:`cupón` (:class:`Coupon`): Clase dedicada a la representación de Cupones.
+- :ref:`leg` (:class:`Leg`): Clase dedicada a la representación de Swap Legs.
+- :ref:`swap` (:class:`Swap`): Clase dedicada a la representación de Swap Legs.
+
+.. _cupón:
+
+Cupón
+-----
+
+.. autoclass:: instruments.swap.Coupon
+   :members:
+   :member-order: bysource
+
+.. _leg:
+
+Swap Leg
+--------
+
+.. autoclass:: instruments.swap.Leg
+   :members:
+   :member-order: bysource
+
+.. _swap:
+
+Swap
+----
+
+.. autoclass:: instruments.swap.Swap
+   :members:
+   :member-order: bysource

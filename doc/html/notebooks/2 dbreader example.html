@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Uso de lector de base de datos &#8212; documentación de Finlib - beta</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/haiku.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/nbsphinx-code-cells.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/translations.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../search.html" />
+    <link rel="next" title="Uso y manipulación de curvas" href="3%20curve%20example.html" />
+    <link rel="prev" title="Uso de Conexión a Base de datos" href="1%20dbconn%20example.html" /> 
+  </head><body>
+      <div class="header" role="banner"><h1 class="heading"><a href="../index.html">
+          <span>documentación de Finlib - beta</span></a></h1>
+        <h2 class="heading"><span>Uso de lector de base de datos</span></h2>
+      </div>
+      <div class="topnav" role="navigation" aria-label="top navigation">
+      
+        <p>
+        «&#160;&#160;<a href="1%20dbconn%20example.html">Uso de Conexión a Base de datos</a>
+        &#160;&#160;::&#160;&#160;
+        <a class="uplink" href="../index.html">Contenidos</a>
+        &#160;&#160;::&#160;&#160;
+        <a href="3%20curve%20example.html">Uso y manipulación de curvas</a>&#160;&#160;»
+        </p>
+
+      </div>
+      <div class="content" role="main">
+        
+        
+  <section id="Uso-de-lector-de-base-de-datos">
+<h1>Uso de lector de base de datos<a class="headerlink" href="#Uso-de-lector-de-base-de-datos" title="Enlace permanente a este encabezado">¶</a></h1>
+<p>El lector de base de datos permite obtener datos directamente de la base de datos oficial utilizando queries predefinidas y transformando los datos en objetos propios de la librería</p>
+<section id="Carga-de-librerías">
+<h2>Carga de librerías<a class="headerlink" href="#Carga-de-librerías" title="Enlace permanente a este encabezado">¶</a></h2>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">finrisklib.data.dbreader</span> <span class="kn">import</span> <span class="n">DBReader</span> <span class="c1"># Lector de Base de datos</span>
+<span class="kn">from</span> <span class="nn">finrisklib.enums</span> <span class="kn">import</span> <span class="n">FinancialIndex</span>
+<span class="kn">from</span> <span class="nn">finrisklib.enums</span> <span class="kn">import</span> <span class="n">Source</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display</span> <span class="c1"># Formateo</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">date</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="Inicialización-de-lector">
+<h2>Inicialización de lector<a class="headerlink" href="#Inicialización-de-lector" title="Enlace permanente a este encabezado">¶</a></h2>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">reader</span> <span class="o">=</span> <span class="n">DBReader</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="Datos-de-Curvas">
+<h2>Datos de Curvas<a class="headerlink" href="#Datos-de-Curvas" title="Enlace permanente a este encabezado">¶</a></h2>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">curve_name</span> <span class="o">=</span> <span class="s1">&#39;CLP fx&#39;</span>
+<span class="n">process_date</span> <span class="o">=</span> <span class="n">date</span><span class="p">(</span><span class="n">year</span><span class="o">=</span><span class="mi">2022</span><span class="p">,</span> <span class="n">month</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">day</span><span class="o">=</span><span class="mi">23</span><span class="p">)</span>
+
+<span class="n">curve</span> <span class="o">=</span> <span class="n">reader</span><span class="o">.</span><span class="n">get_single_curve_data</span><span class="p">(</span><span class="n">curve_name</span><span class="o">=</span><span class="n">curve_name</span><span class="p">,</span> <span class="n">process_date</span><span class="o">=</span><span class="n">process_date</span><span class="p">,</span> <span class="n">source</span><span class="o">=</span><span class="n">Source</span><span class="o">.</span><span class="n">SANDBOX</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<section id="a)-Mostrar-como-factores-de-descuento">
+<h3>a) Mostrar como factores de descuento<a class="headerlink" href="#a)-Mostrar-como-factores-de-descuento" title="Enlace permanente a este encabezado">¶</a></h3>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">curve</span><span class="o">.</span><span class="n">to_dataframe</span><span class="p">()</span>
+<span class="n">display</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Tenor</th>
+      <th>Discount Factor</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>8.0</td>
+      <td>0.998063</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>15.0</td>
+      <td>0.995990</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>34.0</td>
+      <td>0.991161</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>63.0</td>
+      <td>0.981989</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>94.0</td>
+      <td>0.973400</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>126.0</td>
+      <td>0.964291</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>155.0</td>
+      <td>0.955910</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>188.0</td>
+      <td>0.947108</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>275.0</td>
+      <td>0.926399</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>367.0</td>
+      <td>0.906843</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>552.0</td>
+      <td>0.879410</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>736.0</td>
+      <td>0.849496</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>1100.0</td>
+      <td>0.806704</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>1465.0</td>
+      <td>0.769472</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>1830.0</td>
+      <td>0.730337</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>2198.0</td>
+      <td>0.695461</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>2563.0</td>
+      <td>0.666686</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>2927.0</td>
+      <td>0.634250</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>3291.0</td>
+      <td>0.605523</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>3657.0</td>
+      <td>0.578067</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>4389.0</td>
+      <td>0.533318</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>5483.0</td>
+      <td>0.474120</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>7309.0</td>
+      <td>0.408970</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>10963.0</td>
+      <td>0.337719</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+</section>
+<section id="b)-Mostrar-como-tasas">
+<h3>b) Mostrar como tasas<a class="headerlink" href="#b)-Mostrar-como-tasas" title="Enlace permanente a este encabezado">¶</a></h3>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">curve</span><span class="o">.</span><span class="n">rates_to_dataframe</span><span class="p">()</span>
+<span class="n">display</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Tenor</th>
+      <th>Rates</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>8.0</td>
+      <td>0.091191</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>15.0</td>
+      <td>0.101231</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>34.0</td>
+      <td>0.098571</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>63.0</td>
+      <td>0.109446</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>94.0</td>
+      <td>0.108770</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>126.0</td>
+      <td>0.109480</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>155.0</td>
+      <td>0.110409</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>188.0</td>
+      <td>0.109667</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>275.0</td>
+      <td>0.105259</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>367.0</td>
+      <td>0.100672</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>552.0</td>
+      <td>0.087419</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>736.0</td>
+      <td>0.083052</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>1100.0</td>
+      <td>0.072828</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>1465.0</td>
+      <td>0.066513</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>1830.0</td>
+      <td>0.063770</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>2198.0</td>
+      <td>0.061288</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>2563.0</td>
+      <td>0.058600</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>2927.0</td>
+      <td>0.057598</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>3291.0</td>
+      <td>0.056410</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>3657.0</td>
+      <td>0.055434</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>4389.0</td>
+      <td>0.052915</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>5483.0</td>
+      <td>0.050220</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>7309.0</td>
+      <td>0.045023</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>10963.0</td>
+      <td>0.036290</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+</section>
+</section>
+<section id="Datos-de-tipos-de-cambio">
+<h2>Datos de tipos de cambio<a class="headerlink" href="#Datos-de-tipos-de-cambio" title="Enlace permanente a este encabezado">¶</a></h2>
+<section id="a)-Obtención-de-tipo-de-cambio-definiendo-dos-monedas">
+<h3>a) Obtención de tipo de cambio definiendo dos monedas<a class="headerlink" href="#a)-Obtención-de-tipo-de-cambio-definiendo-dos-monedas" title="Enlace permanente a este encabezado">¶</a></h3>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">primary_currency</span> <span class="o">=</span> <span class="s1">&#39;EUR&#39;</span>
+<span class="n">secondary_currency</span> <span class="o">=</span> <span class="s1">&#39;USD&#39;</span>
+
+<span class="n">process_date</span> <span class="o">=</span> <span class="n">date</span><span class="p">(</span><span class="n">year</span><span class="o">=</span><span class="mi">2022</span><span class="p">,</span> <span class="n">month</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">day</span><span class="o">=</span><span class="mi">23</span><span class="p">)</span>
+
+<span class="n">tc</span> <span class="o">=</span> <span class="n">reader</span><span class="o">.</span><span class="n">get_fx_rate</span><span class="p">(</span><span class="n">primary_currency</span><span class="o">=</span><span class="n">primary_currency</span><span class="p">,</span> <span class="n">secondary_currency</span><span class="o">=</span><span class="n">secondary_currency</span><span class="p">,</span>
+                        <span class="n">process_date</span><span class="o">=</span><span class="n">process_date</span><span class="p">,</span> <span class="n">source</span><span class="o">=</span><span class="n">Source</span><span class="o">.</span><span class="n">SANDBOX</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">tc</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+0.99795
+</pre></div></div>
+</div>
+</section>
+</section>
+<section id="Datos-de-índices">
+<h2>Datos de índices<a class="headerlink" href="#Datos-de-índices" title="Enlace permanente a este encabezado">¶</a></h2>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sofr</span> <span class="o">=</span> <span class="n">FinancialIndex</span><span class="o">.</span><span class="n">SOFR</span>
+<span class="n">icp</span> <span class="o">=</span> <span class="n">FinancialIndex</span><span class="o">.</span><span class="n">ICP</span>
+
+<span class="n">start_date</span> <span class="o">=</span> <span class="n">date</span><span class="p">(</span><span class="n">year</span><span class="o">=</span><span class="mi">2022</span><span class="p">,</span> <span class="n">month</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">day</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">end_date</span> <span class="o">=</span> <span class="n">date</span><span class="p">(</span><span class="n">year</span><span class="o">=</span><span class="mi">2022</span><span class="p">,</span> <span class="n">month</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">day</span><span class="o">=</span><span class="mi">23</span><span class="p">)</span>
+
+<span class="n">icp_data</span> <span class="o">=</span> <span class="n">reader</span><span class="o">.</span><span class="n">get_single_index_dataset</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">icp</span><span class="p">,</span> <span class="n">start_date</span><span class="o">=</span><span class="n">start_date</span><span class="p">,</span> <span class="n">end_date</span><span class="o">=</span><span class="n">end_date</span><span class="p">)</span>
+<span class="n">sofr_data</span> <span class="o">=</span> <span class="n">reader</span><span class="o">.</span><span class="n">get_single_index_dataset</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">sofr</span><span class="p">,</span> <span class="n">start_date</span><span class="o">=</span><span class="n">start_date</span><span class="p">,</span> <span class="n">end_date</span><span class="o">=</span><span class="n">end_date</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">idx_date</span> <span class="o">=</span> <span class="n">date</span><span class="p">(</span><span class="n">year</span><span class="o">=</span><span class="mi">2022</span><span class="p">,</span> <span class="n">month</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">day</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">icp_data</span><span class="o">.</span><span class="n">get_index_data</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">icp</span><span class="p">,</span> <span class="n">idx_date</span><span class="o">=</span><span class="n">idx_date</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+20040.63
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">idx_date</span> <span class="o">=</span> <span class="n">date</span><span class="p">(</span><span class="n">year</span><span class="o">=</span><span class="mi">2022</span><span class="p">,</span> <span class="n">month</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">day</span><span class="o">=</span><span class="mi">9</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">sofr_data</span><span class="o">.</span><span class="n">get_index_data</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">sofr</span><span class="p">,</span> <span class="n">idx_date</span><span class="o">=</span><span class="n">idx_date</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+0.0229
+</pre></div></div>
+</div>
+</section>
+</section>
+
+
+      </div>
+      <div class="bottomnav" role="navigation" aria-label="bottom navigation">
+      
+        <p>
+        «&#160;&#160;<a href="1%20dbconn%20example.html">Uso de Conexión a Base de datos</a>
+        &#160;&#160;::&#160;&#160;
+        <a class="uplink" href="../index.html">Contenidos</a>
+        &#160;&#160;::&#160;&#160;
+        <a href="3%20curve%20example.html">Uso y manipulación de curvas</a>&#160;&#160;»
+        </p>
+
+      </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Derechos de autor 2022, Riesgo Financiero.
+      Creado usando <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.0.0.
+    </div>
+  </body>
+</html>

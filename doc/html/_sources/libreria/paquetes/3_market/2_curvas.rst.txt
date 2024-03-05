@@ -1,0 +1,19 @@
+.. _Módulo Curvas:
+
+**Módulo Curvas**
+-----------------
+
+.. automodule:: market.curve
+
+La principal clase de este módulo es:
+
+- :ref:`curva` (:class:`Curve`): Clase dedicada a representación de curvas de proyección y descuento.
+
+.. _curva:
+
+Curva
+-----
+
+.. autoclass:: market.curve.Curve
+   :members:
+   :member-order: bysource

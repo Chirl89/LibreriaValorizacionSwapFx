@@ -1,0 +1,8 @@
+.. _fx:
+
+**Tipo de cambio**
+------------------
+
+.. automodule:: market.fxrate
+   :members:
+   :member-order: bysource

@@ -1,0 +1,46 @@
+Módulos Base
+============
+
+.. toctree::
+    :hidden:
+
+    1_enums
+    2_excepciones
+    3_configuración
+    4_decoradores
+
+
+Los módulos base se encuentran dentro del namespace de la librería, esto permite que sean fácilmente accesibles por
+todos los demás módulos y funciones.
+
+Su principal función es la de estandarizar los nombres y conceptos, para esto contamos con 4 módulos:
+
+:ref:`Módulo Enumeradores`
+--------------------------
+
+Colección de enumeradores que estandarizan los conceptos y códigos utilizados dentro de la
+librería.
+
+:ref:`Módulo Excepciones`
+-------------------------
+
+Colección de excepciones hechas a la medida para manejar los distintos errores que puede generar la librería.
+
+:ref:`Módulo Configuraciones`
+-----------------------------
+
+Colección de configuraciones utilizadas para leer archivos o bases de datos, conversión de curvas, etc.
+
+:ref:`Módulo Decoradores`
+-------------------------
+
+Colección de decoradores de funciones.
+
+
+
+
+
+
+
+
+

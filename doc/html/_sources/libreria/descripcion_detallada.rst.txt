@@ -1,0 +1,6 @@
+**Excepciones**
+---------------
+
+.. automodule:: exceptions
+   :members:
+   :show-inheritance:

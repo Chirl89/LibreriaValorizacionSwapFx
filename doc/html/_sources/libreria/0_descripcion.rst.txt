@@ -1,0 +1,8 @@
+FinRiskLib
+==========
+
+.. toctree::
+    :maxdepth: 2
+
+    1_instalacion
+    paquetes/0_paquetes

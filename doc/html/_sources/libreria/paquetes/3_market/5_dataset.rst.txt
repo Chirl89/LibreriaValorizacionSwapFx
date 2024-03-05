@@ -1,0 +1,49 @@
+.. _Módulo Dataset:
+
+**Módulo Datasets**
+-------------------
+
+.. automodule:: market.dataset
+
+Las principales clases de este módulo son:
+
+- :ref:`dataset` (:class:`DataSet`): Clase dedicada de datos de mercado.
+- :ref:`dataset curvas` (:class:`CurveDataSet`): Clase dedicada al manejo de datos de curvas.
+- :ref:`dataset fx` (:class:`FxDataSet`): Clase dedicada al manejo de datos de pares de moneda.
+- :ref:`dataset indices` (:class:`IndexDataSet`): Clase dedicada al manejo de datos de índices financieros.
+
+.. _dataset:
+
+Dataset de Mercado
+------------------
+
+.. autoclass:: market.dataset.DataSet
+   :members:
+   :member-order: bysource
+
+.. _dataset curvas:
+
+Dataset de Curvas
+-----------------
+
+.. autoclass:: market.dataset.CurveDataSet
+   :members:
+   :member-order: bysource
+
+.. _dataset Fx:
+
+Dataset de Pares de Moneda
+--------------------------
+
+.. autoclass:: market.dataset.FxDataSet
+   :members:
+   :member-order: bysource
+
+.. _dataset indices:
+
+Dataset de Índices Financieros
+------------------------------
+
+.. autoclass:: market.dataset.IndexDataSet
+   :members:
+   :member-order: bysource

@@ -1,0 +1,7 @@
+.. _calendarios:
+
+**Calendarios**
+---------------
+
+.. automodule:: market.tradingcalendar
+   :members:

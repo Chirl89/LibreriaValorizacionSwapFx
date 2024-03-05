@@ -1,0 +1,19 @@
+.. _Módulo Consultas SQL:
+
+**Módulo Consultas SQL**
+------------------------
+
+.. automodule:: data.dbreader
+
+La clase principal de este módulo es:
+
+- :ref:`lector_sql` (:class:`XlsReader`): Clase de lectura de datos SQL desde servidor productivo.
+
+.. _lector_sql:
+
+Lector SQL
+----------
+
+.. autoclass:: data.dbreader.DBReader
+    :members:
+    :member-order: bysource

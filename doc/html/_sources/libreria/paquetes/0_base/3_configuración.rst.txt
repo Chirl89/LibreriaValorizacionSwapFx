@@ -1,0 +1,8 @@
+.. _Módulo Configuraciones:
+
+**Módulo de Configuración**
+---------------------------
+
+.. automodule:: finriskconfig
+   :members:
+   :show-inheritance:

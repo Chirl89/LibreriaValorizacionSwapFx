@@ -1,0 +1,39 @@
+Funciones Base
+==============
+
+Llamamos función base a toda aquella que se encuentra dentro del namespace de Finlib, estas funciones se encuentran
+"a la mano" debido a que son funciones (y clases) que alimentan a los demás módulos de la librería.
+
+Dentro de estas funciones, y sin ningún orden en particular, tenemos:
+
+- :ref:`enums`: Clases estáticos con  listados enfocados en estandarizar los códigos utilizados dentro de la librería.
+- :ref:`excepciones`: Clases dedicadas a estandarizar los distintos errores que puede generar la librería.
+- :ref:`configuracion`: Clases dedicadas a reducir el tiempo de configuración con estándares de mercado o internos.
+
+.. _enums:
+
+**Enumeradores**
+----------------
+
+.. automodule:: enums
+   :members:
+   :show-inheritance:
+   :member-order: bysource
+
+.. _excepciones:
+
+**Excepciones**
+---------------
+
+.. automodule:: exceptions
+   :members:
+   :show-inheritance:
+
+.. _configuracion:
+
+**Configuración**
+-----------------
+
+.. automodule:: config
+   :members:
+   :show-inheritance:

@@ -1,0 +1,11 @@
+Paquetes
+========
+
+La librería se encuentra divide en los siguientes paquetes:
+
+.. toctree::
+    0_base/0_base_index
+    1_data/0_data_index
+    2_math/0_math_index
+    3_market/0_market_index
+    4_instruments/0_instruments_index

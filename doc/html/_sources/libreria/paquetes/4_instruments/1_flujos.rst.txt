@@ -1,0 +1,29 @@
+.. _Módulo Flujos:
+
+**Módulo Flujos**
+-----------------
+
+.. automodule:: instruments.flow
+
+Las clases dentro de este módulo son:
+
+- :ref:`cash` (:class:`Cash`): Clase dedicada a la representación de caja financiera.
+- :ref:`cashflow` (:class:`CashFlow`): Clase dedicada a la representación de flujos de caja.
+
+.. _cash:
+
+Cash
+----
+
+.. autoclass:: instruments.flow.Cash
+   :members:
+   :member-order: bysource
+
+.. _cashflow:
+
+Cash Flow
+---------
+
+.. autoclass:: instruments.flow.Cashflow
+   :members:
+   :member-order: bysource

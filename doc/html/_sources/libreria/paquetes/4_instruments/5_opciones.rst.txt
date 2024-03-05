@@ -1,0 +1,7 @@
+.. _opciones:
+
+**Opciones**
+------------
+
+.. automodule:: instruments.options
+   :members:

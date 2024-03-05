@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Módulo de Interpolación &#8212; documentación de Finlib - beta</title>
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/haiku.css" />
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/translations.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Índice" href="../../../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../../../search.html" />
+    <link rel="next" title="Paquete de Mercado" href="../3_market/0_market_index.html" />
+    <link rel="prev" title="Paquete Matemático" href="0_math_index.html" /> 
+  </head><body>
+      <div class="header" role="banner"><h1 class="heading"><a href="../../../index.html">
+          <span>documentación de Finlib - beta</span></a></h1>
+        <h2 class="heading"><span>Módulo de Interpolación</span></h2>
+      </div>
+      <div class="topnav" role="navigation" aria-label="top navigation">
+      
+        <p>
+        «&#160;&#160;<a href="0_math_index.html">Paquete Matemático</a>
+        &#160;&#160;::&#160;&#160;
+        <a class="uplink" href="../../../index.html">Contenidos</a>
+        &#160;&#160;::&#160;&#160;
+        <a href="../3_market/0_market_index.html">Paquete de Mercado</a>&#160;&#160;»
+        </p>
+
+      </div>
+      <div class="content" role="main">
+        
+        
+  <section id="module-finmath.interpolator">
+<span id="modulo-de-interpolacion"></span><span id="modulo-interpolacion"></span><h1><strong>Módulo de Interpolación</strong><a class="headerlink" href="#module-finmath.interpolator" title="Enlace permanente a este encabezado">¶</a></h1>
+<p>Clases dedicadas a la interpolación y extrapolación de vectores</p>
+<p>La principal clase de este módulo es:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#interpolador"><span class="std std-ref">Interpolación</span></a> (<a class="reference internal" href="#finmath.interpolator.Interpolator" title="finmath.interpolator.Interpolator"><code class="xref py py-class docutils literal notranslate"><span class="pre">Interpolator</span></code></a>): Clase dedicada a la interpolación de vectores.</p></li>
+</ul>
+</section>
+<section id="interpolacion">
+<span id="interpolador"></span><h1>Interpolación<a class="headerlink" href="#interpolacion" title="Enlace permanente a este encabezado">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="finmath.interpolator.Interpolator">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">finmath.interpolator.</span></span><span class="sig-name descname"><span class="pre">Interpolator</span></span><a class="headerlink" href="#finmath.interpolator.Interpolator" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Clase estática dedicada a la interpolación y extrapolación de vectores</p>
+<dl class="field-list simple">
+<dt class="field-odd">Note<span class="colon">:</span></dt>
+<dd class="field-odd"><p>La clase se encuentra enfocada en la practicidad de uso, ya que puede ser llamada directamente sin necesidad
+de alguna inicialización, además el método <a class="reference internal" href="#finmath.interpolator.Interpolator.interpolate" title="finmath.interpolator.Interpolator.interpolate"><code class="xref py py-func docutils literal notranslate"><span class="pre">interpolate()</span></code></a> se encarga de apuntar a la interpolación
+requerida basándose en el método de interpolación o extrapolación especificado. Sin embargo, esto tiene un
+coste en eficiencia si se requieren hacer gran cantidad de interpolaciones, porque el proceso realizará
+siempre chequeos de seguridad (largo de vectores) y búsqueda de índices en el vértice x. Si es que se
+requiere hacer miles de interpolaciones sobre un mismo vector, lo recomendable es generar un nuevo vector
+con todos los puntos interpolados para que estos sean mantenidos en memoria y se reduzca el tiempo de
+ejecución. Esta decisión se deja al usuario.</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="finmath.interpolator.Interpolator.interpolate">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">interpolate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">point</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_vector</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_vector</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">interpolation_method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">InterpolationMethod.LINEAR</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extrapolation_method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">ExtrapolationMethod.SLOPE</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#finmath.interpolator.Interpolator.interpolate" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Función de interpolación.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>point</strong> (<em>float</em>) – Punto a interpolar.</p></li>
+<li><p><strong>x_vector</strong> (<em>list</em><em>[</em><em>]</em>) – Eje x.</p></li>
+<li><p><strong>y_vector</strong> (<em>list</em><em>[</em><em>]</em>) – Eje y.</p></li>
+<li><p><strong>interpolation_method</strong> (<a class="reference internal" href="../0_base/1_enums.html#enums.InterpolationMethod" title="enums.InterpolationMethod"><em>InterpolationMethod</em></a>) – Método de interpolación (default: Lineal)</p></li>
+<li><p><strong>extrapolation_method</strong> (<a class="reference internal" href="../0_base/1_enums.html#enums.ExtrapolationMethod" title="enums.ExtrapolationMethod"><em>ExtrapolationMethod</em></a>) – Método de extrapolación (default: Pendiente)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Devuelve<span class="colon">:</span></dt>
+<dd class="field-even"><p>Punto interpolado</p>
+</dd>
+<dt class="field-odd">Muestra<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>ValueException</strong> – Cuando la longitud de los vectores x e y no son iguales.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="finmath.interpolator.Interpolator.interpolate_linear">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">interpolate_linear</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">point</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_vector</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_vector</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#finmath.interpolator.Interpolator.interpolate_linear" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Interpolación Lineal</p>
+<p>Genera una interpolación lineal para un punto especificado de acuerdo a la siguiente fórmula:</p>
+<div class="math notranslate nohighlight">
+\[y = y_2\cdot\alpha + y_1\cdot(1-\alpha)\]</div>
+<p>Donde:</p>
+<div class="math notranslate nohighlight">
+\[\alpha = \frac{(x - x_1)}{x_2-x_1}\]</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>point</strong> (<em>float</em>) – Punto a interpolar.</p></li>
+<li><p><strong>x_vector</strong> (<em>List</em><em>[</em><em>]</em>) – Eje x.</p></li>
+<li><p><strong>y_vector</strong> (<em>List</em><em>[</em><em>]</em>) – Eje y.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Devuelve<span class="colon">:</span></dt>
+<dd class="field-even"><p>Punto interpolado</p>
+</dd>
+<dt class="field-odd">Muestra<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>ValueException</strong> – Cuando la longitud de los vectores x e y no son iguales.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="finmath.interpolator.Interpolator.interpolate_log_linear">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">interpolate_log_linear</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">point</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_vector</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_vector</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#finmath.interpolator.Interpolator.interpolate_log_linear" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Interpolación Log-lineal</p>
+<p>Genera una interpolación Log-Lineal para un punto especificado de acuerdo a la siguiente fórmula:</p>
+<div class="math notranslate nohighlight">
+\[y = y_2^{\alpha}\cdot y_1^{1-\alpha}\]</div>
+<p>Donde:</p>
+<div class="math notranslate nohighlight">
+\[\alpha = \frac{(x - x_1)}{x_2-x_1}\]</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>point</strong> (<em>float</em>) – Punto a interpolar.</p></li>
+<li><p><strong>x_vector</strong> (<em>List</em><em>[</em><em>]</em>) – Eje x.</p></li>
+<li><p><strong>y_vector</strong> (<em>List</em><em>[</em><em>]</em>) – Eje y.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Devuelve<span class="colon">:</span></dt>
+<dd class="field-even"><p>Punto interpolado</p>
+</dd>
+<dt class="field-odd">Muestra<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>ValueException</strong> – Cuando la longitud de los vectores x e y no son iguales.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="finmath.interpolator.Interpolator.extrapolate_slope">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">extrapolate_slope</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">point</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_vector</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_vector</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#finmath.interpolator.Interpolator.extrapolate_slope" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Extrapolación por pendiente</p>
+<p>Genera una extrapolación manteniendo la última pendiente para un punto especificado de acuerdo a la siguiente
+fórmula si el punto es mayor al último valor del eje x:</p>
+<div class="math notranslate nohighlight">
+\[y = y_n + (x - x_n)\frac{y_n-y_{n-1}}{x_n-x_{n-1}}\]</div>
+<p>En el caso en que el primer punto sea menor al primer punto del eje X se tiene la siguiente fórmula:</p>
+<div class="math notranslate nohighlight">
+\[y = y_1 - (x_1 - x)\frac{y_2-y_1}{x_2-x_1}\]</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>point</strong> (<em>float</em>) – Punto a extrapolar.</p></li>
+<li><p><strong>x_vector</strong> (<em>List</em><em>[</em><em>]</em>) – Eje x.</p></li>
+<li><p><strong>y_vector</strong> (<em>List</em><em>[</em><em>]</em>) – Eje y.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Devuelve<span class="colon">:</span></dt>
+<dd class="field-even"><p>Punto extrapolado</p>
+</dd>
+<dt class="field-odd">Muestra<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>ValueException</strong> – Cuando la longitud de los vectores x e y no son iguales.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="finmath.interpolator.Interpolator.extrapolate_log_slope">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">extrapolate_log_slope</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">point</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_vector</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_vector</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#finmath.interpolator.Interpolator.extrapolate_log_slope" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Extrapolación por pendiente logarítmica</p>
+<p>Genera una extrapolación manteniendo la última pendiente logarítmica para un punto especificado de acuerdo a la
+siguiente fórmula si el punto es mayor al último valor del eje x:</p>
+<div class="math notranslate nohighlight">
+\[y = y_n\cdot e^{(x - x_n)\frac{ln(y_n)-ln(y_{n-1})}{x_n-x_{n-1}}}\]</div>
+<p>En el caso en que el primer punto sea menor al primer punto del eje X se tiene la siguiente fórmula:</p>
+<div class="math notranslate nohighlight">
+\[y = y_1\cdot e^{-(x_1 - x)\frac{ln(y_2)-ln(y_1)}{x_2-x_1}}\]</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>point</strong> (<em>float</em>) – Punto a extrapolar.</p></li>
+<li><p><strong>x_vector</strong> (<em>List</em><em>[</em><em>]</em>) – Eje x.</p></li>
+<li><p><strong>y_vector</strong> (<em>List</em><em>[</em><em>]</em>) – Eje y.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Devuelve<span class="colon">:</span></dt>
+<dd class="field-even"><p>Punto extrapolado</p>
+</dd>
+<dt class="field-odd">Muestra<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>ValueException</strong> – Cuando la longitud de los vectores x e y no son iguales.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="finmath.interpolator.Interpolator.extrapolate_flat">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">extrapolate_flat</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">point</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_vector</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_vector</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#finmath.interpolator.Interpolator.extrapolate_flat" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Extrapolación plana</p>
+<p>Genera una extrapolación plana manteniendo el valor conocido más cercano.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>point</strong> (<em>float</em>) – Punto a extrapolar.</p></li>
+<li><p><strong>x_vector</strong> (<em>List</em><em>[</em><em>]</em>) – Eje x.</p></li>
+<li><p><strong>y_vector</strong> (<em>List</em><em>[</em><em>]</em>) – Eje y.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Devuelve<span class="colon">:</span></dt>
+<dd class="field-even"><p>Punto extrapolado</p>
+</dd>
+<dt class="field-odd">Muestra<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>ValueException</strong> – Cuando la longitud de los vectores x e y no son iguales.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="finmath.interpolator.Interpolator.extrapolate_flat_rate">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">extrapolate_flat_rate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">point</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_vector</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_vector</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#finmath.interpolator.Interpolator.extrapolate_flat_rate" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Extrapolación plana</p>
+<p>Genera una extrapolación plana manteniendo el valor conocido más cercano tratándolo como una tasa YIELD ACT/360.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>point</strong> (<em>float</em>) – Punto a extrapolar.</p></li>
+<li><p><strong>x_vector</strong> (<em>List</em><em>[</em><em>]</em>) – Eje x.</p></li>
+<li><p><strong>y_vector</strong> (<em>List</em><em>[</em><em>]</em>) – Eje y.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Devuelve<span class="colon">:</span></dt>
+<dd class="field-even"><p>Punto extrapolado</p>
+</dd>
+<dt class="field-odd">Muestra<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>ValueException</strong> – Cuando la longitud de los vectores x e y no son iguales.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="finmath.interpolator.Interpolator.extrapolate_rate_slope">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">extrapolate_rate_slope</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">point</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_vector</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_vector</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#finmath.interpolator.Interpolator.extrapolate_rate_slope" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Extrapolación por tasa YIELD Act/360</p>
+<p>Genera una extrapolación manteniendo la última pendiente para un punto especificado bajo una tasa YIELD Act/360
+de acuerdo a la siguiente fórmula si el punto es mayor al último valor del eje x:</p>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}r = r_n + (x - x_n)\frac{r_n-r_{n-1}}{x_n-x_{n-1}}\\y = (1+r)^{(-x/360)}\end{aligned}\end{align} \]</div>
+<p>En el caso en que el primer punto sea menor al primer punto del eje X se tiene la siguiente fórmula:</p>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}r = r_1 - (x_1 - x)\frac{r_2-r_1}{x_2-x_1}\\y = (1+r)^{(-x/360)}\end{aligned}\end{align} \]</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>point</strong> (<em>float</em>) – Punto a extrapolar.</p></li>
+<li><p><strong>x_vector</strong> (<em>List</em><em>[</em><em>]</em>) – Eje x.</p></li>
+<li><p><strong>y_vector</strong> (<em>List</em><em>[</em><em>]</em>) – Eje y.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Devuelve<span class="colon">:</span></dt>
+<dd class="field-even"><p>Punto extrapolado</p>
+</dd>
+<dt class="field-odd">Muestra<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>ValueException</strong> – Cuando la longitud de los vectores x e y no son iguales.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+      </div>
+      <div class="bottomnav" role="navigation" aria-label="bottom navigation">
+      
+        <p>
+        «&#160;&#160;<a href="0_math_index.html">Paquete Matemático</a>
+        &#160;&#160;::&#160;&#160;
+        <a class="uplink" href="../../../index.html">Contenidos</a>
+        &#160;&#160;::&#160;&#160;
+        <a href="../3_market/0_market_index.html">Paquete de Mercado</a>&#160;&#160;»
+        </p>
+
+      </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Derechos de autor 2022, Riesgo Financiero.
+      Creado usando <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.0.0.
+    </div>
+  </body>
+</html>

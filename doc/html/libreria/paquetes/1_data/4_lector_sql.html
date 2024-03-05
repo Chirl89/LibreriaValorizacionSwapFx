@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Módulo Consultas SQL &#8212; documentación de Finlib - beta</title>
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/haiku.css" />
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/translations.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="index" title="Índice" href="../../../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../../../search.html" />
+    <link rel="next" title="Paquete Matemático" href="../2_math/0_math_index.html" />
+    <link rel="prev" title="Módulo de Lectura Archivos" href="3_lector_archivos.html" /> 
+  </head><body>
+      <div class="header" role="banner"><h1 class="heading"><a href="../../../index.html">
+          <span>documentación de Finlib - beta</span></a></h1>
+        <h2 class="heading"><span>Módulo Consultas SQL</span></h2>
+      </div>
+      <div class="topnav" role="navigation" aria-label="top navigation">
+      
+        <p>
+        «&#160;&#160;<a href="3_lector_archivos.html"><strong>Módulo de Lectura Archivos</strong></a>
+        &#160;&#160;::&#160;&#160;
+        <a class="uplink" href="../../../index.html">Contenidos</a>
+        &#160;&#160;::&#160;&#160;
+        <a href="../2_math/0_math_index.html">Paquete Matemático</a>&#160;&#160;»
+        </p>
+
+      </div>
+      <div class="content" role="main">
+        
+        
+  <section id="modulo-consultas-sql">
+<span id="id1"></span><h1><strong>Módulo Consultas SQL</strong><a class="headerlink" href="#modulo-consultas-sql" title="Enlace permanente a este encabezado">¶</a></h1>
+<span class="target" id="module-data.dbreader"></span><p>Este módulo se encuentra enfocado en estandarizar la obtención de datos desde los servidores productivos.</p>
+<p>La clase principal de este módulo es:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#lector-sql"><span class="std std-ref">Lector SQL</span></a> (<code class="xref py py-class docutils literal notranslate"><span class="pre">XlsReader</span></code>): Clase de lectura de datos SQL desde servidor productivo.</p></li>
+</ul>
+</section>
+<section id="lector-sql">
+<span id="id2"></span><h1>Lector SQL<a class="headerlink" href="#lector-sql" title="Enlace permanente a este encabezado">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="data.dbreader.DBReader">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">data.dbreader.</span></span><span class="sig-name descname"><span class="pre">DBReader</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">conn:</span> <span class="pre">~finrisklib.data.dbconnection.SQLConn</span> <span class="pre">=</span> <span class="pre">&lt;finrisklib.data.dbconnection.SQLConn</span> <span class="pre">object&gt;</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#data.dbreader.DBReader" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Lector de base de datos</p>
+<p>Clase dedicada a la lectura de información desde las bases de datos.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>conn</strong> (<a class="reference internal" href="1_conexion.html#data.dbconnection.SQLConn" title="data.dbconnection.SQLConn"><em>SQLConn</em></a>) – Conexión a BD. (Default: B08)</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="data.dbreader.DBReader.execute_query">
+<span class="sig-name descname"><span class="pre">execute_query</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">query</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#data.dbreader.DBReader.execute_query" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Ejecutar Query</p>
+<p>Ejecuta la query solicitada</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>query</strong> – Query</p>
+</dd>
+<dt class="field-even">Devuelve<span class="colon">:</span></dt>
+<dd class="field-even"><p>Dataframe con datos de query ejecutada</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="data.dbreader.DBReader.get_curve_names">
+<span class="sig-name descname"><span class="pre">get_curve_names</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">process_date</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">source</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Source</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">Source.OFFICIAL</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span></span></span><a class="headerlink" href="#data.dbreader.DBReader.get_curve_names" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Obtener nombre de curvas</p>
+<p>Obtiene una lista con los nombres de curvas disponibles.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>process_date</strong> (<em>date</em>) – fecha de proceso.</p></li>
+<li><p><strong>source</strong> (<a class="reference internal" href="../0_base/1_enums.html#enums.Source" title="enums.Source"><em>Source</em></a>) – Fuente de información (Default = OFFICIAL).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Devuelve<span class="colon">:</span></dt>
+<dd class="field-even"><p>Lista con nombres de curvas.</p>
+</dd>
+<dt class="field-odd">Muestra<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="../0_base/2_excepciones.html#exceptions.QueryException" title="exceptions.QueryException"><strong>QueryException</strong></a> – Cuando no se retorna valores con la query realizada.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="data.dbreader.DBReader.get_single_curve_data">
+<span class="sig-name descname"><span class="pre">get_single_curve_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">curve_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">process_date</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">source</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Source</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">Source.OFFICIAL</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Curve</span></span></span><a class="headerlink" href="#data.dbreader.DBReader.get_single_curve_data" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Obtener Curva</p>
+<p>Obtiene un objeto curva en específico.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>curve_name</strong> (<em>str</em>) – Nombre de la curva.</p></li>
+<li><p><strong>process_date</strong> (<em>date</em>) – fecha de proceso.</p></li>
+<li><p><strong>source</strong> (<a class="reference internal" href="../0_base/1_enums.html#enums.Source" title="enums.Source"><em>Source</em></a>) – Fuente de información (Default = OFFICIAL).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Devuelve<span class="colon">:</span></dt>
+<dd class="field-even"><p>Objeto Curva con la información del servidor.</p>
+</dd>
+<dt class="field-odd">Muestra<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="../0_base/2_excepciones.html#exceptions.QueryException" title="exceptions.QueryException"><strong>QueryException</strong></a> – Cuando no se retorna valores con la query realizada.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="data.dbreader.DBReader.get_curve_dataset">
+<span class="sig-name descname"><span class="pre">get_curve_dataset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">process_date</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">source</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Source</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">Source.OFFICIAL</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">CurveDataSet</span></span></span><a class="headerlink" href="#data.dbreader.DBReader.get_curve_dataset" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Obtener todas las Curvas</p>
+<p>Obtiene un diccionario con todas las curvas disponibles a una fecha determinada.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>process_date</strong> (<em>date.</em>) – Fecha de las curvas.</p></li>
+<li><p><strong>source</strong> (<a class="reference internal" href="../0_base/1_enums.html#enums.Source" title="enums.Source"><em>Source</em></a>) – Fuente de información (Default = OFFICIAL).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Devuelve<span class="colon">:</span></dt>
+<dd class="field-even"><p>Diccionario con objetos Curva con la información del servidor.</p>
+</dd>
+<dt class="field-odd">Muestra<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="../0_base/2_excepciones.html#exceptions.QueryException" title="exceptions.QueryException"><strong>QueryException</strong></a> – Cuando no se retorna valores con la query realizada.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="data.dbreader.DBReader.get_fx_rate">
+<span class="sig-name descname"><span class="pre">get_fx_rate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">primary_currency</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">secondary_currency</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">process_date</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">source</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Source</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">Source.MUREX</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#data.dbreader.DBReader.get_fx_rate" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Obtener tasa de cambio</p>
+<p>Retorna el tipo de cambio solicitado para la fecha especificada</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>primary_currency</strong> (<em>str.</em>) – Nombre de la moneda primaria.</p></li>
+<li><p><strong>secondary_currency</strong> (<em>str.</em>) – Nombre de la moneda secundaria.</p></li>
+<li><p><strong>process_date</strong> (<em>date.</em>) – Fecha de proceso.</p></li>
+<li><p><strong>source</strong> (<a class="reference internal" href="../0_base/1_enums.html#enums.Source" title="enums.Source"><em>Source</em></a>) – Fuente de Información (Default = MUREX).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Devuelve<span class="colon">:</span></dt>
+<dd class="field-even"><p>Valor de la moneda</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="data.dbreader.DBReader.get_fx_dataset">
+<span class="sig-name descname"><span class="pre">get_fx_dataset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">process_date</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">source</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Source</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">Source.MUREX</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">FxDataSet</span></span></span><a class="headerlink" href="#data.dbreader.DBReader.get_fx_dataset" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Obtener todas las tasas de cambio</p>
+<p>Retorna los tipos de cambio para la fecha especificada</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>process_date</strong> (<em>date</em>) – Fecha de proceso.</p></li>
+<li><p><strong>source</strong> (<a class="reference internal" href="../0_base/1_enums.html#enums.Source" title="enums.Source"><em>Source</em></a>) – Fuente de Información (Default = MUREX).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Devuelve<span class="colon">:</span></dt>
+<dd class="field-even"><p>Dataset de tipo de cambio</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="data.dbreader.DBReader.get_index_rate">
+<span class="sig-name descname"><span class="pre">get_index_rate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">FinancialIndex</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">process_date</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">date</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#data.dbreader.DBReader.get_index_rate" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Obtener valor de Índice Financiero</p>
+<p>Obtiene el valor de un índice financiero a una fecha determinada</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>index</strong> (<a class="reference internal" href="../0_base/1_enums.html#enums.FinancialIndex" title="enums.FinancialIndex"><em>FinancialIndex</em></a>) – Índice Financiero.</p></li>
+<li><p><strong>process_date</strong> (<em>date</em>) – fecha de proceso.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Devuelve<span class="colon">:</span></dt>
+<dd class="field-even"><p>valor del índice.</p>
+</dd>
+<dt class="field-odd">Muestra<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="../0_base/2_excepciones.html#exceptions.QueryException" title="exceptions.QueryException"><strong>QueryException</strong></a> – En caso no se encuentre data o el índice no se reconozca.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="data.dbreader.DBReader.get_single_index_dataset">
+<span class="sig-name descname"><span class="pre">get_single_index_dataset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">FinancialIndex</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_date</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_date</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">date</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">IndexDataSet</span></span></span><a class="headerlink" href="#data.dbreader.DBReader.get_single_index_dataset" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Obtener Valores Históricos de Índice Financiero</p>
+<p>Obtiene el valor histórico de un índice financiero entre las fechas determinadas</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>index</strong> (<a class="reference internal" href="../0_base/1_enums.html#enums.FinancialIndex" title="enums.FinancialIndex"><em>FinancialIndex</em></a>) – Índice Financiero.</p></li>
+<li><p><strong>start_date</strong> (<em>date</em>) – fecha de inicio.</p></li>
+<li><p><strong>end_date</strong> (<em>date</em>) – fecha de término.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Devuelve<span class="colon">:</span></dt>
+<dd class="field-even"><p>IndexDataSet con datos solicitados</p>
+</dd>
+<dt class="field-odd">Muestra<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="../0_base/2_excepciones.html#exceptions.QueryException" title="exceptions.QueryException"><strong>QueryException</strong></a> – En caso no se encuentre data o el índice no se reconozca.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="data.dbreader.DBReader.get_index_dataset">
+<span class="sig-name descname"><span class="pre">get_index_dataset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start_date</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_date</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">date</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">IndexDataSet</span></span></span><a class="headerlink" href="#data.dbreader.DBReader.get_index_dataset" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Obtener Valores Históricos de todos los Índices Financiero</p>
+<p>Obtiene el valor histórico de todos los índices financieros entre las fechas determinadas</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>start_date</strong> (<em>date.</em>) – Fecha de inicio.</p></li>
+<li><p><strong>end_date</strong> (<em>date.</em>) – fecha de término.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Devuelve<span class="colon">:</span></dt>
+<dd class="field-even"><p>IndexDataSet con datos solicitados</p>
+</dd>
+<dt class="field-odd">Muestra<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="../0_base/2_excepciones.html#exceptions.QueryException" title="exceptions.QueryException"><strong>QueryException</strong></a> – En caso no se encuentre data o el índice no se reconozca.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="data.dbreader.DBReader.get_calendar_dataset">
+<span class="sig-name descname"><span class="pre">get_calendar_dataset</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">CalendarDataSet</span></span></span><a class="headerlink" href="#data.dbreader.DBReader.get_calendar_dataset" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Obtener Dataset de Calendarios</p>
+<p>Obtiene un dataset de Calendarios con los calendarios default</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="data.dbreader.DBReader.get_dataset">
+<span class="sig-name descname"><span class="pre">get_dataset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">process_date</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">source</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Source</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">Source.OFFICIAL</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DataSet</span></span></span><a class="headerlink" href="#data.dbreader.DBReader.get_dataset" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Obtener Dataset</p>
+<p>Obtiene la información de mercado provista en los distintos archivos.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>process_date</strong> (<em>date.</em>) – Fecha del dataset.</p></li>
+<li><p><strong>source</strong> (<a class="reference internal" href="../0_base/1_enums.html#enums.Source" title="enums.Source"><em>Source</em></a>) – Fuente (Default: OFFICIAL)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Devuelve<span class="colon">:</span></dt>
+<dd class="field-even"><p>Objeto Dataset.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="data.dbreader.DBReader.get_operation">
+<span class="sig-name descname"><span class="pre">get_operation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id_number</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">process_date</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">date</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Derivative</span></span></span><a class="headerlink" href="#data.dbreader.DBReader.get_operation" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Obtener operación</p>
+<p>Obtiene una operación desde la base de datos a partir del número de operación y la fecha de proceso</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>id_number</strong> (<em>int</em>) – Número de operación.</p></li>
+<li><p><strong>process_date</strong> (<em>date</em>) – Fecha de proceso.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Devuelve<span class="colon">:</span></dt>
+<dd class="field-even"><p>Derivative</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="data.dbreader.DBReader.get_grf_fwd_operation">
+<span class="sig-name descname"><span class="pre">get_grf_fwd_operation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id_number</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">process_date</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">date</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Derivative</span></span></span><a class="headerlink" href="#data.dbreader.DBReader.get_grf_fwd_operation" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Obtener operación forward desde la interfaz GRF</p>
+<p>Obtiene una operación desde la base de datos a partir del número de operación y la fecha de proceso</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>id_number</strong> (<em>int</em>) – Número de operación.</p></li>
+<li><p><strong>process_date</strong> (<em>date</em>) – Fecha de proceso.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Devuelve<span class="colon">:</span></dt>
+<dd class="field-even"><p>Derivative</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="data.dbreader.DBReader.get_official_mtm">
+<span class="sig-name descname"><span class="pre">get_official_mtm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id_number</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">process_date</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Cash</span></span></span><a class="headerlink" href="#data.dbreader.DBReader.get_official_mtm" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Obtener Mark to Market Oficial</p>
+<p>Obtiene el Mark to Market oficial de una operación</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>id_number</strong> (<em>int</em>) – Número de operación.</p></li>
+<li><p><strong>process_date</strong> (<em>date</em>) – Fecha de proceso.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Devuelve<span class="colon">:</span></dt>
+<dd class="field-even"><p>Cash</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="data.dbreader.DBReader.get_forward_portfolio">
+<span class="sig-name descname"><span class="pre">get_forward_portfolio</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">process_date</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">source</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Source</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">Source.OFFICIAL</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Portfolio</span></span></span><a class="headerlink" href="#data.dbreader.DBReader.get_forward_portfolio" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Obtener portafolio forward</p>
+<p>Obtiene todos los forwards de la cartera</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>process_date</strong> (<em>date</em>) – Fecha de Proceso.</p></li>
+<li><p><strong>source</strong> (<a class="reference internal" href="../0_base/1_enums.html#enums.Source" title="enums.Source"><em>Source</em></a>) – Fuente de Información (Default: Official)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Devuelve<span class="colon">:</span></dt>
+<dd class="field-even"><p>Portfolio</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="data.dbreader.DBReader.get_swap_portfolio">
+<span class="sig-name descname"><span class="pre">get_swap_portfolio</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">process_date</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">source</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Source</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">Source.OFFICIAL</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Portfolio</span></span></span><a class="headerlink" href="#data.dbreader.DBReader.get_swap_portfolio" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Obtener portafolio swap</p>
+<p>Obtiene todos los swaps de la cartera</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>process_date</strong> (<em>date</em>) – Fecha de Proceso.</p></li>
+<li><p><strong>source</strong> (<a class="reference internal" href="../0_base/1_enums.html#enums.Source" title="enums.Source"><em>Source</em></a>) – Fuente de Información (Default: Official)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Devuelve<span class="colon">:</span></dt>
+<dd class="field-even"><p>Portfolio</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="data.dbreader.DBReader.get_portfolio">
+<span class="sig-name descname"><span class="pre">get_portfolio</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">process_date</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">source</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Source</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">Source.OFFICIAL</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Portfolio</span></span></span><a class="headerlink" href="#data.dbreader.DBReader.get_portfolio" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Obtener el portafolio completo</p>
+<p>Obtiene todos los productos de la cartera</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>process_date</strong> (<em>date</em>) – Fecha de Proceso.</p></li>
+<li><p><strong>source</strong> (<a class="reference internal" href="../0_base/1_enums.html#enums.Source" title="enums.Source"><em>Source</em></a>) – Fuente de Información (Default: Official)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Devuelve<span class="colon">:</span></dt>
+<dd class="field-even"><p>Portfolio</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="data.dbreader.DBReader.get_grf_swap_operation">
+<span class="sig-name descname"><span class="pre">get_grf_swap_operation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id_number</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">process_date</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">date</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Derivative</span></span></span><a class="headerlink" href="#data.dbreader.DBReader.get_grf_swap_operation" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Obtener operación Swap desde la interfaz GRF</p>
+<p>Obtiene una operación desde la base de datos a partir del número de operación y la fecha de proceso</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>id_number</strong> (<em>int</em>) – Número de operación.</p></li>
+<li><p><strong>process_date</strong> (<em>date</em>) – Fecha de proceso.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Devuelve<span class="colon">:</span></dt>
+<dd class="field-even"><p>Derivative</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+      </div>
+      <div class="bottomnav" role="navigation" aria-label="bottom navigation">
+      
+        <p>
+        «&#160;&#160;<a href="3_lector_archivos.html"><strong>Módulo de Lectura Archivos</strong></a>
+        &#160;&#160;::&#160;&#160;
+        <a class="uplink" href="../../../index.html">Contenidos</a>
+        &#160;&#160;::&#160;&#160;
+        <a href="../2_math/0_math_index.html">Paquete Matemático</a>&#160;&#160;»
+        </p>
+
+      </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Derechos de autor 2022, Riesgo Financiero.
+      Creado usando <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.0.0.
+    </div>
+  </body>
+</html>

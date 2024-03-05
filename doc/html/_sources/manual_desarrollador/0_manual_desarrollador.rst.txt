@@ -1,0 +1,61 @@
+Manual de desarrollador
+=======================
+
+Esta parte del documento se encuentra dedicada a la explicar en detalle la
+arquitectura y lógica detrás de la librería de riesgo financiero.
+
+La arquitectura de la librería se encuentra basada en los siguientes principios:
+
+- **Modularización:** Las funciones y clases con usos similares y relacionados deben encontrarse dentro del mismo
+  módulo o paquete.
+- **Dependencia Incremental:** Las clases mas complejas deben depender y delegar parte de su trabajo a funciones de
+  menor complejidad.
+- **Estandarización:** Las clases deben recibir, procesar y devolver datos estandarizados.
+- **No duplicidad de funciones:** Las distintas clases no deben realizar un mismo calculo.
+
+Siguiendo estos principio la librería puede verse como la composición de las siguientes capas:
+
+.. uml::
+
+    @startuml
+
+    interface "Datos Externos" as DE
+
+    package "Capa Datos"{
+        [data]
+    }
+
+    DE-[data]
+
+    package "Capa Componentes"{
+        [enums]
+        [exceptions]
+        [finmath]
+        [stochasticprocess]
+    }
+
+    package "Capa Instrumentos"{
+        [market]
+        [instruments]
+    }
+
+    [data] -> [market]
+    [data] -> [instruments]
+    [enums] -> [market]
+    [finmath] -> [market]
+
+    package "Capa Herramientas"{
+        [counterparty]
+        [bootstrapper]
+    }
+
+    [instruments] -> [counterparty]
+    [instruments] -> [bootstrapper]
+
+    @enduml
+
+
+
+.. toctree::
+    :maxdepth: 2
+

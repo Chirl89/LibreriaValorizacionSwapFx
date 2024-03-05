@@ -1,0 +1,789 @@
+
+<!DOCTYPE html>
+
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Modulo de Instrumentos &#8212; documentación de Finlib - beta</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/haiku.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/translations.js"></script>
+    <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({startOnLoad:true});</script>
+    <link rel="index" title="Índice" href="genindex.html" />
+    <link rel="search" title="Búsqueda" href="search.html" />
+    <link rel="next" title="Ejemplos de uso" href="ejemplos.html" />
+    <link rel="prev" title="Paquete de Mercado" href="market.html" /> 
+  </head><body>
+      <div class="header" role="banner"><h1 class="heading"><a href="index.html">
+          <span>documentación de Finlib - beta</span></a></h1>
+        <h2 class="heading"><span>Modulo de Instrumentos</span></h2>
+      </div>
+      <div class="topnav" role="navigation" aria-label="top navigation">
+      
+        <p>
+        «&#160;&#160;<a href="market.html">Paquete de Mercado</a>
+        &#160;&#160;::&#160;&#160;
+        <a class="uplink" href="index.html">Contenidos</a>
+        &#160;&#160;::&#160;&#160;
+        <a href="ejemplos.html">Ejemplos de uso</a>&#160;&#160;»
+        </p>
+
+      </div>
+      <div class="content" role="main">
+        
+        
+  <section id="modulo-de-instrumentos">
+<h1>Modulo de Instrumentos<a class="headerlink" href="#modulo-de-instrumentos" title="Enlace permanente a este encabezado">¶</a></h1>
+<p>El modulo de instrumentos esta dedicado a la generación de objetos estandarizados que posibiliten el trabajo con los
+distintos instrumentos de mercado. Esto permite la valorización y obtención de riesgos de manera mas rápida y
+estandarizada.</p>
+<p>Los instrumentos representados en este módulo son:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#flujos"><span class="std std-ref">Flujos</span></a>: Clases dedicadas a la representación de flujos de caja.</p></li>
+<li><p><a class="reference internal" href="#spot"><span class="std std-ref">Spots</span></a>: Clases enfocadas en la representación de compra y venta de monedas.</p></li>
+<li><p><a class="reference internal" href="#forward"><span class="std std-ref">Forwards</span></a>: Clases enfocadas en la representación de compras y ventas de forwards.</p></li>
+<li><p><a class="reference internal" href="#opciones"><span class="std std-ref">Opciones</span></a>: Clases enfocadas en la representación de compras y ventas de Opciones.</p></li>
+<li><p><a class="reference internal" href="#swaps"><span class="std std-ref">Swaps</span></a>: Clases enfocadas en la representación de compras y ventas de Swaps.</p></li>
+</ul>
+<section id="flujos">
+<span id="id1"></span><h2><strong>Flujos</strong><a class="headerlink" href="#flujos" title="Enlace permanente a este encabezado">¶</a></h2>
+<span class="target" id="module-instruments.flow"></span><p>Las clases en este módulo están dedicadas a la representación de cajas y flujos de caja. Para esto tenemos dos clases:
+Cash y Cashflow, la diferencia radica en el concepto que quieren representar.</p>
+<p>La clase <a class="reference internal" href="#instruments.flow.Cash" title="instruments.flow.Cash"><code class="xref py py-class docutils literal notranslate"><span class="pre">Cash</span></code></a> representa una caja, un monto que ya se encuentra disponible en t, es decir que no tiene una
+fecha asociada.</p>
+<p>La clase <a class="reference internal" href="#instruments.flow.Cashflow" title="instruments.flow.Cashflow"><code class="xref py py-class docutils literal notranslate"><span class="pre">Cashflow</span></code></a> representa un flujo futuro, es decir que es un flujo esperado a una fecha determinada.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="instruments.flow.Cash">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">instruments.flow.</span></span><span class="sig-name descname"><span class="pre">Cash</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">amount</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">currency</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Currency</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#instruments.flow.Cash" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Clase Cash</p>
+<p>Representa una caja con moneda y monto específico. La clase soporta la suma de otro instrumento cash y su
+comparación.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>amount</strong> (<em>float</em>) – Monto</p></li>
+<li><p><strong>currency</strong> (<a class="reference internal" href="modulos_base.html#enums.Currency" title="enums.Currency"><em>Currency</em></a>) – Numerario o Moneda</p></li>
+</ul>
+</dd>
+<dt class="field-even">Muestra<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>TypeError</strong> – Cuando se intenta sumar con un objeto no Cash</p></li>
+<li><p><a class="reference internal" href="modulos_base.html#exceptions.CurrencyException" title="exceptions.CurrencyException"><strong>CurrencyException</strong></a> – Cuando se intenta sumar con un objeto Cash con moneda distinta</p></li>
+</ul>
+</dd>
+<dt class="field-odd">Ejemplo de uso<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">finlib.instruments.flow</span> <span class="kn">import</span> <span class="n">Cash</span>
+<span class="kn">from</span> <span class="nn">finlib.enums</span> <span class="kn">import</span> <span class="n">Currency</span>
+
+<span class="n">cash_1</span> <span class="o">=</span> <span class="n">Cash</span><span class="p">(</span><span class="n">amount</span> <span class="o">=</span> <span class="mi">100</span><span class="p">,</span> <span class="n">currency</span> <span class="o">=</span> <span class="n">Currency</span><span class="o">.</span><span class="n">USD</span><span class="p">)</span>
+<span class="n">cash_2</span> <span class="o">=</span> <span class="n">Cash</span><span class="p">(</span><span class="n">amount</span> <span class="o">=</span> <span class="mi">150</span><span class="p">,</span> <span class="n">currency</span> <span class="o">=</span> <span class="n">Currency</span><span class="o">.</span><span class="n">CLP</span><span class="p">)</span>
+<span class="n">cash_3</span> <span class="o">=</span> <span class="n">Cash</span><span class="p">(</span><span class="n">amount</span> <span class="o">=</span> <span class="mi">100</span><span class="p">,</span> <span class="n">currency</span> <span class="o">=</span> <span class="n">Currency</span><span class="o">.</span><span class="n">USD</span><span class="p">)</span>
+
+<span class="n">cash_fail</span> <span class="o">=</span> <span class="n">cash_1</span> <span class="o">+</span> <span class="s2">&quot;100 USD&quot;</span> <span class="c1"># Genera una excepción TypeError</span>
+<span class="n">cash_fail</span> <span class="o">=</span> <span class="n">cash_1</span> <span class="o">+</span> <span class="n">cash_2</span> <span class="c1"># Genera una excepción CurrencyException</span>
+<span class="n">cash_4</span> <span class="o">=</span> <span class="n">cash_1</span> <span class="o">+</span> <span class="n">cash_3</span> <span class="c1"># Cash(200, Currency.USD)</span>
+
+<span class="n">result</span> <span class="o">=</span> <span class="n">cash_1</span> <span class="o">==</span> <span class="s2">&quot;100 USD&quot;</span> <span class="c1"># false</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">cash_1</span> <span class="o">==</span> <span class="n">cash_2</span> <span class="c1"># false</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">cash_1</span> <span class="o">==</span> <span class="n">cash3</span> <span class="c1"># true</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="instruments.flow.Cashflow">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">instruments.flow.</span></span><span class="sig-name descname"><span class="pre">Cashflow</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">flow_date</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">amount</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">currency</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Currency</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#instruments.flow.Cashflow" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Clase Cashflow</p>
+<p>Representa un flujo futuro con moneda, monto y fecha determinada. La clase soporta la suma de otro instrumento
+cashflow, al igual que su comparación.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>flow_date</strong> (<em>date</em>) – Fecha del flujo</p></li>
+<li><p><strong>amount</strong> (<em>float</em>) – Monto</p></li>
+<li><p><strong>currency</strong> (<a class="reference internal" href="modulos_base.html#enums.Currency" title="enums.Currency"><em>Currency</em></a>) – Numerario o Moneda</p></li>
+</ul>
+</dd>
+<dt class="field-even">Muestra<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>TypeError</strong> – Cuando se intenta sumar con un objeto no Cashflow</p></li>
+<li><p><a class="reference internal" href="modulos_base.html#exceptions.CurrencyException" title="exceptions.CurrencyException"><strong>CurrencyException</strong></a> – Cuando se intenta sumar con un objeto Cashflow con moneda distinta</p></li>
+<li><p><strong>ValueError</strong> – Cuando se intenta sumar con un objeto Cashflow con fecha distinta</p></li>
+</ul>
+</dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">finlib.instruments.flow</span> <span class="kn">import</span> <span class="n">Cashflow</span>
+<span class="kn">from</span> <span class="nn">finlib.enums</span> <span class="kn">import</span> <span class="n">Currency</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">date</span>
+
+<span class="n">cashflow_1</span> <span class="o">=</span> <span class="n">Cashflow</span><span class="p">(</span><span class="n">flow_date</span><span class="o">=</span><span class="n">date</span><span class="p">(</span><span class="n">year</span><span class="o">=</span><span class="mi">2022</span><span class="p">,</span> <span class="n">month</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">day</span><span class="o">=</span><span class="mi">30</span><span class="p">),</span> <span class="n">amount</span> <span class="o">=</span> <span class="mi">100</span><span class="p">,</span> <span class="n">currency</span> <span class="o">=</span> <span class="n">Currency</span><span class="o">.</span><span class="n">USD</span><span class="p">)</span>
+<span class="n">cashflow_2</span> <span class="o">=</span> <span class="n">Cashflow</span><span class="p">(</span><span class="n">flow_date</span><span class="o">=</span><span class="n">date</span><span class="p">(</span><span class="n">year</span><span class="o">=</span><span class="mi">2022</span><span class="p">,</span> <span class="n">month</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">day</span><span class="o">=</span><span class="mi">30</span><span class="p">),</span> <span class="n">amount</span> <span class="o">=</span> <span class="mi">150</span><span class="p">,</span> <span class="n">currency</span> <span class="o">=</span> <span class="n">Currency</span><span class="o">.</span><span class="n">CLP</span><span class="p">)</span>
+<span class="n">cashflow_3</span> <span class="o">=</span> <span class="n">Cashflow</span><span class="p">(</span><span class="n">flow_date</span><span class="o">=</span><span class="n">date</span><span class="p">(</span><span class="n">year</span><span class="o">=</span><span class="mi">2022</span><span class="p">,</span> <span class="n">month</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">day</span><span class="o">=</span><span class="mi">30</span><span class="p">),</span> <span class="n">amount</span> <span class="o">=</span> <span class="mi">100</span><span class="p">,</span> <span class="n">currency</span> <span class="o">=</span> <span class="n">Currency</span><span class="o">.</span><span class="n">USD</span><span class="p">)</span>
+<span class="n">cashflow_4</span> <span class="o">=</span> <span class="n">Cashflow</span><span class="p">(</span><span class="n">flow_date</span><span class="o">=</span><span class="n">date</span><span class="p">(</span><span class="n">year</span><span class="o">=</span><span class="mi">2022</span><span class="p">,</span> <span class="n">month</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">day</span><span class="o">=</span><span class="mi">30</span><span class="p">),</span> <span class="n">amount</span> <span class="o">=</span> <span class="mi">100</span><span class="p">,</span> <span class="n">currency</span> <span class="o">=</span> <span class="n">Currency</span><span class="o">.</span><span class="n">USD</span><span class="p">)</span>
+
+<span class="n">cashflow_fail</span> <span class="o">=</span> <span class="n">cashflow_1</span> <span class="o">+</span> <span class="s2">&quot;100 USD&quot;</span> <span class="c1"># Genera una excepción TypeError</span>
+<span class="n">cashflow_fail</span> <span class="o">=</span> <span class="n">cashflow_1</span> <span class="o">+</span> <span class="n">cashflow_2</span> <span class="c1"># Genera una excepción CurrencyException</span>
+<span class="n">cashflow_fail</span> <span class="o">=</span> <span class="n">cashflow_1</span> <span class="o">+</span> <span class="n">cashflow_4</span> <span class="c1"># Genera una excepción ValueError</span>
+
+<span class="n">cash_5</span> <span class="o">=</span> <span class="n">cash_1</span> <span class="o">+</span> <span class="n">cash_3</span> <span class="c1"># Cashflow(flow_date=date(year=2022, month=1, day=30), 200, Currency.USD)</span>
+
+<span class="n">result</span> <span class="o">=</span> <span class="n">cash_1</span> <span class="o">==</span> <span class="s2">&quot;100 USD&quot;</span> <span class="c1"># false</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">cash_1</span> <span class="o">==</span> <span class="n">cash_2</span> <span class="c1"># false</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">cash_1</span> <span class="o">==</span> <span class="n">cash3</span> <span class="c1"># true</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</section>
+<section id="module-instruments.spot">
+<span id="spots"></span><span id="spot"></span><h2><strong>Spots</strong><a class="headerlink" href="#module-instruments.spot" title="Enlace permanente a este encabezado">¶</a></h2>
+<p>Este módulo se encuentra enfocado en representar productos spot, la clase principal del módulo
+es la clase <a class="reference internal" href="#instruments.spot.Spot" title="instruments.spot.Spot"><code class="xref py py-class docutils literal notranslate"><span class="pre">Spot</span></code></a> que representa el intercambio spot entre dos monedas.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="instruments.spot.Spot">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">instruments.spot.</span></span><span class="sig-name descname"><span class="pre">Spot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">active_notional</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Cash</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">passive_notional</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Cash</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_date</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_date</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pay_date</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">associated_collateral</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Currency</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_Spot__metadata</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">dict</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#instruments.spot.Spot" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Instrumento Spot</p>
+<p>Clase dedicada a la representación de instrumentos Spot.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>active_notional</strong> (<a class="reference internal" href="#instruments.flow.Cash" title="instruments.flow.Cash"><em>Cash</em></a>) – Nocional Activo.</p></li>
+<li><p><strong>passive_notional</strong> (<a class="reference internal" href="#instruments.flow.Cash" title="instruments.flow.Cash"><em>Cash</em></a>) – Nocional Pasivo.</p></li>
+<li><p><strong>start_date</strong> (<em>date</em>) – Fecha de Inicio.</p></li>
+<li><p><strong>end_date</strong> (<em>date</em>) – Fecha de Término.</p></li>
+<li><p><strong>pay_date</strong> (<em>date</em>) – Fecha de Pago.</p></li>
+<li><p><strong>associated_collateral</strong> (<a class="reference internal" href="modulos_base.html#enums.Currency" title="enums.Currency"><em>Currency</em></a>) – Colateral asociado.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="instruments.spot.Spot.add_metadata">
+<span class="sig-name descname"><span class="pre">add_metadata</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parameter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#instruments.spot.Spot.add_metadata" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Agregar Metadata</p>
+<p>Agrega un parámetro y valor a la metadata del instrumento.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>parameter</strong> (<em>str</em>) – Nombre del parámetro.</p></li>
+<li><p><strong>value</strong> (<em>Any</em>) – Valor del parámetro.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Devuelve<span class="colon">:</span></dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="instruments.spot.Spot.get_currency_pair">
+<span class="sig-name descname"><span class="pre">get_currency_pair</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#instruments.spot.Spot.get_currency_pair" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Obtener par de moneda</p>
+<p>Obtiene el par de moneda asociada con el instrumento</p>
+<dl class="field-list simple">
+<dt class="field-odd">Devuelve<span class="colon">:</span></dt>
+<dd class="field-odd"><p>FxPair</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="instruments.spot.Spot.get_metadata">
+<span class="sig-name descname"><span class="pre">get_metadata</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parameter</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#instruments.spot.Spot.get_metadata" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Obtener Metadata</p>
+<p>Obtiene un parámetro de la metadata del instrumento.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>parameter</strong> (<em>str</em>) – Nombre del parámetro.</p>
+</dd>
+<dt class="field-even">Devuelve<span class="colon">:</span></dt>
+<dd class="field-even"><p>valor de la metadata</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="instruments.spot.Spot.get_strike">
+<span class="sig-name descname"><span class="pre">get_strike</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#instruments.spot.Spot.get_strike" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Obtener strike</p>
+<p>Obtiene el strike del spot</p>
+<dl class="field-list simple">
+<dt class="field-odd">Devuelve<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Strike</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="instruments.spot.Spot.valuate">
+<span class="sig-name descname"><span class="pre">valuate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataset</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataSet</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#instruments.spot.Spot.valuate" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Valorizar</p>
+<p>Valoriza el instrumento utilizando la información de mercado provista</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>dataset</strong> (<a class="reference internal" href="market.html#market.dataset.DataSet" title="market.dataset.DataSet"><em>DataSet</em></a>) – Información de mercado.</p>
+</dd>
+<dt class="field-even">Devuelve<span class="colon">:</span></dt>
+<dd class="field-even"><p>Objeto Cash con valor presente del instrumento</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-instruments.forward">
+<span id="forwards"></span><span id="forward"></span><h2><strong>Forwards</strong><a class="headerlink" href="#module-instruments.forward" title="Enlace permanente a este encabezado">¶</a></h2>
+<p>Este módulo se encuentra enfocado en representar productos forward, para esto se cuenta con las siguientes
+clases.</p>
+<p>La clase <a class="reference internal" href="#instruments.forward.Forward" title="instruments.forward.Forward"><code class="xref py py-class docutils literal notranslate"><span class="pre">Forward</span></code></a> que representa un forward Vanilla.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="instruments.forward.Forward">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">instruments.forward.</span></span><span class="sig-name descname"><span class="pre">Forward</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start_date</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_date</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fixing_date</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pay_date</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">active_notional</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Cash</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">passive_notional</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Cash</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">associated_collateral</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Currency</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#instruments.forward.Forward" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Instrumento Forward</p>
+<p>Clase dedicada a la representación de forwards vanilla.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>start_date</strong> (<em>date</em>) – Fecha de inicio.</p></li>
+<li><p><strong>end_date</strong> (<em>date</em>) – Fecha de termino.</p></li>
+<li><p><strong>fixing_date</strong> (<em>date</em>) – Fecha de fijación.</p></li>
+<li><p><strong>pay_date</strong> (<em>date</em>) – Fecha de pago.</p></li>
+<li><p><strong>active_notional</strong> (<a class="reference internal" href="#instruments.flow.Cash" title="instruments.flow.Cash"><em>Cash</em></a>) – Nocional activo.</p></li>
+<li><p><strong>passive_notional</strong> (<a class="reference internal" href="#instruments.flow.Cash" title="instruments.flow.Cash"><em>Cash</em></a>) – Nocional pasivo.</p></li>
+<li><p><strong>associated_collateral</strong> (<a class="reference internal" href="modulos_base.html#enums.Currency" title="enums.Currency"><em>Currency</em></a>) – Colateral asociado.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="instruments.forward.Forward.add_metadata">
+<span class="sig-name descname"><span class="pre">add_metadata</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parameter</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#instruments.forward.Forward.add_metadata" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Agregar Metadata</p>
+<p>Agrega un parámetro y valor a la metadata del instrumento.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>parameter</strong> (<em>str</em>) – Nombre del parámetro.</p></li>
+<li><p><strong>value</strong> (<em>Any</em>) – Valor del parámetro.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Devuelve<span class="colon">:</span></dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="instruments.forward.Forward.get_currency_pair">
+<span class="sig-name descname"><span class="pre">get_currency_pair</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#instruments.forward.Forward.get_currency_pair" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Obtener par de moneda</p>
+<p>Obtiene el par de moneda asociada con el instrumento</p>
+<dl class="field-list simple">
+<dt class="field-odd">Devuelve<span class="colon">:</span></dt>
+<dd class="field-odd"><p>FxPair</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="instruments.forward.Forward.get_metadata">
+<span class="sig-name descname"><span class="pre">get_metadata</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parameter</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#instruments.forward.Forward.get_metadata" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Obtener Metadata</p>
+<p>Obtiene un parámetro de la metadata del instrumento.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>parameter</strong> (<em>str</em>) – Nombre del parámetro.</p>
+</dd>
+<dt class="field-even">Devuelve<span class="colon">:</span></dt>
+<dd class="field-even"><p>valor de la metadata</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="instruments.forward.Forward.get_strike">
+<span class="sig-name descname"><span class="pre">get_strike</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#instruments.forward.Forward.get_strike" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Obtener strike</p>
+<p>Obtiene el strike del forward</p>
+<dl class="field-list simple">
+<dt class="field-odd">Devuelve<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Strike</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="instruments.forward.Forward.valuate">
+<span class="sig-name descname"><span class="pre">valuate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataset</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataSet</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#instruments.forward.Forward.valuate" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Valorizar</p>
+<p>Obtiene el mtm, en caso no se especifique la fecha se utilizara la fecha del data set</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>dataset</strong> (<a class="reference internal" href="market.html#market.dataset.DataSet" title="market.dataset.DataSet"><em>DataSet</em></a>) – Dataset de mercado</p>
+</dd>
+<dt class="field-even">Devuelve<span class="colon">:</span></dt>
+<dd class="field-even"><p>Objeto Cash con valor presente del instrumento</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="opciones">
+<span id="id2"></span><h2><strong>Opciones</strong><a class="headerlink" href="#opciones" title="Enlace permanente a este encabezado">¶</a></h2>
+<span class="target" id="module-instruments.options"></span><p>Descripción de la necesidad de funciones de Opciones</p>
+</section>
+<section id="swaps">
+<span id="id3"></span><h2><strong>Swaps</strong><a class="headerlink" href="#swaps" title="Enlace permanente a este encabezado">¶</a></h2>
+<span class="target" id="module-instruments.swap"></span><p>Este módulo se encuentra enfocado en representar productos swap, para esto se cuenta con las siguientes
+clases.</p>
+<p>La clase <a class="reference internal" href="#instruments.swap.Coupon" title="instruments.swap.Coupon"><code class="xref py py-class docutils literal notranslate"><span class="pre">Coupon</span></code></a> representa un cupón.
+La clase <a class="reference internal" href="#instruments.swap.Leg" title="instruments.swap.Leg"><code class="xref py py-class docutils literal notranslate"><span class="pre">Leg</span></code></a> representa una pata.
+La clase <a class="reference internal" href="#instruments.swap.Swap" title="instruments.swap.Swap"><code class="xref py py-class docutils literal notranslate"><span class="pre">Swap</span></code></a> representa un swap vanilla.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="instruments.swap.Coupon">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">instruments.swap.</span></span><span class="sig-name descname"><span class="pre">Coupon</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rate</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Index</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spread</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_date</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_date</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_fixing_date</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_fixing_date</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">interest_payment_date</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">principal_payment_date</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">outstanding_notional</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Cash</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">amortization</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Cash</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">associated_collateral</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Currency</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#instruments.swap.Coupon" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Cupón</p>
+<p>Clase enfocada en la representación de cupones con interés y/o amortizaciones.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>rate</strong> (<a class="reference internal" href="market.html#market.index.Index" title="market.index.Index"><em>Index</em></a>) – Tasa de interés.</p></li>
+<li><p><strong>spread</strong> (<em>float</em>) – Spread sobre la tasa de interés.</p></li>
+<li><p><strong>start_date</strong> (<em>date</em>) – Fecha de inicio del cupón.</p></li>
+<li><p><strong>end_date</strong> (<em>date</em>) – Fecha de término del cupón.</p></li>
+<li><p><strong>start_fixing_date</strong> (<em>date</em>) – Fecha de inicio de fijación del cupón.</p></li>
+<li><p><strong>end_fixing_date</strong> (<em>date</em>) – Fecha de término de fijación del cupón.</p></li>
+<li><p><strong>interest_payment_date</strong> (<em>date</em>) – Fecha de pago del interés.</p></li>
+<li><p><strong>principal_payment_date</strong> (<em>date</em>) – Fecha de pago de la amortizacion.</p></li>
+<li><p><strong>outstanding_notional</strong> (<a class="reference internal" href="#instruments.flow.Cash" title="instruments.flow.Cash"><em>Cash</em></a>) – Nocional remanente.</p></li>
+<li><p><strong>amortization</strong> (<a class="reference internal" href="#instruments.flow.Cash" title="instruments.flow.Cash"><em>Cash</em></a>) – Amortización.</p></li>
+<li><p><strong>associated_collateral</strong> (<a class="reference internal" href="modulos_base.html#enums.Currency" title="enums.Currency"><em>Currency</em></a>) – Colateral asociado.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="instruments.swap.Coupon.add_metadata">
+<span class="sig-name descname"><span class="pre">add_metadata</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parameter</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#instruments.swap.Coupon.add_metadata" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Agregar Metadata</p>
+<p>Agrega un parámetro y valor a la metadata del instrumento.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>parameter</strong> (<em>str</em>) – Nombre del parámetro.</p></li>
+<li><p><strong>value</strong> (<em>Any</em>) – Valor del parámetro.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Devuelve<span class="colon">:</span></dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="instruments.swap.Coupon.get_flow">
+<span class="sig-name descname"><span class="pre">get_flow</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataset</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataSet</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#instruments.swap.Coupon.get_flow" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Obtener Flujo</p>
+<p>Obtiene el flujo proyectado del cupón a la fecha de pago</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>dataset</strong> (<a class="reference internal" href="market.html#market.dataset.DataSet" title="market.dataset.DataSet"><em>DataSet</em></a>) – Set de datos de mercado.</p>
+</dd>
+<dt class="field-even">Devuelve<span class="colon">:</span></dt>
+<dd class="field-even"><p>Cashflow a la fecha de pago.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="instruments.swap.Coupon.get_metadata">
+<span class="sig-name descname"><span class="pre">get_metadata</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parameter</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#instruments.swap.Coupon.get_metadata" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Obtener Metadata</p>
+<p>Obtiene un parámetro de la metadata del instrumento.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>parameter</strong> (<em>str</em>) – Nombre del parámetro.</p>
+</dd>
+<dt class="field-even">Devuelve<span class="colon">:</span></dt>
+<dd class="field-even"><p>valor de la metadata</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="instruments.swap.Coupon.get_valuation_details">
+<span class="sig-name descname"><span class="pre">get_valuation_details</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataset</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataSet</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#instruments.swap.Coupon.get_valuation_details" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Obtiene los detalles de valorización</p>
+<p>Entrega el detalle de valorización del flujo en forma de diccionario</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>dataset</strong> (<a class="reference internal" href="market.html#market.dataset.DataSet" title="market.dataset.DataSet"><em>DataSet</em></a>) – Información de mercado.</p>
+</dd>
+<dt class="field-even">Devuelve<span class="colon">:</span></dt>
+<dd class="field-even"><p>Objeto Cash con valor presente del instrumento</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="instruments.swap.Coupon.to_dataframe">
+<span class="sig-name descname"><span class="pre">to_dataframe</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#instruments.swap.Coupon.to_dataframe" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Convertir a dataframe</p>
+<p>Convierte a Dataframe</p>
+<dl class="field-list simple">
+<dt class="field-odd">Devuelve<span class="colon">:</span></dt>
+<dd class="field-odd"><p>DataFrame con valores del cupón</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="instruments.swap.Coupon.to_dict">
+<span class="sig-name descname"><span class="pre">to_dict</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#instruments.swap.Coupon.to_dict" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Convertir a diccionario</p>
+<p>Convierte el cupón a un diccionario</p>
+<dl class="field-list simple">
+<dt class="field-odd">Devuelve<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Diccionario con valores del cupón</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="instruments.swap.Coupon.valuate">
+<span class="sig-name descname"><span class="pre">valuate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataset</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataSet</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#instruments.swap.Coupon.valuate" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Valorizar</p>
+<p>Valoriza el instrumento utilizando la información de mercado provista</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>dataset</strong> (<a class="reference internal" href="market.html#market.dataset.DataSet" title="market.dataset.DataSet"><em>DataSet</em></a>) – Información de mercado.</p>
+</dd>
+<dt class="field-even">Devuelve<span class="colon">:</span></dt>
+<dd class="field-even"><p>Objeto Cash con valor presente del instrumento</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="instruments.swap.Coupon.valuate_to_dict">
+<span class="sig-name descname"><span class="pre">valuate_to_dict</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#instruments.swap.Coupon.valuate_to_dict" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Convertir a diccionario con el flujo valorizado</p>
+<p>Convierte el cupón a un diccionario</p>
+<dl class="field-list simple">
+<dt class="field-odd">Devuelve<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Diccionario con valores del cupón</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="instruments.swap.Leg">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">instruments.swap.</span></span><span class="sig-name descname"><span class="pre">Leg</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">position</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">FinancialPosition</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">associated_collateral</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#instruments.swap.Leg" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Swap Leg</p>
+<p>Clase enfocada en la representación de Swap Legs.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>position</strong> (<a class="reference internal" href="modulos_base.html#enums.FinancialPosition" title="enums.FinancialPosition"><em>FinancialPosition</em></a>) – Posición financiera.</p></li>
+<li><p><strong>associated_collateral</strong> (<a class="reference internal" href="modulos_base.html#enums.Currency" title="enums.Currency"><em>Currency</em></a>) – Colateral asociado.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="instruments.swap.Leg.add_coupon">
+<span class="sig-name descname"><span class="pre">add_coupon</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coupon</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#instruments.swap.Coupon" title="instruments.swap.Coupon"><span class="pre">Coupon</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#instruments.swap.Leg.add_coupon" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Agregar Cupón</p>
+<p>Agrega una cupón al swap leg.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>coupon</strong> (<a class="reference internal" href="#instruments.swap.Coupon" title="instruments.swap.Coupon"><em>Coupon</em></a>) – Cupón</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="instruments.swap.Leg.create_leg">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">create_leg</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">contract_date</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">associated_index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Index</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spread</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">periodicity</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Periodicity</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_periods</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">notional</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Cash</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_lag</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fixing_lag</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">interest_pay_lag</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">notional_pay_lag</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">initial_exchange</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">notional_exchange</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">financial_position</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">FinancialPosition</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">associated_collateral</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Currency</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">associated_calendar</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">TradingCalendar</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">business_day_convention</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">BusinessDay</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#instruments.swap.Leg.create_leg" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Crear Swap Leg</p>
+<p>Crea un swap leg utilizando los datos proporcionados</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>contract_date</strong> (<em>date</em>) – Fecha de contrato.</p></li>
+<li><p><strong>associated_index</strong> (<a class="reference internal" href="market.html#market.index.Index" title="market.index.Index"><em>Index</em></a>) – Indice asociado.</p></li>
+<li><p><strong>spread</strong> (<em>float</em>) – Spread.</p></li>
+<li><p><strong>periodicity</strong> (<a class="reference internal" href="modulos_base.html#enums.Periodicity" title="enums.Periodicity"><em>Periodicity</em></a>) – Periodicidad.</p></li>
+<li><p><strong>n_periods</strong> (<em>int</em>) – Número de periodos.</p></li>
+<li><p><strong>notional</strong> (<a class="reference internal" href="#instruments.flow.Cash" title="instruments.flow.Cash"><em>Cash</em></a>) – Nocional.</p></li>
+<li><p><strong>start_lag</strong> (<em>int</em>) – Lag de inicio del swap.</p></li>
+<li><p><strong>fixing_lag</strong> (<em>int</em>) – Lag de Fijación.</p></li>
+<li><p><strong>interest_pay_lag</strong> (<em>int</em>) – Lag de pago de intereses.</p></li>
+<li><p><strong>notional_pay_lag</strong> (<em>int</em>) – Lag de pago de nocional.</p></li>
+<li><p><strong>initial_exchange</strong> (<em>bool</em>) – Intercambio inicial.</p></li>
+<li><p><strong>notional_exchange</strong> (<em>bool</em>) – Intercambio de nocionales.</p></li>
+<li><p><strong>financial_position</strong> (<a class="reference internal" href="modulos_base.html#enums.FinancialPosition" title="enums.FinancialPosition"><em>FinancialPosition</em></a>) – Posición financiera.</p></li>
+<li><p><strong>associated_collateral</strong> (<a class="reference internal" href="modulos_base.html#enums.Currency" title="enums.Currency"><em>Currency</em></a>) – Colateral asociado.</p></li>
+<li><p><strong>associated_calendar</strong> (<a class="reference internal" href="market.html#market.tradingcalendar.TradingCalendar" title="market.tradingcalendar.TradingCalendar"><em>TradingCalendar</em></a>) – Calendario asociado</p></li>
+<li><p><strong>business_day_convention</strong> (<a class="reference internal" href="modulos_base.html#enums.BusinessDay" title="enums.BusinessDay"><em>BusinessDay</em></a>) – Convención de calculo de días</p></li>
+</ul>
+</dd>
+<dt class="field-even">Devuelve<span class="colon">:</span></dt>
+<dd class="field-even"><p>Swap Leg</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="instruments.swap.Leg.generate_leg">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">generate_leg</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataframe</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">position</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">FinancialPosition</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">associated_collateral</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Currency</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#instruments.swap.Leg.generate_leg" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Generar Leg</p>
+<p>Genera un Swap Leg a partir de los datos provistos desde un Dataframe</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dataframe</strong> (<em>DataFrame</em>) – Datos del swap</p></li>
+<li><p><strong>position</strong> (<a class="reference internal" href="modulos_base.html#enums.FinancialPosition" title="enums.FinancialPosition"><em>FinancialPosition</em></a>) – Posición Financiera</p></li>
+<li><p><strong>associated_collateral</strong> (<a class="reference internal" href="modulos_base.html#enums.Currency" title="enums.Currency"><em>Currency</em></a>) – Colateral Asociado</p></li>
+</ul>
+</dd>
+<dt class="field-even">Devuelve<span class="colon">:</span></dt>
+<dd class="field-even"><p>Leg</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="instruments.swap.Leg.get_coupon">
+<span class="sig-name descname"><span class="pre">get_coupon</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">i</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#instruments.swap.Leg.get_coupon" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Obtener cupón</p>
+<p>Obtiene el cupón en la posición i</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>i</strong> (<em>int</em>) – Posición</p>
+</dd>
+<dt class="field-even">Devuelve<span class="colon">:</span></dt>
+<dd class="field-even"><p>Coupon</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="instruments.swap.Leg.get_flow">
+<span class="sig-name descname"><span class="pre">get_flow</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataset</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataSet</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#instruments.swap.Leg.get_flow" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Obtener Flujo</p>
+<p>Obtiene los flujos proyectados a la fecha de pago</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>dataset</strong> (<a class="reference internal" href="market.html#market.dataset.DataSet" title="market.dataset.DataSet"><em>DataSet</em></a>) – Set de datos de mercado.</p>
+</dd>
+<dt class="field-even">Devuelve<span class="colon">:</span></dt>
+<dd class="field-even"><p>Lista de Cashflow a la fecha de pago.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="instruments.swap.Leg.to_dataframe">
+<span class="sig-name descname"><span class="pre">to_dataframe</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#instruments.swap.Leg.to_dataframe" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Convertir a dataframe</p>
+<p>Convierte a Dataframe</p>
+<dl class="field-list simple">
+<dt class="field-odd">Devuelve<span class="colon">:</span></dt>
+<dd class="field-odd"><p>DataFrame con valores del cupón</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="instruments.swap.Leg.valuate">
+<span class="sig-name descname"><span class="pre">valuate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataset</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataSet</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#instruments.swap.Leg.valuate" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Valorizar</p>
+<p>Valoriza el instrumento utilizando la información de mercado provista</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>dataset</strong> (<a class="reference internal" href="market.html#market.dataset.DataSet" title="market.dataset.DataSet"><em>DataSet</em></a>) – Información de mercado.</p>
+</dd>
+<dt class="field-even">Devuelve<span class="colon">:</span></dt>
+<dd class="field-even"><p>Objeto Cash con valor presente del instrumento</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="instruments.swap.Swap">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">instruments.swap.</span></span><span class="sig-name descname"><span class="pre">Swap</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">active_leg</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">passive_leg</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">associated_collateral</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#instruments.swap.Swap" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Instrumento Swap</p>
+<p>Clase base dedicada a la representación de instrumentos Swap.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>associated_collateral</strong> (<a class="reference internal" href="modulos_base.html#enums.Currency" title="enums.Currency"><em>Currency</em></a>) – Colateral asociado.</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="instruments.swap.Swap.add_leg">
+<span class="sig-name descname"><span class="pre">add_leg</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">leg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#instruments.swap.Leg" title="instruments.swap.Leg"><span class="pre">Leg</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#instruments.swap.Swap.add_leg" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Agregar Leg</p>
+<p>Agrega un objeto Leg al Swap</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>leg</strong> – Swap Leg</p></li>
+<li><p><strong>leg</strong> – Leg</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="instruments.swap.Swap.add_metadata">
+<span class="sig-name descname"><span class="pre">add_metadata</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parameter</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#instruments.swap.Swap.add_metadata" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Agregar Metadata</p>
+<p>Agrega un parámetro y valor a la metadata del instrumento.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>parameter</strong> (<em>str</em>) – Nombre del parámetro.</p></li>
+<li><p><strong>value</strong> (<em>Any</em>) – Valor del parámetro.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Devuelve<span class="colon">:</span></dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="instruments.swap.Swap.generate_irs_cam">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">generate_irs_cam</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">contract_date</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">notional_amount</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fix_rate</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">financial_position</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">FinancialPosition</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_periods</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">associated_collateral</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Currency</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_offshore</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#instruments.swap.Swap.generate_irs_cam" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Genera IRS CAM Onshore</p>
+<p>Genera un Swap IRS Fix - CAM</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>contract_date</strong> (<em>date</em>) – Fecha del contrato</p></li>
+<li><p><strong>notional_amount</strong> (<em>float</em>) – Monto del nocional</p></li>
+<li><p><strong>fix_rate</strong> (<em>float</em>) – Tasa Fija</p></li>
+<li><p><strong>financial_position</strong> (<a class="reference internal" href="modulos_base.html#enums.FinancialPosition" title="enums.FinancialPosition"><em>FinancialPosition</em></a>) – Posición financiera</p></li>
+<li><p><strong>n_periods</strong> (<em>int</em>) – Numero de periodos</p></li>
+<li><p><strong>associated_collateral</strong> (<a class="reference internal" href="modulos_base.html#enums.Currency" title="enums.Currency"><em>Currency</em></a>) – Colateral asociado</p></li>
+<li><p><strong>is_offshore</strong> – Derivado offshore</p></li>
+<li><p><strong>is_offshore</strong> – bool</p></li>
+</ul>
+</dd>
+<dt class="field-even">Devuelve<span class="colon">:</span></dt>
+<dd class="field-even"><p>Objeto Swap</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="instruments.swap.Swap.get_flow">
+<span class="sig-name descname"><span class="pre">get_flow</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataset</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataSet</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#instruments.swap.Swap.get_flow" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Obtener Flujo</p>
+<p>Obtiene los flujos proyectados a la fecha de pago</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>dataset</strong> (<a class="reference internal" href="market.html#market.dataset.DataSet" title="market.dataset.DataSet"><em>DataSet</em></a>) – Set de datos de mercado.</p>
+</dd>
+<dt class="field-even">Devuelve<span class="colon">:</span></dt>
+<dd class="field-even"><p>Lista de Cashflow a la fecha de pago.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="instruments.swap.Swap.get_metadata">
+<span class="sig-name descname"><span class="pre">get_metadata</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parameter</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#instruments.swap.Swap.get_metadata" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Obtener Metadata</p>
+<p>Obtiene un parámetro de la metadata del instrumento.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>parameter</strong> (<em>str</em>) – Nombre del parámetro.</p>
+</dd>
+<dt class="field-even">Devuelve<span class="colon">:</span></dt>
+<dd class="field-even"><p>valor de la metadata</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="instruments.swap.Swap.to_dataframe">
+<span class="sig-name descname"><span class="pre">to_dataframe</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#instruments.swap.Swap.to_dataframe" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Convertir a dataframe</p>
+<p>Convierte a Dataframe</p>
+<dl class="field-list simple">
+<dt class="field-odd">Devuelve<span class="colon">:</span></dt>
+<dd class="field-odd"><p>DataFrame con valores del cupón</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="instruments.swap.Swap.valuate">
+<span class="sig-name descname"><span class="pre">valuate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataset</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataSet</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#instruments.swap.Swap.valuate" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Valorizar</p>
+<p>Valoriza el instrumento utilizando la información de mercado provista</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>dataset</strong> (<a class="reference internal" href="market.html#market.dataset.DataSet" title="market.dataset.DataSet"><em>DataSet</em></a>) – Información de mercado.</p>
+</dd>
+<dt class="field-even">Devuelve<span class="colon">:</span></dt>
+<dd class="field-even"><p>Objeto Cash con valor presente del instrumento</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="instruments.swap.Swap.valuate_by_leg">
+<span class="sig-name descname"><span class="pre">valuate_by_leg</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataset</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataSet</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#instruments.swap.Swap.valuate_by_leg" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Valorizar por leg</p>
+<p>Valoriza las legs del instrumento utilizando la información de mercado provista</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>dataset</strong> (<a class="reference internal" href="market.html#market.dataset.DataSet" title="market.dataset.DataSet"><em>DataSet</em></a>) – Información de mercado.</p>
+</dd>
+<dt class="field-even">Devuelve<span class="colon">:</span></dt>
+<dd class="field-even"><p>lista con objetos Cash con valor presente de las legs del instrumento</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+
+      </div>
+      <div class="bottomnav" role="navigation" aria-label="bottom navigation">
+      
+        <p>
+        «&#160;&#160;<a href="market.html">Paquete de Mercado</a>
+        &#160;&#160;::&#160;&#160;
+        <a class="uplink" href="index.html">Contenidos</a>
+        &#160;&#160;::&#160;&#160;
+        <a href="ejemplos.html">Ejemplos de uso</a>&#160;&#160;»
+        </p>
+
+      </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Derechos de autor 2022, Riesgo Financiero.
+      Creado usando <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1.
+    </div>
+  </body>
+</html>

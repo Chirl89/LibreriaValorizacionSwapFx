@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Módulo Forwards &#8212; documentación de Finlib - beta</title>
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/haiku.css" />
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/translations.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="index" title="Índice" href="../../../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../../../search.html" />
+    <link rel="next" title="Módulo Swaps" href="4_swap.html" />
+    <link rel="prev" title="Módulo Instrumento" href="2_instrument.html" /> 
+  </head><body>
+      <div class="header" role="banner"><h1 class="heading"><a href="../../../index.html">
+          <span>documentación de Finlib - beta</span></a></h1>
+        <h2 class="heading"><span>Módulo Forwards</span></h2>
+      </div>
+      <div class="topnav" role="navigation" aria-label="top navigation">
+      
+        <p>
+        «&#160;&#160;<a href="2_instrument.html"><strong>Módulo Instrumento</strong></a>
+        &#160;&#160;::&#160;&#160;
+        <a class="uplink" href="../../../index.html">Contenidos</a>
+        &#160;&#160;::&#160;&#160;
+        <a href="4_swap.html"><strong>Módulo Swaps</strong></a>&#160;&#160;»
+        </p>
+
+      </div>
+      <div class="content" role="main">
+        
+        
+  <section id="modulo-forwards">
+<span id="id1"></span><h1><strong>Módulo Forwards</strong><a class="headerlink" href="#modulo-forwards" title="Enlace permanente a este encabezado">¶</a></h1>
+<span class="target" id="module-instruments.forward"></span><p>Este módulo se encuentra enfocado en representar productos forward, para esto se cuenta con las siguientes
+clases.</p>
+<p>La clase Forward que representa un forward Vanilla.</p>
+<p>Las clases dentro de este módulo son:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#forward"><span class="std std-ref">Forward</span></a> (<a class="reference internal" href="#instruments.forward.Forward" title="instruments.forward.Forward"><code class="xref py py-class docutils literal notranslate"><span class="pre">Forward</span></code></a>): Clase dedicada a la representación de Forwards de Moneda.</p></li>
+</ul>
+</section>
+<section id="forward">
+<span id="id2"></span><h1>Forward<a class="headerlink" href="#forward" title="Enlace permanente a este encabezado">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="instruments.forward.Forward">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">instruments.forward.</span></span><span class="sig-name descname"><span class="pre">Forward</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start_date</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_date</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fixing_date</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pay_date</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">active_notional</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Cash</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">passive_notional</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Cash</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">associated_collateral</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Currency</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">payment_currency</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Currency</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">Currency.CLP</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#instruments.forward.Forward" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Instrumento Forward</p>
+<p>Clase dedicada a la representación de forwards vanilla.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>start_date</strong> (<em>date</em>) – Fecha de inicio.</p></li>
+<li><p><strong>end_date</strong> (<em>date</em>) – Fecha de termino.</p></li>
+<li><p><strong>fixing_date</strong> (<em>date</em>) – Fecha de fijación.</p></li>
+<li><p><strong>pay_date</strong> (<em>date</em>) – Fecha de pago.</p></li>
+<li><p><strong>active_notional</strong> (<a class="reference internal" href="1_flujos.html#instruments.flow.Cash" title="instruments.flow.Cash"><em>Cash</em></a>) – Nocional activo.</p></li>
+<li><p><strong>passive_notional</strong> (<a class="reference internal" href="1_flujos.html#instruments.flow.Cash" title="instruments.flow.Cash"><em>Cash</em></a>) – Nocional pasivo.</p></li>
+<li><p><strong>associated_collateral</strong> (<a class="reference internal" href="../0_base/1_enums.html#enums.Currency" title="enums.Currency"><em>Currency</em></a>) – Colateral asociado.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="instruments.forward.Forward.valuate">
+<span class="sig-name descname"><span class="pre">valuate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataset</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataSet</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#instruments.forward.Forward.valuate" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Valorizar</p>
+<p>Obtiene el mtm, en caso no se especifique la fecha se utilizara la fecha del data set</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>dataset</strong> (<a class="reference internal" href="../3_market/5_dataset.html#market.dataset.DataSet" title="market.dataset.DataSet"><em>DataSet</em></a>) – Dataset de mercado</p>
+</dd>
+<dt class="field-even">Devuelve<span class="colon">:</span></dt>
+<dd class="field-even"><p>Objeto Cash con valor presente del instrumento</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="instruments.forward.Forward.get_strike">
+<span class="sig-name descname"><span class="pre">get_strike</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#instruments.forward.Forward.get_strike" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Obtener strike</p>
+<p>Obtiene el strike del forward</p>
+<dl class="field-list simple">
+<dt class="field-odd">Devuelve<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Strike</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="instruments.forward.Forward.get_currency_pair">
+<span class="sig-name descname"><span class="pre">get_currency_pair</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#instruments.forward.Forward.get_currency_pair" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Obtener par de moneda</p>
+<p>Obtiene el par de moneda asociada con el instrumento</p>
+<dl class="field-list simple">
+<dt class="field-odd">Devuelve<span class="colon">:</span></dt>
+<dd class="field-odd"><p>FxPair</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+      </div>
+      <div class="bottomnav" role="navigation" aria-label="bottom navigation">
+      
+        <p>
+        «&#160;&#160;<a href="2_instrument.html"><strong>Módulo Instrumento</strong></a>
+        &#160;&#160;::&#160;&#160;
+        <a class="uplink" href="../../../index.html">Contenidos</a>
+        &#160;&#160;::&#160;&#160;
+        <a href="4_swap.html"><strong>Módulo Swaps</strong></a>&#160;&#160;»
+        </p>
+
+      </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Derechos de autor 2022, Riesgo Financiero.
+      Creado usando <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.0.0.
+    </div>
+  </body>
+</html>

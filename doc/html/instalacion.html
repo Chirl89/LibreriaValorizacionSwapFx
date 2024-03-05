@@ -1,0 +1,128 @@
+
+<!DOCTYPE html>
+
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Instalación &#8212; documentación de Finlib - beta</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/haiku.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/translations.js"></script>
+    <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({startOnLoad:true});</script>
+    <link rel="index" title="Índice" href="genindex.html" />
+    <link rel="search" title="Búsqueda" href="search.html" />
+    <link rel="next" title="Paquetes" href="paquetes.html" />
+    <link rel="prev" title="Liberia de Funciones de Riesgo Financiero: FinRisklib" href="index.html" /> 
+  </head><body>
+      <div class="header" role="banner"><h1 class="heading"><a href="index.html">
+          <span>documentación de Finlib - beta</span></a></h1>
+        <h2 class="heading"><span>Instalación</span></h2>
+      </div>
+      <div class="topnav" role="navigation" aria-label="top navigation">
+      
+        <p>
+        «&#160;&#160;<a href="index.html">Liberia de Funciones de Riesgo Financiero: FinRisklib</a>
+        &#160;&#160;::&#160;&#160;
+        <a class="uplink" href="index.html">Contenidos</a>
+        &#160;&#160;::&#160;&#160;
+        <a href="paquetes.html">Paquetes</a>&#160;&#160;»
+        </p>
+
+      </div>
+      <div class="content" role="main">
+        
+        
+  <section id="instalacion">
+<h1>Instalación<a class="headerlink" href="#instalacion" title="Enlace permanente a este encabezado">¶</a></h1>
+<p>Para instalar la librería se deben seguir los siguientes pasos:</p>
+<section id="creacion-de-entorno-virtual">
+<h2>Creación de Entorno Virtual:<a class="headerlink" href="#creacion-de-entorno-virtual" title="Enlace permanente a este encabezado">¶</a></h2>
+<p>Aunque la creación de un entorno virtual (Virtual Environment) no es obligatorio se recomienda hacerlo para evitar
+para mantener un mayor control sobre las versiones y los paquetes que se instalaran. El entorno virtual puede ser
+creado utilizando dos caminos:</p>
+<ol class="arabic">
+<li><p>Creación desde terminal:</p>
+<p>Se debe ingresar al terminal y utilizar el siguiente comando:</p>
+</li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">venv</span> <span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">new</span><span class="o">/</span><span class="n">virtualenvironment</span><span class="o">/</span><span class="n">venv</span><span class="o">.</span>
+</pre></div>
+</div>
+<ol class="arabic" start="2">
+<li><p>Creación desde Anaconda Navigator:</p>
+<p>Desde el navegador de Anaconda se puede ir a la sección de Enviroments donde se da la opciones de agregar un nuevo
+entorno de manera automática. Este es el acercamiento recomendado</p>
+<p>Una vez creado el entrono virtual este debe ser activado utilizando el siguiente comando:</p>
+</li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">source</span> <span class="n">venv</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">activate</span>
+</pre></div>
+</div>
+</section>
+<section id="instalacion-de-la-libreria">
+<h2>Instalación de la librería:<a class="headerlink" href="#instalacion-de-la-libreria" title="Enlace permanente a este encabezado">¶</a></h2>
+<p>Desde el terminal y con el entorno virtual activado se debe correr el siguiente comando:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">setup</span><span class="o">.</span><span class="n">py</span> <span class="n">install</span>
+</pre></div>
+</div>
+<p>Este comando instalara todas las librerías necesarias para el funcionamiento de la libreria, la ventaja de
+generar esta instalación dentro de un entorno virtual es que la instalación se vera limitada al entorno y no se
+generarán cambios sobre el entrono del sistema</p>
+</section>
+<section id="generacion-kernel-para-utilizacion-en-jupyter">
+<h2>Generación Kernel para utilización en Jupyter:<a class="headerlink" href="#generacion-kernel-para-utilizacion-en-jupyter" title="Enlace permanente a este encabezado">¶</a></h2>
+<p>Para poder habilitar la utilización del entorno virtual en jupyter es necesario crear un nuevo kernel utilizando
+el siguiente comando:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ipython</span> <span class="n">kernel</span> <span class="n">install</span> <span class="o">--</span><span class="n">user</span> <span class="o">--</span><span class="n">name</span><span class="o">=&lt;</span><span class="n">nombre</span><span class="o">&gt;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Debemos recordar que este comando debe ser ejecutado desde el entorno virtual que se desea copiar.</p>
+<p class="plantuml">
+<img src="_images/plantuml-d5b544c4651dc501ac77d571cabbf9898d5e1480.png" alt="&#64;startuml
+start
+if (condition A) then (yes)
+  :Text 1;
+elseif (condition B) then (yes)
+  :Text 2;
+  stop
+elseif (condition C) then (yes)
+  :Text 3;
+elseif (condition D) then (yes)
+  :Text 4;
+else (nothing)
+  :Text else;
+endif
+stop
+&#64;enduml"/>
+</p>
+</section>
+</section>
+
+
+      </div>
+      <div class="bottomnav" role="navigation" aria-label="bottom navigation">
+      
+        <p>
+        «&#160;&#160;<a href="index.html">Liberia de Funciones de Riesgo Financiero: FinRisklib</a>
+        &#160;&#160;::&#160;&#160;
+        <a class="uplink" href="index.html">Contenidos</a>
+        &#160;&#160;::&#160;&#160;
+        <a href="paquetes.html">Paquetes</a>&#160;&#160;»
+        </p>
+
+      </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Derechos de autor 2022, Riesgo Financiero.
+      Creado usando <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1.
+    </div>
+  </body>
+</html>

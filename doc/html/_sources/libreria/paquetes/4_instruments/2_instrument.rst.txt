@@ -1,0 +1,17 @@
+.. _Módulo Instrumento:
+
+**Módulo Instrumento**
+----------------------
+
+.. automodule:: instruments.instrument
+
+- :ref:`derivado` (:class:`Derivative`): Clase abstracta dedicada a la representación de un derivado financiero.
+
+.. _derivado:
+
+Derivado Financiero
+-------------------
+
+.. autoclass:: instruments.instrument.Derivative
+   :members:
+   :member-order: bysource

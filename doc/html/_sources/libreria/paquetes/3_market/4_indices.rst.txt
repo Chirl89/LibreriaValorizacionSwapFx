@@ -1,0 +1,20 @@
+.. _Módulo Indices Financieros:
+
+**Módulos Índices Financieros**
+-------------------------------
+
+.. automodule:: market.index
+
+La principal clase de este módulo es:
+
+- :ref:`indices` (:class:`Index`): Clase dedicada a representación de tipos de cambio.
+
+.. _indices:
+
+Índices Financieros
+-------------------
+
+.. autoclass:: market.index.Index
+   :members:
+   :member-order: bysource
+

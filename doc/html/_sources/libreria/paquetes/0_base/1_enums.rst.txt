@@ -1,0 +1,170 @@
+.. _Módulo Enumeradores:
+
+**Módulo de Enumeradores**
+--------------------------
+
+.. automodule:: enums
+
+A continuación se presenta un listado de los enumeradores contenidos en este módulo:
+
+- :ref:`localidad` (:class:`Locality`): Enumerador de localizaciones.
+- :ref:`moneda` (:class:`Currency`): Enumerador de monedas.
+- :ref:`tipos_indices` (:class:`IndexType`): Listado de tipos de índices financieros.
+- :ref:`indices_financieros` (:class:`FinancialIndex`): Enumerador de Indices Financieros.
+- :ref:`max_min` (:class:`MaxMin`): Enumerador de Máximo y Minimo.
+- :ref:`posición_financiera` (:class:`FinancialPosition`): Enumerador de posición larga o corta.
+- :ref:`tipos_flujo_caja` (:class:`CashflowType`): Enumerador de tipos de Flujo de Caja.
+- :ref:`fuentes_información` (:class:`Source`): Enumerador de fuentes de información.
+- :ref:`tipos_curva` (:class:`CurveType`): Enumerador de tipos de curva.
+- :ref:`periodos` (:class:`Period`): Enumerador de Periodos.
+- :ref:`periodicidad` (:class:`Periodicity`): Enumerador de periodicidades.
+- :ref:`redondeo_días` (:class:`BusinessDay`): Enumerador de convenciones de redondeo de días hábiles.
+- :ref:`conteo_días` (:class:`DayCount`): Enumerador de convenciones de conteo de días.
+- :ref:`composición_tasas` (:class:`Compounding`): Enumerador de convenciones de composición de tasas.
+- :ref:`métodos_interpolación` (:class:`InterpolationMethod`): Enumerador de métodos de interpolación.
+- :ref:`métodos_extrapolación` (:class:`ExtrapolationMethod`): Enumerador de métodos de extrapolación.
+
+.. _localidad:
+
+Localidad
+---------
+
+.. autoclass:: enums.Locality
+    :members:
+    :member-order: bysource
+
+.. _moneda:
+
+Moneda
+------
+
+.. autoclass:: enums.Currency
+    :members:
+    :member-order: bysource
+
+.. _tipos_indices:
+
+Tipos de Índices
+----------------
+
+.. autoclass:: enums.IndexType
+    :members:
+    :member-order: bysource
+
+.. _indices_financieros:
+
+Índices Financieros
+-------------------
+
+.. autoclass:: enums.FinancialIndex
+    :members:
+    :member-order: bysource
+
+.. _max_min:
+
+Máximo/Mínimo
+-------------
+
+.. autoclass:: enums.MaxMin
+    :members:
+    :member-order: bysource
+
+.. _posición_financiera:
+
+Posición Financiera
+-------------------
+
+.. autoclass:: enums.FinancialPosition
+    :members:
+    :member-order: bysource
+
+.. _tipos_flujo_caja:
+
+Tipos de Flujo de Caja
+----------------------
+
+.. autoclass:: enums.CashflowType
+    :members:
+    :member-order: bysource
+
+
+.. _fuentes_información:
+
+Fuente de Información
+---------------------
+
+.. autoclass:: enums.Source
+    :members:
+    :member-order: bysource
+
+.. _tipos_curva:
+
+Tipos de Curva
+--------------
+
+.. autoclass:: enums.CurveType
+    :members:
+    :member-order: bysource
+
+.. _periodos:
+
+Periodos
+--------
+
+.. autoclass:: enums.Period
+    :members:
+    :member-order: bysource
+
+.. _periodicidad:
+
+Periodicidad
+------------
+
+.. autoclass:: enums.Periodicity
+    :members:
+    :member-order: bysource
+
+.. _redondeo_días:
+
+Redondeo de Días
+----------------
+
+.. autoclass:: enums.BusinessDay
+    :members:
+    :member-order: bysource
+
+.. _conteo_días:
+
+Conteo de Días
+--------------
+
+.. autoclass:: enums.DayCount
+    :members:
+    :member-order: bysource
+
+.. _composición_tasas:
+
+Composición de tasas
+--------------------
+
+.. autoclass:: enums.Compounding
+    :members:
+    :member-order: bysource
+
+.. _métodos_interpolación:
+
+Métodos de Interpolación
+------------------------
+
+.. autoclass:: enums.InterpolationMethod
+    :members:
+    :member-order: bysource
+
+.. _métodos_extrapolación:
+
+Métodos de Extrapolación
+------------------------
+
+.. autoclass:: enums.ExtrapolationMethod
+    :members:
+    :member-order: bysource

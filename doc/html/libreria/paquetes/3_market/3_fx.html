@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Módulos Tipo de cambio &#8212; documentación de Finlib - beta</title>
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/haiku.css" />
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/translations.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="index" title="Índice" href="../../../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../../../search.html" />
+    <link rel="next" title="Módulos Índices Financieros" href="4_indices.html" />
+    <link rel="prev" title="Módulo Curvas" href="2_curvas.html" /> 
+  </head><body>
+      <div class="header" role="banner"><h1 class="heading"><a href="../../../index.html">
+          <span>documentación de Finlib - beta</span></a></h1>
+        <h2 class="heading"><span>Módulos Tipo de cambio</span></h2>
+      </div>
+      <div class="topnav" role="navigation" aria-label="top navigation">
+      
+        <p>
+        «&#160;&#160;<a href="2_curvas.html"><strong>Módulo Curvas</strong></a>
+        &#160;&#160;::&#160;&#160;
+        <a class="uplink" href="../../../index.html">Contenidos</a>
+        &#160;&#160;::&#160;&#160;
+        <a href="4_indices.html"><strong>Módulos Índices Financieros</strong></a>&#160;&#160;»
+        </p>
+
+      </div>
+      <div class="content" role="main">
+        
+        
+  <section id="module-market.fxrate">
+<span id="modulos-tipo-de-cambio"></span><span id="modulo-tasas-de-cambio"></span><h1><strong>Módulos Tipo de cambio</strong><a class="headerlink" href="#module-market.fxrate" title="Enlace permanente a este encabezado">¶</a></h1>
+<p>El módulo de tipos de cambio permite la estandarización en la representación de los distintos pares de moneda.</p>
+<p>La principal clase de este módulo es:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#fxrate"><span class="std std-ref">Tasa de Cambio</span></a> (<a class="reference internal" href="#market.fxrate.FxPair" title="market.fxrate.FxPair"><code class="xref py py-class docutils literal notranslate"><span class="pre">FxPair</span></code></a>): Clase dedicada a representación de tipos de cambio.</p></li>
+</ul>
+</section>
+<section id="tasa-de-cambio">
+<span id="fxrate"></span><h1>Tasa de Cambio<a class="headerlink" href="#tasa-de-cambio" title="Enlace permanente a este encabezado">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="market.fxrate.FxPair">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">market.fxrate.</span></span><span class="sig-name descname"><span class="pre">FxPair</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">primary_currency</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Currency</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">secondary_currency</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Currency</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">discount_days</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">calendar_locations</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#market.fxrate.FxPair" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Representación de un par de mondas</p>
+<p>Cuenta con una moneda primaria y otra moneda secundaria, siendo el tipo de cambio la cantidad de unidades de la
+moneda secundaria que se requieren para adquirir una unidad de la moneda primaria.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>primary_currency</strong> (<em>Currency.</em>) – Moneda primaria.</p></li>
+<li><p><strong>secondary_currency</strong> (<em>Currency.</em>) – Moneda secundaria.</p></li>
+<li><p><strong>discount_days</strong> (<em>Int.</em>) – Cantidad de días de descuento (default: 2).</p></li>
+<li><p><strong>calendar_locations</strong> (<em>List</em>) – Lista de localizaciones.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="market.fxrate.FxPair.inverse_pair">
+<span class="sig-name descname"><span class="pre">inverse_pair</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#market.fxrate.FxPair.inverse_pair" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Obtener par inverso</p>
+<p>Invierte el par de monedas y retorna un nuevo par de monedas</p>
+<dl class="field-list simple">
+<dt class="field-odd">Devuelve<span class="colon">:</span></dt>
+<dd class="field-odd"><p>FxPair con monedas invertidas</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="market.fxrate.FxPair.has_eq_currency">
+<span class="sig-name descname"><span class="pre">has_eq_currency</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#market.fxrate.FxPair.has_eq_currency" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Monedas Iguales</p>
+<p>Verifica si las monedas primarias y secundarias sean iguales</p>
+<dl class="field-list simple">
+<dt class="field-odd">Devuelve<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Booleano</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+      </div>
+      <div class="bottomnav" role="navigation" aria-label="bottom navigation">
+      
+        <p>
+        «&#160;&#160;<a href="2_curvas.html"><strong>Módulo Curvas</strong></a>
+        &#160;&#160;::&#160;&#160;
+        <a class="uplink" href="../../../index.html">Contenidos</a>
+        &#160;&#160;::&#160;&#160;
+        <a href="4_indices.html"><strong>Módulos Índices Financieros</strong></a>&#160;&#160;»
+        </p>
+
+      </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Derechos de autor 2022, Riesgo Financiero.
+      Creado usando <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.0.0.
+    </div>
+  </body>
+</html>

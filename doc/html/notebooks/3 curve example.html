@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Uso y manipulación de curvas &#8212; documentación de Finlib - beta</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/haiku.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/nbsphinx-code-cells.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/translations.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../search.html" />
+    <link rel="next" title="Uso de calendario" href="4%20calendar%20example.html" />
+    <link rel="prev" title="Uso de lector de base de datos" href="2%20dbreader%20example.html" /> 
+  </head><body>
+      <div class="header" role="banner"><h1 class="heading"><a href="../index.html">
+          <span>documentación de Finlib - beta</span></a></h1>
+        <h2 class="heading"><span>Uso y manipulación de curvas</span></h2>
+      </div>
+      <div class="topnav" role="navigation" aria-label="top navigation">
+      
+        <p>
+        «&#160;&#160;<a href="2%20dbreader%20example.html">Uso de lector de base de datos</a>
+        &#160;&#160;::&#160;&#160;
+        <a class="uplink" href="../index.html">Contenidos</a>
+        &#160;&#160;::&#160;&#160;
+        <a href="4%20calendar%20example.html">Uso de calendario</a>&#160;&#160;»
+        </p>
+
+      </div>
+      <div class="content" role="main">
+        
+        
+  <section id="Uso-y-manipulación-de-curvas">
+<h1>Uso y manipulación de curvas<a class="headerlink" href="#Uso-y-manipulación-de-curvas" title="Enlace permanente a este encabezado">¶</a></h1>
+<p>En este archivo se muestra como:</p>
+<ul class="simple">
+<li><p>Obtener curvas desde la base de datos.</p></li>
+<li><p>Graficar la curva con factores de descuento y tasa.</p></li>
+<li><p>Calcular una curva sintética.</p></li>
+<li><p>Crear una curva con configuración personalizada.</p></li>
+</ul>
+<section id="Configuración-Inicial">
+<h2>Configuración Inicial<a class="headerlink" href="#Configuración-Inicial" title="Enlace permanente a este encabezado">¶</a></h2>
+<p>Comenzamos cargando las librerías necesarias</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">finrisklib.data.dbreader</span> <span class="kn">import</span> <span class="n">DBReader</span>
+<span class="kn">from</span> <span class="nn">finrisklib.market.curve</span> <span class="kn">import</span> <span class="n">generate_curve_config</span>
+<span class="kn">from</span> <span class="nn">finrisklib.market.curve</span> <span class="kn">import</span> <span class="n">Curve</span>
+<span class="kn">from</span> <span class="nn">finrisklib.enums</span> <span class="kn">import</span> <span class="n">InterpolationMethod</span>
+<span class="kn">from</span> <span class="nn">finrisklib.enums</span> <span class="kn">import</span> <span class="n">ExtrapolationMethod</span>
+<span class="kn">from</span> <span class="nn">finrisklib.enums</span> <span class="kn">import</span> <span class="n">Compounding</span>
+<span class="kn">from</span> <span class="nn">finrisklib.enums</span> <span class="kn">import</span> <span class="n">DayCount</span>
+<span class="kn">from</span> <span class="nn">finrisklib.enums</span> <span class="kn">import</span> <span class="n">Source</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">date</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="Carga-desde-base-de-datos">
+<h2>Carga desde base de datos<a class="headerlink" href="#Carga-desde-base-de-datos" title="Enlace permanente a este encabezado">¶</a></h2>
+<p>Para cargar una curva desde base de datos son necesarios dos datos, la fecha y el código de la curva. Adicionalmente, se puede elegir entre cargar las curvas de Murex (Default) o las curvas oficiales.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Definimos la fecha a la que se cargarán los datos</span>
+<span class="n">curve_date</span> <span class="o">=</span> <span class="n">date</span><span class="p">(</span><span class="n">year</span><span class="o">=</span><span class="mi">2022</span><span class="p">,</span> <span class="n">month</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">day</span><span class="o">=</span><span class="mi">23</span><span class="p">)</span>
+
+<span class="c1"># Códigos de las curvas a cargar</span>
+<span class="n">murex_code</span> <span class="o">=</span> <span class="s1">&#39;USD SOFR&#39;</span>
+<span class="n">bac_code</span> <span class="o">=</span> <span class="s1">&#39;CURVA_USD_USA&#39;</span>
+
+<span class="c1"># Inicializamos el lector de base de datos</span>
+<span class="n">reader</span> <span class="o">=</span> <span class="n">DBReader</span><span class="p">()</span>
+
+<span class="c1"># Obtención de curvas</span>
+<span class="n">murex_curve</span> <span class="o">=</span> <span class="n">reader</span><span class="o">.</span><span class="n">get_single_curve_data</span><span class="p">(</span><span class="n">curve_name</span><span class="o">=</span><span class="n">murex_code</span><span class="p">,</span> <span class="n">process_date</span><span class="o">=</span><span class="n">curve_date</span><span class="p">,</span> <span class="n">source</span><span class="o">=</span><span class="n">Source</span><span class="o">.</span><span class="n">SANDBOX</span><span class="p">)</span>
+<span class="n">bac_curve</span> <span class="o">=</span> <span class="n">reader</span><span class="o">.</span><span class="n">get_single_curve_data</span><span class="p">(</span><span class="n">curve_name</span><span class="o">=</span><span class="n">bac_code</span><span class="p">,</span> <span class="n">process_date</span><span class="o">=</span><span class="n">curve_date</span><span class="p">,</span> <span class="n">source</span><span class="o">=</span><span class="n">Source</span><span class="o">.</span><span class="n">OFFICIAL</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="Graficar-curva">
+<h2>Graficar curva<a class="headerlink" href="#Graficar-curva" title="Enlace permanente a este encabezado">¶</a></h2>
+<p>Habiendo obtenido las curvas desde base de datos procedemos a graficarlas:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Gráfico de factores de descuento</span>
+
+<span class="n">curve_dict</span> <span class="o">=</span> <span class="n">murex_curve</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span>
+
+<span class="n">tenors</span> <span class="o">=</span> <span class="n">curve_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+<span class="n">dfs</span> <span class="o">=</span> <span class="n">curve_dict</span><span class="o">.</span><span class="n">values</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">tenors</span><span class="p">,</span> <span class="n">dfs</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/notebooks_3_curve_example_7_0.png" src="../_images/notebooks_3_curve_example_7_0.png" />
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Gráfico de tasas</span>
+
+<span class="n">rates_dict</span> <span class="o">=</span> <span class="n">murex_curve</span><span class="o">.</span><span class="n">rates_to_dict</span><span class="p">()</span>
+
+<span class="n">tenors</span> <span class="o">=</span> <span class="n">rates_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+<span class="n">rates</span> <span class="o">=</span> <span class="n">rates_dict</span><span class="o">.</span><span class="n">values</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">tenors</span><span class="p">,</span> <span class="n">rates</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/notebooks_3_curve_example_8_0.png" src="../_images/notebooks_3_curve_example_8_0.png" />
+</div>
+</div>
+</section>
+<section id="Calculo-de-curva-sintética">
+<h2>Calculo de curva sintética<a class="headerlink" href="#Calculo-de-curva-sintética" title="Enlace permanente a este encabezado">¶</a></h2>
+<p>Las curvas sintéticas son calculadas automáticamente cuando se genera cualquier tipo de operación entre curvas, en este caso calcularemos la curva USD Local de manera sintética.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Necesitamos 3 curvas para</span>
+<span class="n">clp_us_code</span> <span class="o">=</span> <span class="s1">&#39;CLP FX&#39;</span>
+<span class="n">usd_us_code</span> <span class="o">=</span> <span class="s1">&#39;USD SOFR&#39;</span>
+<span class="n">clp_cl_code</span> <span class="o">=</span> <span class="s1">&#39;CLP_CAM&#39;</span>
+
+<span class="c1"># Carga de datos</span>
+<span class="n">reader</span><span class="o">.</span><span class="n">mx_origin</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">CLP_US</span> <span class="o">=</span> <span class="n">reader</span><span class="o">.</span><span class="n">get_single_curve_data</span><span class="p">(</span><span class="n">curve_name</span><span class="o">=</span><span class="n">clp_us_code</span><span class="p">,</span> <span class="n">process_date</span><span class="o">=</span><span class="n">curve_date</span><span class="p">,</span> <span class="n">source</span><span class="o">=</span><span class="n">Source</span><span class="o">.</span><span class="n">SANDBOX</span><span class="p">)</span>
+<span class="n">USD_US</span> <span class="o">=</span> <span class="n">reader</span><span class="o">.</span><span class="n">get_single_curve_data</span><span class="p">(</span><span class="n">curve_name</span><span class="o">=</span><span class="n">usd_us_code</span><span class="p">,</span> <span class="n">process_date</span><span class="o">=</span><span class="n">curve_date</span><span class="p">,</span> <span class="n">source</span><span class="o">=</span><span class="n">Source</span><span class="o">.</span><span class="n">SANDBOX</span><span class="p">)</span>
+<span class="n">CLP_CL</span> <span class="o">=</span> <span class="n">reader</span><span class="o">.</span><span class="n">get_single_curve_data</span><span class="p">(</span><span class="n">curve_name</span><span class="o">=</span><span class="n">clp_cl_code</span><span class="p">,</span> <span class="n">process_date</span><span class="o">=</span><span class="n">curve_date</span><span class="p">,</span> <span class="n">source</span><span class="o">=</span><span class="n">Source</span><span class="o">.</span><span class="n">SANDBOX</span><span class="p">)</span>
+
+<span class="c1"># Creación de curva sintética</span>
+<span class="n">USD_CL</span> <span class="o">=</span> <span class="p">(</span><span class="n">USD_US</span><span class="o">/</span><span class="n">CLP_US</span><span class="p">)</span><span class="o">*</span><span class="n">CLP_CL</span>
+
+<span class="c1"># Graficamos resultado</span>
+<span class="n">tenors</span><span class="p">,</span> <span class="n">rates</span> <span class="o">=</span> <span class="n">USD_CL</span><span class="o">.</span><span class="n">get_rate_curve</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">tenors</span><span class="p">,</span> <span class="n">rates</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/notebooks_3_curve_example_10_0.png" src="../_images/notebooks_3_curve_example_10_0.png" />
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Comparación con Curva Oficial</span>
+
+<span class="n">USD_CL</span> <span class="o">=</span> <span class="n">reader</span><span class="o">.</span><span class="n">get_single_curve_data</span><span class="p">(</span><span class="n">curve_name</span><span class="o">=</span><span class="s2">&quot;CURVA_USD_CL&quot;</span><span class="p">,</span> <span class="n">process_date</span><span class="o">=</span><span class="n">curve_date</span><span class="p">,</span> <span class="n">source</span><span class="o">=</span><span class="n">Source</span><span class="o">.</span><span class="n">OFFICIAL</span><span class="p">)</span>
+<span class="c1"># Graficamos resultado</span>
+<span class="n">tenors</span><span class="p">,</span> <span class="n">rates</span> <span class="o">=</span> <span class="n">USD_CL</span><span class="o">.</span><span class="n">get_rate_curve</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">tenors</span><span class="p">,</span> <span class="n">rates</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/notebooks_3_curve_example_11_0.png" src="../_images/notebooks_3_curve_example_11_0.png" />
+</div>
+</div>
+</section>
+<section id="Curva-con-Configuración-personalizada">
+<h2>Curva con Configuración personalizada<a class="headerlink" href="#Curva-con-Configuración-personalizada" title="Enlace permanente a este encabezado">¶</a></h2>
+<p>Para generar una curva es necesario proveer un vector de tenors y factores de descuento con una fecha y nombre asociado, adicionalmente se puede proveer una configuración personalizada.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Datos a utilizar</span>
+<span class="n">tenors</span> <span class="o">=</span> <span class="p">[</span><span class="mi">8</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">63</span><span class="p">,</span> <span class="mi">94</span><span class="p">,</span> <span class="mi">126</span><span class="p">,</span> <span class="mi">156</span><span class="p">,</span> <span class="mi">185</span><span class="p">,</span> <span class="mi">275</span><span class="p">,</span> <span class="mi">367</span><span class="p">,</span> <span class="mi">550</span><span class="p">,</span> <span class="mi">735</span><span class="p">,</span> <span class="mi">1099</span><span class="p">,</span> <span class="mi">1463</span><span class="p">,</span> <span class="mi">1828</span><span class="p">,</span> <span class="mi">2194</span><span class="p">,</span> <span class="mi">2559</span><span class="p">,</span> <span class="mi">2926</span><span class="p">,</span> <span class="mi">3290</span><span class="p">,</span> <span class="mi">3655</span><span class="p">,</span> <span class="mi">4385</span><span class="p">,</span> <span class="mi">5481</span><span class="p">,</span> <span class="mi">7308</span><span class="p">,</span> <span class="mi">10962</span><span class="p">]</span>
+<span class="n">dfs</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.998310470000</span><span class="p">,</span> <span class="mf">0.997016240000</span><span class="p">,</span> <span class="mf">0.993143450000</span><span class="p">,</span> <span class="mf">0.986344690000</span><span class="p">,</span> <span class="mf">0.979086630000</span><span class="p">,</span> <span class="mf">0.971138990000</span><span class="p">,</span> <span class="mf">0.964269270000</span><span class="p">,</span> <span class="mf">0.958115730000</span><span class="p">,</span>
+<span class="mf">0.938463220000</span><span class="p">,</span> <span class="mf">0.923226950000</span><span class="p">,</span> <span class="mf">0.898902260000</span><span class="p">,</span> <span class="mf">0.873595740000</span><span class="p">,</span> <span class="mf">0.834128950000</span><span class="p">,</span> <span class="mf">0.793526060000</span><span class="p">,</span> <span class="mf">0.749730130000</span><span class="p">,</span> <span class="mf">0.711597520000</span><span class="p">,</span>
+<span class="mf">0.671697820000</span><span class="p">,</span> <span class="mf">0.635942680000</span><span class="p">,</span> <span class="mf">0.603079810000</span><span class="p">,</span> <span class="mf">0.570977400000</span><span class="p">,</span> <span class="mf">0.527430220000</span><span class="p">,</span> <span class="mf">0.462406640000</span><span class="p">,</span> <span class="mf">0.389123040000</span><span class="p">,</span> <span class="mf">0.306809400000</span><span class="p">]</span>
+
+<span class="c1"># Configuración personalizada</span>
+<span class="n">custom_config</span> <span class="o">=</span> <span class="n">generate_curve_config</span><span class="p">(</span><span class="n">interpolation_method</span><span class="o">=</span><span class="n">InterpolationMethod</span><span class="o">.</span><span class="n">LINEAR</span><span class="p">,</span>
+                                      <span class="n">low_point_extrapolation_method</span><span class="o">=</span><span class="n">ExtrapolationMethod</span><span class="o">.</span><span class="n">SLOPE</span><span class="p">,</span>
+                                      <span class="n">high_point_extrapolation_method</span><span class="o">=</span><span class="n">ExtrapolationMethod</span><span class="o">.</span><span class="n">FLAT</span><span class="p">,</span>
+                                      <span class="n">rate_compounding</span><span class="o">=</span><span class="n">Compounding</span><span class="o">.</span><span class="n">YIELD</span><span class="p">,</span>
+                                      <span class="n">rate_day_count</span><span class="o">=</span><span class="n">DayCount</span><span class="o">.</span><span class="n">DC_30_360</span><span class="p">)</span>
+
+<span class="c1"># Creación de curvas</span>
+<span class="n">default_curve</span> <span class="o">=</span> <span class="n">Curve</span><span class="p">(</span><span class="n">curve_name</span><span class="o">=</span><span class="s2">&quot;Default Config Curve&quot;</span><span class="p">,</span> <span class="n">process_date</span><span class="o">=</span><span class="n">curve_date</span><span class="p">,</span> <span class="n">tenors</span><span class="o">=</span><span class="n">tenors</span><span class="p">,</span> <span class="n">discount_factors</span><span class="o">=</span><span class="n">dfs</span><span class="p">)</span>
+<span class="n">custom_curve</span> <span class="o">=</span> <span class="n">Curve</span><span class="p">(</span><span class="n">curve_name</span><span class="o">=</span><span class="s2">&quot;Default Config Curve&quot;</span><span class="p">,</span> <span class="n">process_date</span><span class="o">=</span><span class="n">curve_date</span><span class="p">,</span> <span class="n">tenors</span><span class="o">=</span><span class="n">tenors</span><span class="p">,</span> <span class="n">discount_factors</span><span class="o">=</span><span class="n">dfs</span><span class="p">,</span> <span class="n">curve_config</span><span class="o">=</span><span class="n">custom_config</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Comparación 1</span>
+
+<span class="n">d1</span> <span class="o">=</span> <span class="n">default_curve</span><span class="o">.</span><span class="n">get_discount_factor</span><span class="p">(</span><span class="mi">32</span><span class="p">)</span>
+<span class="n">d2</span> <span class="o">=</span> <span class="n">custom_curve</span><span class="o">.</span><span class="n">get_discount_factor</span><span class="p">(</span><span class="mi">32</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;default:</span><span class="si">{d1}</span><span class="s2"> - custom:</span><span class="si">{d2}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">d1</span><span class="o">=</span><span class="n">d1</span><span class="p">,</span> <span class="n">d2</span><span class="o">=</span><span class="n">d2</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+default:0.99314345 - custom:0.99314345
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Comparación 2</span>
+
+<span class="n">d1</span> <span class="o">=</span> <span class="n">default_curve</span><span class="o">.</span><span class="n">get_rate</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">d2</span> <span class="o">=</span> <span class="n">custom_curve</span><span class="o">.</span><span class="n">get_rate</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;default:</span><span class="si">{d1}</span><span class="s2"> - custom:</span><span class="si">{d2}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">d1</span><span class="o">=</span><span class="n">d1</span><span class="p">,</span> <span class="n">d2</span><span class="o">=</span><span class="n">d2</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+default:0.07906308306385257 - custom:0.08519133793064726
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Comparación 3</span>
+
+<span class="n">d1</span> <span class="o">=</span> <span class="n">default_curve</span><span class="o">.</span><span class="n">get_discount_factor</span><span class="p">(</span><span class="mi">35</span><span class="o">*</span><span class="mi">365</span><span class="p">)</span>
+<span class="n">d2</span> <span class="o">=</span> <span class="n">custom_curve</span><span class="o">.</span><span class="n">get_discount_factor</span><span class="p">(</span><span class="mi">35</span><span class="o">*</span><span class="mi">365</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;default:</span><span class="si">{d1}</span><span class="s2"> - custom:</span><span class="si">{d2}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">d1</span><span class="o">=</span><span class="n">d1</span><span class="p">,</span> <span class="n">d2</span><span class="o">=</span><span class="n">d2</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+default:0.2891814894739244 - custom:0.3068094
+</pre></div></div>
+</div>
+</section>
+</section>
+
+
+      </div>
+      <div class="bottomnav" role="navigation" aria-label="bottom navigation">
+      
+        <p>
+        «&#160;&#160;<a href="2%20dbreader%20example.html">Uso de lector de base de datos</a>
+        &#160;&#160;::&#160;&#160;
+        <a class="uplink" href="../index.html">Contenidos</a>
+        &#160;&#160;::&#160;&#160;
+        <a href="4%20calendar%20example.html">Uso de calendario</a>&#160;&#160;»
+        </p>
+
+      </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Derechos de autor 2022, Riesgo Financiero.
+      Creado usando <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.0.0.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,19 @@
+.. _Módulo Portafolio:
+
+**Módulo Portafolio**
+---------------------
+
+.. automodule:: instruments.portfolio
+
+Las clases dentro de este módulo son:
+
+- :ref:`portafolio` (:class:`Portfolio`): Clase dedicada a la representación de un portafolio genérico.
+
+.. _portafolio:
+
+Portafolio
+----------
+
+.. autoclass:: instruments.portfolio.Portfolio
+   :members:
+   :member-order: bysource

@@ -1,0 +1,18 @@
+Paquete Matemático
+==================
+
+El objetivo de este paquete es el de centralizar y estandarizar todos los calculos matemáticos realizados, lo que reduce
+la cantidad de código a utilizar y permite una estandarización de las formulas a ser utilizadas.
+
+Los módulos que se encuentran en este paquete son:
+
+:ref:`Módulo Interpolación`
+---------------------------
+
+Contiene funciones para interpolación y extrapolación.
+
+
+.. toctree::
+    :hidden:
+
+    1_interpolador

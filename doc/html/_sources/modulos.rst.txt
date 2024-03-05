@@ -1,0 +1,12 @@
+Modulos
+=======
+
+La librería se encuentra divide en los siguientes módulos:
+
+.. toctree::
+    funciones_base
+    data
+    math
+    market
+    instruments
+

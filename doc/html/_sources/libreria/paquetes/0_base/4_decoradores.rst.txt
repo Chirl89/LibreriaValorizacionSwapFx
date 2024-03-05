@@ -1,0 +1,8 @@
+.. _Módulo Decoradores:
+
+**Módulo de Decoradores**
+-------------------------
+
+.. automodule:: decorators
+   :members:
+   :show-inheritance:

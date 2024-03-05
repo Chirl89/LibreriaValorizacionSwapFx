@@ -1,0 +1,341 @@
+{
+ "cells": [
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "collapsed": true
+   },
+   "source": [
+    "# Uso de Conexión a Base de datos\n",
+    "\n",
+    "La conexión a base de datos está pensada en permitir la extracción rápida de datos desde cualquier base de datos utilizando queries definidas por el usuario.\n",
+    "\n",
+    "## Carga de Librerías"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 1,
+   "metadata": {
+    "ExecuteTime": {
+     "end_time": "2023-10-11T20:36:17.580001100Z",
+     "start_time": "2023-10-11T20:36:16.709646Z"
+    }
+   },
+   "outputs": [],
+   "source": [
+    "from finrisklib.data.dbconnection import SQLConn\n",
+    "from IPython.display import display # Formateo\n",
+    "from datetime import date"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## ¿Como ejecutar una query?\n",
+    "\n",
+    "### 1. Definir la consulta como un string"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 2,
+   "metadata": {
+    "ExecuteTime": {
+     "end_time": "2023-10-11T20:36:17.586631400Z",
+     "start_time": "2023-10-11T20:36:17.580001100Z"
+    }
+   },
+   "outputs": [],
+   "source": [
+    "query_simple = \"\"\"SELECT * FROM Banco.dbo.tipocambio WHERE fecha = '20220823'\"\"\" # Se puede definir la query de forma directa\n",
+    "\n",
+    "process_date = date(year=2022, month=8, day=22)\n",
+    "query_template = f\"SELECT * FROM Banco.dbo.tipocambio WHERE fecha = '{process_date.strftime('%Y%m%d')}'\" # También se puede definir de forma parametrizada"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### 2. Inicializar lector"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 3,
+   "metadata": {
+    "ExecuteTime": {
+     "end_time": "2023-10-11T20:36:17.598106100Z",
+     "start_time": "2023-10-11T20:36:17.586631400Z"
+    }
+   },
+   "outputs": [],
+   "source": [
+    "reader = SQLConn.get_b08_conn() # Inicializando lector"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### 3. Ejecutar query"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 4,
+   "metadata": {
+    "ExecuteTime": {
+     "end_time": "2023-10-11T20:36:18.394830300Z",
+     "start_time": "2023-10-11T20:36:17.598106100Z"
+    }
+   },
+   "outputs": [],
+   "source": [
+    "result_simple = reader.execute_query(query=query_simple)\n",
+    "result_template = reader.execute_query(query=query_template)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### 4. Mostrar resultados"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 5,
+   "metadata": {
+    "ExecuteTime": {
+     "end_time": "2023-10-11T20:36:18.421067100Z",
+     "start_time": "2023-10-11T20:36:18.396832400Z"
+    }
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Resultado Query Simple: \n"
+     ]
+    },
+    {
+     "data": {
+      "text/plain": "        fecha   localidad moneda         valor\n0  2022-08-23  BR            BRL    180.960000\n1  2022-08-23          CL    AUD    636.726400\n2  2022-08-23          CL    BRL    180.454000\n3  2022-08-23          CL    CAD    708.457200\n4  2022-08-23          CL    CHF    952.468700\n5  2022-08-23          CL    CLD    945.470000\n6  2022-08-23          CL    CLF  33715.330000\n7  2022-08-23          CL    CNY    134.202600\n8  2022-08-23          CL    COP      0.210000\n9  2022-08-23  CL            DEG   1277.010000\n10 2022-08-23          CL    DKK    123.068800\n11 2022-08-23          CL    EUR    915.394600\n12 2022-08-23          CL    GBP   1086.970900\n13 2022-08-23          CL    JPY      6.723400\n14 2022-08-23          CL    KRW      0.681700\n15 2022-08-23          CL    MXN     45.879100\n16 2022-08-23          CL    NOK     94.526400\n17 2022-08-23  CL            NZD    571.140000\n18 2022-08-23          CL    PEN    237.780800\n19 2022-08-23          CL    SEK     86.521900\n20 2022-08-23          CL    USD    917.275000\n21 2022-08-23  CL            ZAR     54.060000\n22 2022-08-23          US    AUD      0.694200\n23 2022-08-23          US    BRL      5.083200\n24 2022-08-23          US    CAD      1.294800\n25 2022-08-23          US    CHF      0.963100\n26 2022-08-23          US    CNY      6.835000\n27 2022-08-23          US    COP   4367.030000\n28 2022-08-23          US    DKK      7.453400\n29 2022-08-23          US    EUR      0.998000\n30 2022-08-23          US    GBP      1.185000\n31 2022-08-23          US    JPY    136.430000\n32 2022-08-23          US    KRW   1345.615000\n33 2022-08-23          US    MXN     19.993300\n34 2022-08-23          US    NOK      9.703900\n35 2022-08-23          US    NZD      0.622648\n36 2022-08-23          US    PEN      3.857700\n37 2022-08-23          US    SEK     10.601700\n38 2022-08-23          US    USD    917.275000\n39 2022-08-23          US    ZAR      0.058935",
+      "text/html": "<div>\n<style scoped>\n    .dataframe tbody tr th:only-of-type {\n        vertical-align: middle;\n    }\n\n    .dataframe tbody tr th {\n        vertical-align: top;\n    }\n\n    .dataframe thead th {\n        text-align: right;\n    }\n</style>\n<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th></th>\n      <th>fecha</th>\n      <th>localidad</th>\n      <th>moneda</th>\n      <th>valor</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <th>0</th>\n      <td>2022-08-23</td>\n      <td>BR</td>\n      <td>BRL</td>\n      <td>180.960000</td>\n    </tr>\n    <tr>\n      <th>1</th>\n      <td>2022-08-23</td>\n      <td>CL</td>\n      <td>AUD</td>\n      <td>636.726400</td>\n    </tr>\n    <tr>\n      <th>2</th>\n      <td>2022-08-23</td>\n      <td>CL</td>\n      <td>BRL</td>\n      <td>180.454000</td>\n    </tr>\n    <tr>\n      <th>3</th>\n      <td>2022-08-23</td>\n      <td>CL</td>\n      <td>CAD</td>\n      <td>708.457200</td>\n    </tr>\n    <tr>\n      <th>4</th>\n      <td>2022-08-23</td>\n      <td>CL</td>\n      <td>CHF</td>\n      <td>952.468700</td>\n    </tr>\n    <tr>\n      <th>5</th>\n      <td>2022-08-23</td>\n      <td>CL</td>\n      <td>CLD</td>\n      <td>945.470000</td>\n    </tr>\n    <tr>\n      <th>6</th>\n      <td>2022-08-23</td>\n      <td>CL</td>\n      <td>CLF</td>\n      <td>33715.330000</td>\n    </tr>\n    <tr>\n      <th>7</th>\n      <td>2022-08-23</td>\n      <td>CL</td>\n      <td>CNY</td>\n      <td>134.202600</td>\n    </tr>\n    <tr>\n      <th>8</th>\n      <td>2022-08-23</td>\n      <td>CL</td>\n      <td>COP</td>\n      <td>0.210000</td>\n    </tr>\n    <tr>\n      <th>9</th>\n      <td>2022-08-23</td>\n      <td>CL</td>\n      <td>DEG</td>\n      <td>1277.010000</td>\n    </tr>\n    <tr>\n      <th>10</th>\n      <td>2022-08-23</td>\n      <td>CL</td>\n      <td>DKK</td>\n      <td>123.068800</td>\n    </tr>\n    <tr>\n      <th>11</th>\n      <td>2022-08-23</td>\n      <td>CL</td>\n      <td>EUR</td>\n      <td>915.394600</td>\n    </tr>\n    <tr>\n      <th>12</th>\n      <td>2022-08-23</td>\n      <td>CL</td>\n      <td>GBP</td>\n      <td>1086.970900</td>\n    </tr>\n    <tr>\n      <th>13</th>\n      <td>2022-08-23</td>\n      <td>CL</td>\n      <td>JPY</td>\n      <td>6.723400</td>\n    </tr>\n    <tr>\n      <th>14</th>\n      <td>2022-08-23</td>\n      <td>CL</td>\n      <td>KRW</td>\n      <td>0.681700</td>\n    </tr>\n    <tr>\n      <th>15</th>\n      <td>2022-08-23</td>\n      <td>CL</td>\n      <td>MXN</td>\n      <td>45.879100</td>\n    </tr>\n    <tr>\n      <th>16</th>\n      <td>2022-08-23</td>\n      <td>CL</td>\n      <td>NOK</td>\n      <td>94.526400</td>\n    </tr>\n    <tr>\n      <th>17</th>\n      <td>2022-08-23</td>\n      <td>CL</td>\n      <td>NZD</td>\n      <td>571.140000</td>\n    </tr>\n    <tr>\n      <th>18</th>\n      <td>2022-08-23</td>\n      <td>CL</td>\n      <td>PEN</td>\n      <td>237.780800</td>\n    </tr>\n    <tr>\n      <th>19</th>\n      <td>2022-08-23</td>\n      <td>CL</td>\n      <td>SEK</td>\n      <td>86.521900</td>\n    </tr>\n    <tr>\n      <th>20</th>\n      <td>2022-08-23</td>\n      <td>CL</td>\n      <td>USD</td>\n      <td>917.275000</td>\n    </tr>\n    <tr>\n      <th>21</th>\n      <td>2022-08-23</td>\n      <td>CL</td>\n      <td>ZAR</td>\n      <td>54.060000</td>\n    </tr>\n    <tr>\n      <th>22</th>\n      <td>2022-08-23</td>\n      <td>US</td>\n      <td>AUD</td>\n      <td>0.694200</td>\n    </tr>\n    <tr>\n      <th>23</th>\n      <td>2022-08-23</td>\n      <td>US</td>\n      <td>BRL</td>\n      <td>5.083200</td>\n    </tr>\n    <tr>\n      <th>24</th>\n      <td>2022-08-23</td>\n      <td>US</td>\n      <td>CAD</td>\n      <td>1.294800</td>\n    </tr>\n    <tr>\n      <th>25</th>\n      <td>2022-08-23</td>\n      <td>US</td>\n      <td>CHF</td>\n      <td>0.963100</td>\n    </tr>\n    <tr>\n      <th>26</th>\n      <td>2022-08-23</td>\n      <td>US</td>\n      <td>CNY</td>\n      <td>6.835000</td>\n    </tr>\n    <tr>\n      <th>27</th>\n      <td>2022-08-23</td>\n      <td>US</td>\n      <td>COP</td>\n      <td>4367.030000</td>\n    </tr>\n    <tr>\n      <th>28</th>\n      <td>2022-08-23</td>\n      <td>US</td>\n      <td>DKK</td>\n      <td>7.453400</td>\n    </tr>\n    <tr>\n      <th>29</th>\n      <td>2022-08-23</td>\n      <td>US</td>\n      <td>EUR</td>\n      <td>0.998000</td>\n    </tr>\n    <tr>\n      <th>30</th>\n      <td>2022-08-23</td>\n      <td>US</td>\n      <td>GBP</td>\n      <td>1.185000</td>\n    </tr>\n    <tr>\n      <th>31</th>\n      <td>2022-08-23</td>\n      <td>US</td>\n      <td>JPY</td>\n      <td>136.430000</td>\n    </tr>\n    <tr>\n      <th>32</th>\n      <td>2022-08-23</td>\n      <td>US</td>\n      <td>KRW</td>\n      <td>1345.615000</td>\n    </tr>\n    <tr>\n      <th>33</th>\n      <td>2022-08-23</td>\n      <td>US</td>\n      <td>MXN</td>\n      <td>19.993300</td>\n    </tr>\n    <tr>\n      <th>34</th>\n      <td>2022-08-23</td>\n      <td>US</td>\n      <td>NOK</td>\n      <td>9.703900</td>\n    </tr>\n    <tr>\n      <th>35</th>\n      <td>2022-08-23</td>\n      <td>US</td>\n      <td>NZD</td>\n      <td>0.622648</td>\n    </tr>\n    <tr>\n      <th>36</th>\n      <td>2022-08-23</td>\n      <td>US</td>\n      <td>PEN</td>\n      <td>3.857700</td>\n    </tr>\n    <tr>\n      <th>37</th>\n      <td>2022-08-23</td>\n      <td>US</td>\n      <td>SEK</td>\n      <td>10.601700</td>\n    </tr>\n    <tr>\n      <th>38</th>\n      <td>2022-08-23</td>\n      <td>US</td>\n      <td>USD</td>\n      <td>917.275000</td>\n    </tr>\n    <tr>\n      <th>39</th>\n      <td>2022-08-23</td>\n      <td>US</td>\n      <td>ZAR</td>\n      <td>0.058935</td>\n    </tr>\n  </tbody>\n</table>\n</div>"
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    }
+   ],
+   "source": [
+    "print(\"Resultado Query Simple: \")\n",
+    "display(result_simple)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 6,
+   "metadata": {
+    "ExecuteTime": {
+     "end_time": "2023-10-11T20:36:18.460735700Z",
+     "start_time": "2023-10-11T20:36:18.421067100Z"
+    }
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Resultado Query Template:\n"
+     ]
+    },
+    {
+     "data": {
+      "text/plain": "        fecha   localidad moneda         valor\n0  2022-08-22  BR            BRL    181.420000\n1  2022-08-22          CL    AUD    647.971200\n2  2022-08-22          CL    BRL    182.851500\n3  2022-08-22          CL    CAD    722.310800\n4  2022-08-22          CL    CHF    977.325500\n5  2022-08-22          CL    CLD    945.350000\n6  2022-08-22          CL    CLF  33700.210000\n7  2022-08-22          CL    CNY    137.615900\n8  2022-08-22          CL    COP      0.214900\n9  2022-08-22  CL            DEG   1312.040000\n10 2022-08-22          CL    DKK    125.856000\n11 2022-08-22          CL    EUR    936.073600\n12 2022-08-22          CL    GBP   1109.623000\n13 2022-08-22          CL    JPY      6.856800\n14 2022-08-22          CL    KRW      0.703400\n15 2022-08-22          CL    MXN     46.806900\n16 2022-08-22          CL    NOK     95.832900\n17 2022-08-22  CL            NZD    581.150000\n18 2022-08-22          CL    PEN    243.199600\n19 2022-08-22          CL    SEK     87.926400\n20 2022-08-22          CL    USD    942.435000\n21 2022-08-22  CL            ZAR     55.410000\n22 2022-08-22          US    AUD      0.687600\n23 2022-08-22          US    BRL      5.154100\n24 2022-08-22          US    CAD      1.304800\n25 2022-08-22          US    CHF      0.964300\n26 2022-08-22          US    CNY      6.848300\n27 2022-08-22          US    COP   4385.330000\n28 2022-08-22          US    DKK      7.488200\n29 2022-08-22          US    EUR      0.993300\n30 2022-08-22          US    GBP      1.177400\n31 2022-08-22          US    JPY    137.445000\n32 2022-08-22          US    KRW   1339.800000\n33 2022-08-22          US    MXN     20.134600\n34 2022-08-22          US    NOK      9.834200\n35 2022-08-22          US    NZD      0.616647\n36 2022-08-22          US    PEN      3.875200\n37 2022-08-22          US    SEK     10.718500\n38 2022-08-22          US    USD    942.435000\n39 2022-08-22          US    ZAR      0.058794",
+      "text/html": "<div>\n<style scoped>\n    .dataframe tbody tr th:only-of-type {\n        vertical-align: middle;\n    }\n\n    .dataframe tbody tr th {\n        vertical-align: top;\n    }\n\n    .dataframe thead th {\n        text-align: right;\n    }\n</style>\n<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th></th>\n      <th>fecha</th>\n      <th>localidad</th>\n      <th>moneda</th>\n      <th>valor</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <th>0</th>\n      <td>2022-08-22</td>\n      <td>BR</td>\n      <td>BRL</td>\n      <td>181.420000</td>\n    </tr>\n    <tr>\n      <th>1</th>\n      <td>2022-08-22</td>\n      <td>CL</td>\n      <td>AUD</td>\n      <td>647.971200</td>\n    </tr>\n    <tr>\n      <th>2</th>\n      <td>2022-08-22</td>\n      <td>CL</td>\n      <td>BRL</td>\n      <td>182.851500</td>\n    </tr>\n    <tr>\n      <th>3</th>\n      <td>2022-08-22</td>\n      <td>CL</td>\n      <td>CAD</td>\n      <td>722.310800</td>\n    </tr>\n    <tr>\n      <th>4</th>\n      <td>2022-08-22</td>\n      <td>CL</td>\n      <td>CHF</td>\n      <td>977.325500</td>\n    </tr>\n    <tr>\n      <th>5</th>\n      <td>2022-08-22</td>\n      <td>CL</td>\n      <td>CLD</td>\n      <td>945.350000</td>\n    </tr>\n    <tr>\n      <th>6</th>\n      <td>2022-08-22</td>\n      <td>CL</td>\n      <td>CLF</td>\n      <td>33700.210000</td>\n    </tr>\n    <tr>\n      <th>7</th>\n      <td>2022-08-22</td>\n      <td>CL</td>\n      <td>CNY</td>\n      <td>137.615900</td>\n    </tr>\n    <tr>\n      <th>8</th>\n      <td>2022-08-22</td>\n      <td>CL</td>\n      <td>COP</td>\n      <td>0.214900</td>\n    </tr>\n    <tr>\n      <th>9</th>\n      <td>2022-08-22</td>\n      <td>CL</td>\n      <td>DEG</td>\n      <td>1312.040000</td>\n    </tr>\n    <tr>\n      <th>10</th>\n      <td>2022-08-22</td>\n      <td>CL</td>\n      <td>DKK</td>\n      <td>125.856000</td>\n    </tr>\n    <tr>\n      <th>11</th>\n      <td>2022-08-22</td>\n      <td>CL</td>\n      <td>EUR</td>\n      <td>936.073600</td>\n    </tr>\n    <tr>\n      <th>12</th>\n      <td>2022-08-22</td>\n      <td>CL</td>\n      <td>GBP</td>\n      <td>1109.623000</td>\n    </tr>\n    <tr>\n      <th>13</th>\n      <td>2022-08-22</td>\n      <td>CL</td>\n      <td>JPY</td>\n      <td>6.856800</td>\n    </tr>\n    <tr>\n      <th>14</th>\n      <td>2022-08-22</td>\n      <td>CL</td>\n      <td>KRW</td>\n      <td>0.703400</td>\n    </tr>\n    <tr>\n      <th>15</th>\n      <td>2022-08-22</td>\n      <td>CL</td>\n      <td>MXN</td>\n      <td>46.806900</td>\n    </tr>\n    <tr>\n      <th>16</th>\n      <td>2022-08-22</td>\n      <td>CL</td>\n      <td>NOK</td>\n      <td>95.832900</td>\n    </tr>\n    <tr>\n      <th>17</th>\n      <td>2022-08-22</td>\n      <td>CL</td>\n      <td>NZD</td>\n      <td>581.150000</td>\n    </tr>\n    <tr>\n      <th>18</th>\n      <td>2022-08-22</td>\n      <td>CL</td>\n      <td>PEN</td>\n      <td>243.199600</td>\n    </tr>\n    <tr>\n      <th>19</th>\n      <td>2022-08-22</td>\n      <td>CL</td>\n      <td>SEK</td>\n      <td>87.926400</td>\n    </tr>\n    <tr>\n      <th>20</th>\n      <td>2022-08-22</td>\n      <td>CL</td>\n      <td>USD</td>\n      <td>942.435000</td>\n    </tr>\n    <tr>\n      <th>21</th>\n      <td>2022-08-22</td>\n      <td>CL</td>\n      <td>ZAR</td>\n      <td>55.410000</td>\n    </tr>\n    <tr>\n      <th>22</th>\n      <td>2022-08-22</td>\n      <td>US</td>\n      <td>AUD</td>\n      <td>0.687600</td>\n    </tr>\n    <tr>\n      <th>23</th>\n      <td>2022-08-22</td>\n      <td>US</td>\n      <td>BRL</td>\n      <td>5.154100</td>\n    </tr>\n    <tr>\n      <th>24</th>\n      <td>2022-08-22</td>\n      <td>US</td>\n      <td>CAD</td>\n      <td>1.304800</td>\n    </tr>\n    <tr>\n      <th>25</th>\n      <td>2022-08-22</td>\n      <td>US</td>\n      <td>CHF</td>\n      <td>0.964300</td>\n    </tr>\n    <tr>\n      <th>26</th>\n      <td>2022-08-22</td>\n      <td>US</td>\n      <td>CNY</td>\n      <td>6.848300</td>\n    </tr>\n    <tr>\n      <th>27</th>\n      <td>2022-08-22</td>\n      <td>US</td>\n      <td>COP</td>\n      <td>4385.330000</td>\n    </tr>\n    <tr>\n      <th>28</th>\n      <td>2022-08-22</td>\n      <td>US</td>\n      <td>DKK</td>\n      <td>7.488200</td>\n    </tr>\n    <tr>\n      <th>29</th>\n      <td>2022-08-22</td>\n      <td>US</td>\n      <td>EUR</td>\n      <td>0.993300</td>\n    </tr>\n    <tr>\n      <th>30</th>\n      <td>2022-08-22</td>\n      <td>US</td>\n      <td>GBP</td>\n      <td>1.177400</td>\n    </tr>\n    <tr>\n      <th>31</th>\n      <td>2022-08-22</td>\n      <td>US</td>\n      <td>JPY</td>\n      <td>137.445000</td>\n    </tr>\n    <tr>\n      <th>32</th>\n      <td>2022-08-22</td>\n      <td>US</td>\n      <td>KRW</td>\n      <td>1339.800000</td>\n    </tr>\n    <tr>\n      <th>33</th>\n      <td>2022-08-22</td>\n      <td>US</td>\n      <td>MXN</td>\n      <td>20.134600</td>\n    </tr>\n    <tr>\n      <th>34</th>\n      <td>2022-08-22</td>\n      <td>US</td>\n      <td>NOK</td>\n      <td>9.834200</td>\n    </tr>\n    <tr>\n      <th>35</th>\n      <td>2022-08-22</td>\n      <td>US</td>\n      <td>NZD</td>\n      <td>0.616647</td>\n    </tr>\n    <tr>\n      <th>36</th>\n      <td>2022-08-22</td>\n      <td>US</td>\n      <td>PEN</td>\n      <td>3.875200</td>\n    </tr>\n    <tr>\n      <th>37</th>\n      <td>2022-08-22</td>\n      <td>US</td>\n      <td>SEK</td>\n      <td>10.718500</td>\n    </tr>\n    <tr>\n      <th>38</th>\n      <td>2022-08-22</td>\n      <td>US</td>\n      <td>USD</td>\n      <td>942.435000</td>\n    </tr>\n    <tr>\n      <th>39</th>\n      <td>2022-08-22</td>\n      <td>US</td>\n      <td>ZAR</td>\n      <td>0.058794</td>\n    </tr>\n  </tbody>\n</table>\n</div>"
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    }
+   ],
+   "source": [
+    "print(\"Resultado Query Template:\")\n",
+    "display(result_template)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## ¿Como manipular los datos?\n",
+    "\n",
+    "Las queries directas retornan un objeto dataframe del paquete Pandas por lo que son manipuladas utilizando los comandos especificados por el proveedor.\n",
+    "\n",
+    "### a) Extracción de una o mas columnas"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 7,
+   "metadata": {
+    "ExecuteTime": {
+     "end_time": "2023-10-11T20:36:18.460735700Z",
+     "start_time": "2023-10-11T20:36:18.435813700Z"
+    }
+   },
+   "outputs": [],
+   "source": [
+    "selected_data = result_template.loc[:, [\"valor\"]]"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 8,
+   "metadata": {
+    "ExecuteTime": {
+     "end_time": "2023-10-11T20:36:19.197653Z",
+     "start_time": "2023-10-11T20:36:18.445102600Z"
+    }
+   },
+   "outputs": [],
+   "source": [
+    "result_template.to_excel(r'prueba.xlsx')"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 9,
+   "metadata": {
+    "ExecuteTime": {
+     "end_time": "2023-10-11T20:36:19.226718200Z",
+     "start_time": "2023-10-11T20:36:19.197653Z"
+    }
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": "           valor\n0     181.420000\n1     647.971200\n2     182.851500\n3     722.310800\n4     977.325500\n5     945.350000\n6   33700.210000\n7     137.615900\n8       0.214900\n9    1312.040000\n10    125.856000\n11    936.073600\n12   1109.623000\n13      6.856800\n14      0.703400\n15     46.806900\n16     95.832900\n17    581.150000\n18    243.199600\n19     87.926400\n20    942.435000\n21     55.410000\n22      0.687600\n23      5.154100\n24      1.304800\n25      0.964300\n26      6.848300\n27   4385.330000\n28      7.488200\n29      0.993300\n30      1.177400\n31    137.445000\n32   1339.800000\n33     20.134600\n34      9.834200\n35      0.616647\n36      3.875200\n37     10.718500\n38    942.435000\n39      0.058794",
+      "text/html": "<div>\n<style scoped>\n    .dataframe tbody tr th:only-of-type {\n        vertical-align: middle;\n    }\n\n    .dataframe tbody tr th {\n        vertical-align: top;\n    }\n\n    .dataframe thead th {\n        text-align: right;\n    }\n</style>\n<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th></th>\n      <th>valor</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <th>0</th>\n      <td>181.420000</td>\n    </tr>\n    <tr>\n      <th>1</th>\n      <td>647.971200</td>\n    </tr>\n    <tr>\n      <th>2</th>\n      <td>182.851500</td>\n    </tr>\n    <tr>\n      <th>3</th>\n      <td>722.310800</td>\n    </tr>\n    <tr>\n      <th>4</th>\n      <td>977.325500</td>\n    </tr>\n    <tr>\n      <th>5</th>\n      <td>945.350000</td>\n    </tr>\n    <tr>\n      <th>6</th>\n      <td>33700.210000</td>\n    </tr>\n    <tr>\n      <th>7</th>\n      <td>137.615900</td>\n    </tr>\n    <tr>\n      <th>8</th>\n      <td>0.214900</td>\n    </tr>\n    <tr>\n      <th>9</th>\n      <td>1312.040000</td>\n    </tr>\n    <tr>\n      <th>10</th>\n      <td>125.856000</td>\n    </tr>\n    <tr>\n      <th>11</th>\n      <td>936.073600</td>\n    </tr>\n    <tr>\n      <th>12</th>\n      <td>1109.623000</td>\n    </tr>\n    <tr>\n      <th>13</th>\n      <td>6.856800</td>\n    </tr>\n    <tr>\n      <th>14</th>\n      <td>0.703400</td>\n    </tr>\n    <tr>\n      <th>15</th>\n      <td>46.806900</td>\n    </tr>\n    <tr>\n      <th>16</th>\n      <td>95.832900</td>\n    </tr>\n    <tr>\n      <th>17</th>\n      <td>581.150000</td>\n    </tr>\n    <tr>\n      <th>18</th>\n      <td>243.199600</td>\n    </tr>\n    <tr>\n      <th>19</th>\n      <td>87.926400</td>\n    </tr>\n    <tr>\n      <th>20</th>\n      <td>942.435000</td>\n    </tr>\n    <tr>\n      <th>21</th>\n      <td>55.410000</td>\n    </tr>\n    <tr>\n      <th>22</th>\n      <td>0.687600</td>\n    </tr>\n    <tr>\n      <th>23</th>\n      <td>5.154100</td>\n    </tr>\n    <tr>\n      <th>24</th>\n      <td>1.304800</td>\n    </tr>\n    <tr>\n      <th>25</th>\n      <td>0.964300</td>\n    </tr>\n    <tr>\n      <th>26</th>\n      <td>6.848300</td>\n    </tr>\n    <tr>\n      <th>27</th>\n      <td>4385.330000</td>\n    </tr>\n    <tr>\n      <th>28</th>\n      <td>7.488200</td>\n    </tr>\n    <tr>\n      <th>29</th>\n      <td>0.993300</td>\n    </tr>\n    <tr>\n      <th>30</th>\n      <td>1.177400</td>\n    </tr>\n    <tr>\n      <th>31</th>\n      <td>137.445000</td>\n    </tr>\n    <tr>\n      <th>32</th>\n      <td>1339.800000</td>\n    </tr>\n    <tr>\n      <th>33</th>\n      <td>20.134600</td>\n    </tr>\n    <tr>\n      <th>34</th>\n      <td>9.834200</td>\n    </tr>\n    <tr>\n      <th>35</th>\n      <td>0.616647</td>\n    </tr>\n    <tr>\n      <th>36</th>\n      <td>3.875200</td>\n    </tr>\n    <tr>\n      <th>37</th>\n      <td>10.718500</td>\n    </tr>\n    <tr>\n      <th>38</th>\n      <td>942.435000</td>\n    </tr>\n    <tr>\n      <th>39</th>\n      <td>0.058794</td>\n    </tr>\n  </tbody>\n</table>\n</div>"
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    }
+   ],
+   "source": [
+    "display(selected_data)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### b) Búsqueda de un dato en especifico"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 10,
+   "metadata": {
+    "ExecuteTime": {
+     "end_time": "2023-10-11T20:36:19.227227500Z",
+     "start_time": "2023-10-11T20:36:19.212886600Z"
+    }
+   },
+   "outputs": [],
+   "source": [
+    "selected_data = result_template.loc[result_template['moneda'] == 'USD']"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 11,
+   "metadata": {
+    "ExecuteTime": {
+     "end_time": "2023-10-11T20:36:19.261663100Z",
+     "start_time": "2023-10-11T20:36:19.227227500Z"
+    }
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": "        fecha localidad moneda    valor\n20 2022-08-22        CL    USD  942.435\n38 2022-08-22        US    USD  942.435",
+      "text/html": "<div>\n<style scoped>\n    .dataframe tbody tr th:only-of-type {\n        vertical-align: middle;\n    }\n\n    .dataframe tbody tr th {\n        vertical-align: top;\n    }\n\n    .dataframe thead th {\n        text-align: right;\n    }\n</style>\n<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th></th>\n      <th>fecha</th>\n      <th>localidad</th>\n      <th>moneda</th>\n      <th>valor</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <th>20</th>\n      <td>2022-08-22</td>\n      <td>CL</td>\n      <td>USD</td>\n      <td>942.435</td>\n    </tr>\n    <tr>\n      <th>38</th>\n      <td>2022-08-22</td>\n      <td>US</td>\n      <td>USD</td>\n      <td>942.435</td>\n    </tr>\n  </tbody>\n</table>\n</div>"
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    }
+   ],
+   "source": [
+    "display(selected_data)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### c) Obtener data de acuerdo a localización"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 12,
+   "metadata": {
+    "ExecuteTime": {
+     "end_time": "2023-10-11T20:36:19.328883900Z",
+     "start_time": "2023-10-11T20:36:19.248528200Z"
+    }
+   },
+   "outputs": [],
+   "source": [
+    "selected_data = result_template.loc[1][3]"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 13,
+   "metadata": {
+    "ExecuteTime": {
+     "end_time": "2023-10-11T20:36:19.375760400Z",
+     "start_time": "2023-10-11T20:36:19.261663100Z"
+    }
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": "647.9712"
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    }
+   ],
+   "source": [
+    "display(selected_data)"
+   ]
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python 3",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.7.13"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 1
+}

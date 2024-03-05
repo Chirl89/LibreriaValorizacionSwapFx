@@ -1,0 +1,219 @@
+
+<!DOCTYPE html>
+
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Excepciones &#8212; documentación de Finlib - beta</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/haiku.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/translations.js"></script>
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../search.html" /> 
+  </head><body>
+      <div class="header" role="banner"><h1 class="heading"><a href="../index.html">
+          <span>documentación de Finlib - beta</span></a></h1>
+        <h2 class="heading"><span>Excepciones</span></h2>
+      </div>
+      <div class="topnav" role="navigation" aria-label="top navigation">
+      
+        <p>
+        <a class="uplink" href="../index.html">Contenidos</a>
+        </p>
+
+      </div>
+      <div class="content" role="main">
+        
+        
+  <section id="module-exceptions">
+<span id="excepciones"></span><h1><strong>Excepciones</strong><a class="headerlink" href="#module-exceptions" title="Enlace permanente a este encabezado">¶</a></h1>
+<p>Las excepciones contenidas en este módulo fueron diseñadas para manejar los errores internos de la librería. Estos
+errores pueden ser causados por multiples razones entre ellas: tipo equivocado de parámetros, operación inválida,
+falta de información disponible, etc.</p>
+<p>Estas excepciones customizadas son:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#exceptions.CalendarException" title="exceptions.CalendarException"><code class="xref py py-class docutils literal notranslate"><span class="pre">CalendarException</span></code></a>: Maneja errores asociados a calendarios de negociación. (<code class="xref py py-class docutils literal notranslate"><span class="pre">TradingCalendars</span></code>)</p></li>
+<li><p><a class="reference internal" href="#exceptions.CurrencyException" title="exceptions.CurrencyException"><code class="xref py py-class docutils literal notranslate"><span class="pre">CurrencyException</span></code></a>: Maneja errores asociados con el enumerador de monedas. (<code class="xref py py-class docutils literal notranslate"><span class="pre">Currency</span></code>)</p></li>
+<li><p><a class="reference internal" href="#exceptions.CurveException" title="exceptions.CurveException"><code class="xref py py-class docutils literal notranslate"><span class="pre">CurveException</span></code></a>: Maneja errores asociados con la clase curvas. (<code class="xref py py-class docutils literal notranslate"><span class="pre">Curve</span></code>)</p></li>
+<li><p><a class="reference internal" href="#exceptions.QueryException" title="exceptions.QueryException"><code class="xref py py-class docutils literal notranslate"><span class="pre">QueryException</span></code></a>: Maneja errores asociados con consultas a base de datos.</p></li>
+<li><p><a class="reference internal" href="#exceptions.FxRateException" title="exceptions.FxRateException"><code class="xref py py-class docutils literal notranslate"><span class="pre">FxRateException</span></code></a>: Maneja errores asociados a la tasa de cambio. (<code class="xref py py-class docutils literal notranslate"><span class="pre">FxRate</span></code>)</p></li>
+<li><p><a class="reference internal" href="#exceptions.DatasetException" title="exceptions.DatasetException"><code class="xref py py-class docutils literal notranslate"><span class="pre">DatasetException</span></code></a>: Maneja los errores en Datasets (<a class="reference internal" href="paquetes/market.html#market.dataset.DataSet" title="market.dataset.DataSet"><code class="xref py py-class docutils literal notranslate"><span class="pre">market.dataset.DataSet</span></code></a>)</p></li>
+<li><p><a class="reference internal" href="#exceptions.FileReadException" title="exceptions.FileReadException"><code class="xref py py-class docutils literal notranslate"><span class="pre">FileReadException</span></code></a>: Maneja los errores en la lectura de archivos.</p></li>
+</ul>
+<dl class="py exception">
+<dt class="sig sig-object py" id="exceptions.CalendarException">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">exceptions.</span></span><span class="sig-name descname"><span class="pre">CalendarException</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#exceptions.CalendarException" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
+<p>Excepción de Calendario</p>
+<p>Maneja los errores en la aplicación de calendarios.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>message</strong> (<em>str</em>) – Mensaje.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="exceptions.CurrencyException">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">exceptions.</span></span><span class="sig-name descname"><span class="pre">CurrencyException</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">currency</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#exceptions.CurrencyException" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
+<p>Excepción de Moneda</p>
+<p>Maneja los errores asociados con el Monedas. (<a class="reference internal" href="paquetes/modulos_base.html#enums.Currency" title="enums.Currency"><code class="xref py py-class docutils literal notranslate"><span class="pre">enums.Currency</span></code></a>)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>message</strong> – Mensaje</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="exceptions.CurveException">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">exceptions.</span></span><span class="sig-name descname"><span class="pre">CurveException</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">curve_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">message</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#exceptions.CurveException" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
+<p>Excepción de Curva</p>
+<p>Maneja los errores en la construcción o utilización de curvas. (<code class="xref py py-class docutils literal notranslate"><span class="pre">market.curves.Curve</span></code>)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>curve_name</strong> (<em>str</em>) – Nombre de la curva.</p></li>
+<li><p><strong>message</strong> (<em>str</em>) – Mensaje.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="exceptions.DatasetException">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">exceptions.</span></span><span class="sig-name descname"><span class="pre">DatasetException</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#exceptions.DatasetException" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
+<p>Excepción de Data de Mercado</p>
+<p>Maneja los errores en Datasets (<a class="reference internal" href="paquetes/market.html#market.dataset.DataSet" title="market.dataset.DataSet"><code class="xref py py-class docutils literal notranslate"><span class="pre">market.dataset.DataSet</span></code></a>)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>message</strong> – Mensaje</p></li>
+<li><p><strong>message</strong> – str</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="exceptions.EnumException">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">exceptions.</span></span><span class="sig-name descname"><span class="pre">EnumException</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#exceptions.EnumException" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
+<p>Excepción de Enumerador</p>
+<p>Maneja los errores asociados con los enumeradores Monedas.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>message</strong> – Mensaje</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="exceptions.FileReadException">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">exceptions.</span></span><span class="sig-name descname"><span class="pre">FileReadException</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_alias</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">message</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#exceptions.FileReadException" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
+<p>Excepción de Lectura de archivos</p>
+<p>Maneja los errores en la lectura de archivos.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>file_path</strong> (<em>str</em>) – Localización del archivo.</p></li>
+<li><p><strong>file_alias</strong> (<em>str</em>) – Nombre o Alias del archivo.</p></li>
+<li><p><strong>message</strong> (<em>str</em>) – Mensaje.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="exceptions.FxRateException">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">exceptions.</span></span><span class="sig-name descname"><span class="pre">FxRateException</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fx_pair_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">message</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#exceptions.FxRateException" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
+<p>Excepción de tasa de cambio</p>
+<p>Maneja errores asociados a la tasa de cambio. (<code class="xref py py-class docutils literal notranslate"><span class="pre">FxPair</span></code>)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>fx_pair_name</strong> (<em>FxRate.</em>) – Tasa de Cambio.</p></li>
+<li><p><strong>message</strong> (<em>str</em>) – Mensaje.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="exceptions.IndexException">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">exceptions.</span></span><span class="sig-name descname"><span class="pre">IndexException</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">idx_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">message</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#exceptions.IndexException" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
+<p>Excepción de tasa de cambio</p>
+<p>Maneja errores asociados a la tasa de cambio. (<code class="xref py py-class docutils literal notranslate"><span class="pre">FxPair</span></code>)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>idx_name</strong> (<em>str.</em>) – Nombre del Índice.</p></li>
+<li><p><strong>message</strong> (<em>str</em>) – Mensaje.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="exceptions.PortfolioException">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">exceptions.</span></span><span class="sig-name descname"><span class="pre">PortfolioException</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#exceptions.PortfolioException" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
+<p>Excepción de Portfolio</p>
+<p>Maneja los errores en Portafolios (<a class="reference internal" href="paquetes/market.html#market.dataset.DataSet" title="market.dataset.DataSet"><code class="xref py py-class docutils literal notranslate"><span class="pre">market.dataset.DataSet</span></code></a>)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>message</strong> – Mensaje</p></li>
+<li><p><strong>message</strong> – str</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="exceptions.QueryException">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">exceptions.</span></span><span class="sig-name descname"><span class="pre">QueryException</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">query</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">message</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#exceptions.QueryException" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
+<p>Excepción de consulta</p>
+<p>Maneja los errores de queries en la base de datos.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>query</strong> (<em>str.</em>) – Consulta SQL.</p></li>
+<li><p><strong>message</strong> (<em>str</em>) – Mensaje.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+
+
+      </div>
+      <div class="bottomnav" role="navigation" aria-label="bottom navigation">
+      
+        <p>
+        <a class="uplink" href="../index.html">Contenidos</a>
+        </p>
+
+      </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Derechos de autor 2022, Riesgo Financiero.
+      Creado usando <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1.
+    </div>
+  </body>
+</html>

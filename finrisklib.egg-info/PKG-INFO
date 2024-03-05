@@ -1,0 +1,6 @@
+Metadata-Version: 2.1
+Name: finrisklib
+Version: 2.0.0
+Summary: Librería de Funciones de Riesgo Financiero
+Author: Gerencia de Riesgo Financiero
+Requires-Python: >=3.6

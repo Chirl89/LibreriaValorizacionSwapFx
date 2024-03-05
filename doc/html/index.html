@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Liberia de Funciones de Riesgo Financiero v2.0.0 &#8212; documentación de Finlib - beta</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/haiku.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/translations.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="index" title="Índice" href="genindex.html" />
+    <link rel="search" title="Búsqueda" href="search.html" />
+    <link rel="next" title="FinRiskLib" href="libreria/0_descripcion.html" /> 
+  </head><body>
+      <div class="header" role="banner"><h1 class="heading"><a href="#">
+          <span>documentación de Finlib - beta</span></a></h1>
+        <h2 class="heading"><span>Liberia de Funciones de Riesgo Financiero v2.0.0</span></h2>
+      </div>
+      <div class="topnav" role="navigation" aria-label="top navigation">
+      
+        <p>
+        <a class="uplink" href="#">Contenidos</a>
+        &#160;&#160;::&#160;&#160;
+        <a href="libreria/0_descripcion.html">FinRiskLib</a>&#160;&#160;»
+        </p>
+
+      </div>
+      <div class="content" role="main">
+        
+        
+  <section id="liberia-de-funciones-de-riesgo-financiero-v2-0-0">
+<h1>Liberia de Funciones de Riesgo Financiero v2.0.0<a class="headerlink" href="#liberia-de-funciones-de-riesgo-financiero-v2-0-0" title="Enlace permanente a este encabezado">¶</a></h1>
+<p>La librería FinRIskLib cuenta con los siguientes objetivos:</p>
+<ul class="simple">
+<li><p>Permitir un acceso rápido a la información oficial disponible dentro de los servidores.</p></li>
+<li><p>Permitir la replica de los calculos calculos oficiales en valorización.</p></li>
+<li><p>Estandarizar las fuentes y calculos realizados dentro del area de riesgo financiero.</p></li>
+</ul>
+<p>Para cumplir estos objetivos la librería se compone de distintos paquetes, con objetivos y finalidades diferenciadas,
+los cuales pueden ser usadas de manera individual o conjunta.</p>
+<p>Este documento cuenta con tres partes, la primera parte se dedica en mostrar la instalación de la librería,
+mientras que la segunda parte da una descripción detallada de los paquetes, módulos, clases y funciones que componen la
+librería. Finalmente la tercera parte muestra algunos ejemplos de uso de la librería.</p>
+<section id="contenido">
+<h2><strong>Contenido</strong><a class="headerlink" href="#contenido" title="Enlace permanente a este encabezado">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="libreria/0_descripcion.html">FinRiskLib</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="libreria/1_instalacion.html">Instalación</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="libreria/1_instalacion.html#creacion-de-entorno-virtual">Creación de Entorno Virtual</a></li>
+<li class="toctree-l3"><a class="reference internal" href="libreria/1_instalacion.html#instalacion-de-la-libreria">Instalación de la librería</a></li>
+<li class="toctree-l3"><a class="reference internal" href="libreria/1_instalacion.html#generacion-kernel-para-utilizacion-en-jupyter">Generación Kernel para utilización en Jupyter</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="libreria/paquetes/0_paquetes.html">Paquetes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="libreria/paquetes/0_base/0_base_index.html">Módulos Base</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="libreria/paquetes/0_base/0_base_index.html#modulo-enumeradores"><span class="xref std std-ref">Módulo Enumeradores</span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="libreria/paquetes/0_base/0_base_index.html#modulo-excepciones"><span class="xref std std-ref">Módulo Excepciones</span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="libreria/paquetes/0_base/0_base_index.html#modulo-configuraciones"><span class="xref std std-ref">Módulo Configuraciones</span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="libreria/paquetes/0_base/0_base_index.html#modulo-decoradores"><span class="xref std std-ref">Módulo Decoradores</span></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="libreria/paquetes/1_data/0_data_index.html">Paquete de Datos</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="libreria/paquetes/1_data/0_data_index.html#modulo-conexion"><span class="xref std std-ref">Módulo Conexión</span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="libreria/paquetes/1_data/0_data_index.html#modulo-parser"><span class="xref std std-ref">Módulo Parser</span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="libreria/paquetes/1_data/0_data_index.html#modulo-lectura-archivos"><span class="xref std std-ref">Módulo Lectura Archivos</span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="libreria/paquetes/1_data/0_data_index.html#modulo-consultas-sql"><span class="xref std std-ref">Módulo Consultas SQL</span></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="libreria/paquetes/2_math/0_math_index.html">Paquete Matemático</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="libreria/paquetes/2_math/0_math_index.html#modulo-interpolacion"><span class="xref std std-ref">Módulo Interpolación</span></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="libreria/paquetes/3_market/0_market_index.html">Paquete de Mercado</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="libreria/paquetes/3_market/0_market_index.html#modulo-calendarios"><span class="xref std std-ref">Módulo Calendarios</span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="libreria/paquetes/3_market/0_market_index.html#modulo-curvas"><span class="xref std std-ref">Módulo Curvas</span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="libreria/paquetes/3_market/0_market_index.html#modulo-tasas-de-cambio"><span class="xref std std-ref">Módulo Tasas de Cambio</span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="libreria/paquetes/3_market/0_market_index.html#modulo-indices-financieros"><span class="xref std std-ref">Módulo Indices Financieros</span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="libreria/paquetes/3_market/0_market_index.html#modulo-dataset"><span class="xref std std-ref">Módulo Dataset</span></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="libreria/paquetes/4_instruments/0_instruments_index.html">Paquete de Instrumentos</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="libreria/paquetes/4_instruments/0_instruments_index.html#modulo-flujos"><span class="xref std std-ref">Módulo Flujos</span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="libreria/paquetes/4_instruments/0_instruments_index.html#modulo-instrumento"><span class="xref std std-ref">Módulo Instrumento</span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="libreria/paquetes/4_instruments/0_instruments_index.html#modulo-forwards"><span class="xref std std-ref">Módulo Forwards</span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="libreria/paquetes/4_instruments/0_instruments_index.html#modulo-swaps"><span class="xref std std-ref">Módulo Swaps</span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="libreria/paquetes/4_instruments/0_instruments_index.html#modulo-portafolio"><span class="xref std std-ref">Módulo Portafolio</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/0_notebooks.html"><strong>Ejemplos de Uso</strong></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="notebooks/1%20dbconn%20example.html">Uso de Conexión a Base de datos</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="notebooks/1%20dbconn%20example.html#Carga-de-Librerías">Carga de Librerías</a></li>
+<li class="toctree-l3"><a class="reference internal" href="notebooks/1%20dbconn%20example.html#¿Como-ejecutar-una-query?">¿Como ejecutar una query?</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="notebooks/1%20dbconn%20example.html#1.-Definir-la-consulta-como-un-string">1. Definir la consulta como un string</a></li>
+<li class="toctree-l4"><a class="reference internal" href="notebooks/1%20dbconn%20example.html#2.-Inicializar-lector">2. Inicializar lector</a></li>
+<li class="toctree-l4"><a class="reference internal" href="notebooks/1%20dbconn%20example.html#3.-Ejecutar-query">3. Ejecutar query</a></li>
+<li class="toctree-l4"><a class="reference internal" href="notebooks/1%20dbconn%20example.html#4.-Mostrar-resultados">4. Mostrar resultados</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="notebooks/1%20dbconn%20example.html#¿Como-manipular-los-datos?">¿Como manipular los datos?</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="notebooks/1%20dbconn%20example.html#a)-Extracción-de-una-o-mas-columnas">a) Extracción de una o mas columnas</a></li>
+<li class="toctree-l4"><a class="reference internal" href="notebooks/1%20dbconn%20example.html#b)-Búsqueda-de-un-dato-en-especifico">b) Búsqueda de un dato en especifico</a></li>
+<li class="toctree-l4"><a class="reference internal" href="notebooks/1%20dbconn%20example.html#c)-Obtener-data-de-acuerdo-a-localización">c) Obtener data de acuerdo a localización</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="notebooks/2%20dbreader%20example.html">Uso de lector de base de datos</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="notebooks/2%20dbreader%20example.html#Carga-de-librerías">Carga de librerías</a></li>
+<li class="toctree-l3"><a class="reference internal" href="notebooks/2%20dbreader%20example.html#Inicialización-de-lector">Inicialización de lector</a></li>
+<li class="toctree-l3"><a class="reference internal" href="notebooks/2%20dbreader%20example.html#Datos-de-Curvas">Datos de Curvas</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="notebooks/2%20dbreader%20example.html#a)-Mostrar-como-factores-de-descuento">a) Mostrar como factores de descuento</a></li>
+<li class="toctree-l4"><a class="reference internal" href="notebooks/2%20dbreader%20example.html#b)-Mostrar-como-tasas">b) Mostrar como tasas</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="notebooks/2%20dbreader%20example.html#Datos-de-tipos-de-cambio">Datos de tipos de cambio</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="notebooks/2%20dbreader%20example.html#a)-Obtención-de-tipo-de-cambio-definiendo-dos-monedas">a) Obtención de tipo de cambio definiendo dos monedas</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="notebooks/2%20dbreader%20example.html#Datos-de-índices">Datos de índices</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="notebooks/3%20curve%20example.html">Uso y manipulación de curvas</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="notebooks/3%20curve%20example.html#Configuración-Inicial">Configuración Inicial</a></li>
+<li class="toctree-l3"><a class="reference internal" href="notebooks/3%20curve%20example.html#Carga-desde-base-de-datos">Carga desde base de datos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="notebooks/3%20curve%20example.html#Graficar-curva">Graficar curva</a></li>
+<li class="toctree-l3"><a class="reference internal" href="notebooks/3%20curve%20example.html#Calculo-de-curva-sintética">Calculo de curva sintética</a></li>
+<li class="toctree-l3"><a class="reference internal" href="notebooks/3%20curve%20example.html#Curva-con-Configuración-personalizada">Curva con Configuración personalizada</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="notebooks/4%20calendar%20example.html">Uso de calendario</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="notebooks/4%20calendar%20example.html#Carga-de-librerías">Carga de librerías</a></li>
+<li class="toctree-l3"><a class="reference internal" href="notebooks/4%20calendar%20example.html#Creación-de-un-calendario-personalizado">Creación de un calendario personalizado</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="notebooks/4%20calendar%20example.html#a)-Ajustar-fecha-laborable">a) Ajustar fecha laborable</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="notebooks/4%20calendar%20example.html#Utilizar-Calendarios-Default">Utilizar Calendarios Default</a></li>
+<li class="toctree-l3"><a class="reference internal" href="notebooks/4%20calendar%20example.html#Funcionalidades-Estáticas">Funcionalidades Estáticas</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="notebooks/4%20calendar%20example.html#a)-Offset-de-fechas">a) Offset de fechas</a></li>
+<li class="toctree-l4"><a class="reference internal" href="notebooks/4%20calendar%20example.html#b)-Obtener-fracción-de-año">b) Obtener fracción de año</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="notebooks/5%20dataset%20example.html">Uso de Dataset</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="notebooks/5%20dataset%20example.html#Carga-de-librerías">Carga de librerías</a></li>
+<li class="toctree-l3"><a class="reference internal" href="notebooks/5%20dataset%20example.html#Carga-de-Dataset-desde-base-de-datos">Carga de Dataset desde base de datos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="notebooks/5%20dataset%20example.html#Funcionalidades-Fx">Funcionalidades Fx</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="notebooks/5%20dataset%20example.html#a)-Obtención-de-spot-descontado">a) Obtención de spot descontado</a></li>
+<li class="toctree-l4"><a class="reference internal" href="notebooks/5%20dataset%20example.html#b)-Obtención-de-spot-no-descontado">b) Obtención de spot no descontado</a></li>
+<li class="toctree-l4"><a class="reference internal" href="notebooks/5%20dataset%20example.html#c)-Obtención-de-tipo-de-cambio-proyectado">c) Obtención de tipo de cambio proyectado</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="notebooks/5%20dataset%20example.html#Funcionalidades-Curvas">Funcionalidades Curvas</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="notebooks/5%20dataset%20example.html#a)-Obtención-de-curva-de-acuerdo-a-colateral">a) Obtención de curva de acuerdo a colateral</a></li>
+<li class="toctree-l4"><a class="reference internal" href="notebooks/5%20dataset%20example.html#b)-Obtener-curva-de-proyección">b) Obtener curva de proyección</a></li>
+<li class="toctree-l4"><a class="reference internal" href="notebooks/5%20dataset%20example.html#a)-Obtención-de-índice-a-una-fecha-específica">a) Obtención de índice a una fecha específica</a></li>
+<li class="toctree-l4"><a class="reference internal" href="notebooks/5%20dataset%20example.html#b)-Obtención-de-data-histórica-de-indice">b) Obtención de data histórica de indice</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="notebooks/6%20forward%20example.html">Construcción y valorización de producto Forward</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="notebooks/6%20forward%20example.html#Carga-de-Librerías">Carga de Librerías</a></li>
+<li class="toctree-l3"><a class="reference internal" href="notebooks/6%20forward%20example.html#Construcción">Construcción</a></li>
+<li class="toctree-l3"><a class="reference internal" href="notebooks/6%20forward%20example.html#Valorización">Valorización</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="notebooks/6%20forward%20example.html#a)-Valorización-con-moneda-default">a) Valorización con moneda default</a></li>
+<li class="toctree-l4"><a class="reference internal" href="notebooks/6%20forward%20example.html#b)-Valorización-con-moneda-especificada">b) Valorización con moneda especificada</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="notebooks/6%20forward%20example.html#Obtención-desde-base-de-datos">Obtención desde base de datos</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="notebooks/6%20forward%20example.html#a)-Obtención-de-datos">a) Obtención de datos</a></li>
+<li class="toctree-l4"><a class="reference internal" href="notebooks/6%20forward%20example.html#b)-Obtención-de-MtM-Oficial">b) Obtención de MtM Oficial</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="notebooks/7%20swap%20example.html">Construcción y valorización de Swaps</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="notebooks/7%20swap%20example.html#Carga-de-librerías">Carga de librerías</a></li>
+<li class="toctree-l3"><a class="reference internal" href="notebooks/7%20swap%20example.html#Obtención-desde-base-de-datos">Obtención desde base de datos</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="notebooks/7%20swap%20example.html#a)-Obtención-de-Instrumento">a) Obtención de Instrumento</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="notebooks/7%20swap%20example.html#Valorización">Valorización</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="notebooks/7%20swap%20example.html#a)-Valorización-independiente">a) Valorización independiente</a></li>
+<li class="toctree-l4"><a class="reference internal" href="notebooks/7%20swap%20example.html#b)-Valorización-de-sistema">b) Valorización de sistema</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+</section>
+<section id="indices-y-tablas">
+<h1>Indices y tablas<a class="headerlink" href="#indices-y-tablas" title="Enlace permanente a este encabezado">¶</a></h1>
+<ul class="simple">
+<li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Índice</span></a></p></li>
+<li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Índice de Módulos</span></a></p></li>
+<li><p><a class="reference internal" href="search.html"><span class="std std-ref">Página de Búsqueda</span></a></p></li>
+</ul>
+</section>
+
+
+      </div>
+      <div class="bottomnav" role="navigation" aria-label="bottom navigation">
+      
+        <p>
+        <a class="uplink" href="#">Contenidos</a>
+        &#160;&#160;::&#160;&#160;
+        <a href="libreria/0_descripcion.html">FinRiskLib</a>&#160;&#160;»
+        </p>
+
+      </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Derechos de autor 2022, Riesgo Financiero.
+      Creado usando <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.0.0.
+    </div>
+  </body>
+</html>

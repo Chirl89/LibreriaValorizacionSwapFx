@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Módulo Flujos &#8212; documentación de Finlib - beta</title>
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/haiku.css" />
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/translations.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="index" title="Índice" href="../../../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../../../search.html" />
+    <link rel="next" title="Módulo Instrumento" href="2_instrument.html" />
+    <link rel="prev" title="Paquete de Instrumentos" href="0_instruments_index.html" /> 
+  </head><body>
+      <div class="header" role="banner"><h1 class="heading"><a href="../../../index.html">
+          <span>documentación de Finlib - beta</span></a></h1>
+        <h2 class="heading"><span>Módulo Flujos</span></h2>
+      </div>
+      <div class="topnav" role="navigation" aria-label="top navigation">
+      
+        <p>
+        «&#160;&#160;<a href="0_instruments_index.html">Paquete de Instrumentos</a>
+        &#160;&#160;::&#160;&#160;
+        <a class="uplink" href="../../../index.html">Contenidos</a>
+        &#160;&#160;::&#160;&#160;
+        <a href="2_instrument.html"><strong>Módulo Instrumento</strong></a>&#160;&#160;»
+        </p>
+
+      </div>
+      <div class="content" role="main">
+        
+        
+  <section id="modulo-flujos">
+<span id="id1"></span><h1><strong>Módulo Flujos</strong><a class="headerlink" href="#modulo-flujos" title="Enlace permanente a este encabezado">¶</a></h1>
+<span class="target" id="module-instruments.flow"></span><p>Las clases en este módulo están dedicadas a la representación de cajas y flujos de caja.</p>
+<p>Las clases dentro de este módulo son:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#cash"><span class="std std-ref">Cash</span></a> (<a class="reference internal" href="#instruments.flow.Cash" title="instruments.flow.Cash"><code class="xref py py-class docutils literal notranslate"><span class="pre">Cash</span></code></a>): Clase dedicada a la representación de caja financiera.</p></li>
+<li><p><a class="reference internal" href="#cashflow"><span class="std std-ref">Cash Flow</span></a> (<code class="xref py py-class docutils literal notranslate"><span class="pre">CashFlow</span></code>): Clase dedicada a la representación de flujos de caja.</p></li>
+</ul>
+</section>
+<section id="cash">
+<span id="id2"></span><h1>Cash<a class="headerlink" href="#cash" title="Enlace permanente a este encabezado">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="instruments.flow.Cash">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">instruments.flow.</span></span><span class="sig-name descname"><span class="pre">Cash</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">amount</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">currency</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Currency</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#instruments.flow.Cash" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Clase Cash</p>
+<p>Representa una caja con moneda y monto específico. La clase soporta la suma de otro instrumento cash y su
+comparación.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>amount</strong> (<em>float</em>) – Monto</p></li>
+<li><p><strong>currency</strong> (<a class="reference internal" href="../0_base/1_enums.html#enums.Currency" title="enums.Currency"><em>Currency</em></a>) – Numerario o Moneda</p></li>
+</ul>
+</dd>
+<dt class="field-even">Muestra<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>TypeError</strong> – Cuando se intenta sumar con un objeto no Cash</p></li>
+<li><p><a class="reference internal" href="../0_base/2_excepciones.html#exceptions.CurrencyException" title="exceptions.CurrencyException"><strong>CurrencyException</strong></a> – Cuando se intenta sumar con un objeto Cash con moneda distinta</p></li>
+</ul>
+</dd>
+<dt class="field-odd">Ejemplo de uso<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">finlib.instruments.flow</span> <span class="kn">import</span> <span class="n">Cash</span>
+<span class="kn">from</span> <span class="nn">finlib.enums</span> <span class="kn">import</span> <span class="n">Currency</span>
+
+<span class="n">cash_1</span> <span class="o">=</span> <span class="n">Cash</span><span class="p">(</span><span class="n">amount</span> <span class="o">=</span> <span class="mi">100</span><span class="p">,</span> <span class="n">currency</span> <span class="o">=</span> <span class="n">Currency</span><span class="o">.</span><span class="n">USD</span><span class="p">)</span>
+<span class="n">cash_2</span> <span class="o">=</span> <span class="n">Cash</span><span class="p">(</span><span class="n">amount</span> <span class="o">=</span> <span class="mi">150</span><span class="p">,</span> <span class="n">currency</span> <span class="o">=</span> <span class="n">Currency</span><span class="o">.</span><span class="n">CLP</span><span class="p">)</span>
+<span class="n">cash_3</span> <span class="o">=</span> <span class="n">Cash</span><span class="p">(</span><span class="n">amount</span> <span class="o">=</span> <span class="mi">100</span><span class="p">,</span> <span class="n">currency</span> <span class="o">=</span> <span class="n">Currency</span><span class="o">.</span><span class="n">USD</span><span class="p">)</span>
+
+<span class="n">cash_fail</span> <span class="o">=</span> <span class="n">cash_1</span> <span class="o">+</span> <span class="s2">&quot;100 USD&quot;</span> <span class="c1"># Genera una excepción TypeError</span>
+<span class="n">cash_fail</span> <span class="o">=</span> <span class="n">cash_1</span> <span class="o">+</span> <span class="n">cash_2</span> <span class="c1"># Genera una excepción CurrencyException</span>
+<span class="n">cash_4</span> <span class="o">=</span> <span class="n">cash_1</span> <span class="o">+</span> <span class="n">cash_3</span> <span class="c1"># Cash(200, Currency.USD)</span>
+
+<span class="n">result</span> <span class="o">=</span> <span class="n">cash_1</span> <span class="o">==</span> <span class="s2">&quot;100 USD&quot;</span> <span class="c1"># false</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">cash_1</span> <span class="o">==</span> <span class="n">cash_2</span> <span class="c1"># false</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">cash_1</span> <span class="o">==</span> <span class="n">cash3</span> <span class="c1"># true</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</section>
+<section id="cash-flow">
+<span id="cashflow"></span><h1>Cash Flow<a class="headerlink" href="#cash-flow" title="Enlace permanente a este encabezado">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="instruments.flow.Cashflow">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">instruments.flow.</span></span><span class="sig-name descname"><span class="pre">Cashflow</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">flow_date</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">amount</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">currency</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Currency</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#instruments.flow.Cashflow" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Clase Cashflow</p>
+<p>Representa un flujo futuro con moneda, monto y fecha determinada. La clase soporta la suma de otro instrumento
+cashflow, al igual que su comparación.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>flow_date</strong> (<em>date</em>) – Fecha del flujo</p></li>
+<li><p><strong>amount</strong> (<em>float</em>) – Monto</p></li>
+<li><p><strong>currency</strong> (<a class="reference internal" href="../0_base/1_enums.html#enums.Currency" title="enums.Currency"><em>Currency</em></a>) – Numerario o Moneda</p></li>
+</ul>
+</dd>
+<dt class="field-even">Muestra<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>TypeError</strong> – Cuando se intenta sumar con un objeto no Cashflow</p></li>
+<li><p><a class="reference internal" href="../0_base/2_excepciones.html#exceptions.CurrencyException" title="exceptions.CurrencyException"><strong>CurrencyException</strong></a> – Cuando se intenta sumar con un objeto Cashflow con moneda distinta</p></li>
+<li><p><strong>ValueError</strong> – Cuando se intenta sumar con un objeto Cashflow con fecha distinta</p></li>
+</ul>
+</dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">finlib.instruments.flow</span> <span class="kn">import</span> <span class="n">Cashflow</span>
+<span class="kn">from</span> <span class="nn">finlib.enums</span> <span class="kn">import</span> <span class="n">Currency</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">date</span>
+
+<span class="n">cashflow_1</span> <span class="o">=</span> <span class="n">Cashflow</span><span class="p">(</span><span class="n">flow_date</span><span class="o">=</span><span class="n">date</span><span class="p">(</span><span class="n">year</span><span class="o">=</span><span class="mi">2022</span><span class="p">,</span> <span class="n">month</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">day</span><span class="o">=</span><span class="mi">30</span><span class="p">),</span> <span class="n">amount</span> <span class="o">=</span> <span class="mi">100</span><span class="p">,</span> <span class="n">currency</span> <span class="o">=</span> <span class="n">Currency</span><span class="o">.</span><span class="n">USD</span><span class="p">)</span>
+<span class="n">cashflow_2</span> <span class="o">=</span> <span class="n">Cashflow</span><span class="p">(</span><span class="n">flow_date</span><span class="o">=</span><span class="n">date</span><span class="p">(</span><span class="n">year</span><span class="o">=</span><span class="mi">2022</span><span class="p">,</span> <span class="n">month</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">day</span><span class="o">=</span><span class="mi">30</span><span class="p">),</span> <span class="n">amount</span> <span class="o">=</span> <span class="mi">150</span><span class="p">,</span> <span class="n">currency</span> <span class="o">=</span> <span class="n">Currency</span><span class="o">.</span><span class="n">CLP</span><span class="p">)</span>
+<span class="n">cashflow_3</span> <span class="o">=</span> <span class="n">Cashflow</span><span class="p">(</span><span class="n">flow_date</span><span class="o">=</span><span class="n">date</span><span class="p">(</span><span class="n">year</span><span class="o">=</span><span class="mi">2022</span><span class="p">,</span> <span class="n">month</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">day</span><span class="o">=</span><span class="mi">30</span><span class="p">),</span> <span class="n">amount</span> <span class="o">=</span> <span class="mi">100</span><span class="p">,</span> <span class="n">currency</span> <span class="o">=</span> <span class="n">Currency</span><span class="o">.</span><span class="n">USD</span><span class="p">)</span>
+<span class="n">cashflow_4</span> <span class="o">=</span> <span class="n">Cashflow</span><span class="p">(</span><span class="n">flow_date</span><span class="o">=</span><span class="n">date</span><span class="p">(</span><span class="n">year</span><span class="o">=</span><span class="mi">2022</span><span class="p">,</span> <span class="n">month</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">day</span><span class="o">=</span><span class="mi">30</span><span class="p">),</span> <span class="n">amount</span> <span class="o">=</span> <span class="mi">100</span><span class="p">,</span> <span class="n">currency</span> <span class="o">=</span> <span class="n">Currency</span><span class="o">.</span><span class="n">USD</span><span class="p">)</span>
+
+<span class="n">cashflow_fail</span> <span class="o">=</span> <span class="n">cashflow_1</span> <span class="o">+</span> <span class="s2">&quot;100 USD&quot;</span> <span class="c1"># Genera una excepción TypeError</span>
+<span class="n">cashflow_fail</span> <span class="o">=</span> <span class="n">cashflow_1</span> <span class="o">+</span> <span class="n">cashflow_2</span> <span class="c1"># Genera una excepción CurrencyException</span>
+<span class="n">cashflow_fail</span> <span class="o">=</span> <span class="n">cashflow_1</span> <span class="o">+</span> <span class="n">cashflow_4</span> <span class="c1"># Genera una excepción ValueError</span>
+
+<span class="n">cash_5</span> <span class="o">=</span> <span class="n">cash_1</span> <span class="o">+</span> <span class="n">cash_3</span> <span class="c1"># Cashflow(flow_date=date(year=2022, month=1, day=30), 200, Currency.USD)</span>
+
+<span class="n">result</span> <span class="o">=</span> <span class="n">cash_1</span> <span class="o">==</span> <span class="s2">&quot;100 USD&quot;</span> <span class="c1"># false</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">cash_1</span> <span class="o">==</span> <span class="n">cash_2</span> <span class="c1"># false</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">cash_1</span> <span class="o">==</span> <span class="n">cash3</span> <span class="c1"># true</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</section>
+
+
+      </div>
+      <div class="bottomnav" role="navigation" aria-label="bottom navigation">
+      
+        <p>
+        «&#160;&#160;<a href="0_instruments_index.html">Paquete de Instrumentos</a>
+        &#160;&#160;::&#160;&#160;
+        <a class="uplink" href="../../../index.html">Contenidos</a>
+        &#160;&#160;::&#160;&#160;
+        <a href="2_instrument.html"><strong>Módulo Instrumento</strong></a>&#160;&#160;»
+        </p>
+
+      </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Derechos de autor 2022, Riesgo Financiero.
+      Creado usando <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.0.0.
+    </div>
+  </body>
+</html>

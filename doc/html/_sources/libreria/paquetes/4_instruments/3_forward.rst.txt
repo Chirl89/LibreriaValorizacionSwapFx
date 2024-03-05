@@ -1,0 +1,19 @@
+.. _Módulo Forwards:
+
+**Módulo Forwards**
+-------------------
+
+.. automodule:: instruments.forward
+
+Las clases dentro de este módulo son:
+
+- :ref:`forward` (:class:`Forward`): Clase dedicada a la representación de Forwards de Moneda.
+
+.. _forward:
+
+Forward
+-------
+
+.. autoclass:: instruments.forward.Forward
+   :members:
+   :member-order: bysource

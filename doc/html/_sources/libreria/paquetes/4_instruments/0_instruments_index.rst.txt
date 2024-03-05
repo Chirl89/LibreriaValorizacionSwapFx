@@ -1,0 +1,43 @@
+Paquete de Instrumentos
+=======================
+
+El paquete de instrumentos esta dedicado a la generación de objetos estandarizados que posibiliten el trabajo con los
+distintos instrumentos de mercado. Esto permite la valorización y obtención de riesgos de manera rápida y
+estandarizada.
+
+Dentro de este paquete contamos con los siguientes módulos:
+
+
+:ref:`Módulo Flujos`
+-------------------------
+
+Módulo dedicado a la representación de Flujos de Caja.
+
+:ref:`Módulo Instrumento`
+-------------------------
+
+Módulo con clases abstractas para la representación de instrumentos financieros
+
+:ref:`Módulo Forwards`
+----------------------
+
+Módulo con clases enfocadas en la representación de forwards.
+
+:ref:`Módulo Swaps`
+----------------------
+
+Módulo con clases enfocadas en la representación de swaps.
+
+:ref:`Módulo Portafolio`
+------------------------
+
+Módulo con clases enfocadas en la representación de portafolios.
+
+.. toctree::
+    :hidden:
+
+    1_flujos
+    2_instrument
+    3_forward
+    4_swap
+    5_portafolio

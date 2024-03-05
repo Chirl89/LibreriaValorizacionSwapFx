@@ -1,0 +1,31 @@
+Módulos Base
+============
+
+Se considera como módulo base a todo aquel que se encuentra dentro del namespace de Finlib, es decir que se encuentran
+"a la mano" debido a que son funciones (y clases) que alimentan a los demás módulos de la librería.
+
+Dentro de estos módulos, y sin ningún orden en particular, tenemos:
+
+- :ref:`enums`: Colección de clases de enumeración con listados que estandarizan los conceptos y códigos utilizados
+  dentro de la librería.
+- :ref:`excepciones`: Colección de excepciones hechas a la medida para manejar los distintos errores que puede generar
+  la librería.
+
+.. _enums:
+
+**Enumeradores**
+----------------
+
+.. automodule:: enums
+   :members:
+   :show-inheritance:
+   :member-order: bysource
+
+.. _excepciones:
+
+**Excepciones**
+---------------
+
+.. automodule:: exceptions
+   :members:
+   :show-inheritance:

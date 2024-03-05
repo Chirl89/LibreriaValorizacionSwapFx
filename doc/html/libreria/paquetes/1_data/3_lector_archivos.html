@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Módulo de Lectura Archivos &#8212; documentación de Finlib - beta</title>
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/haiku.css" />
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/translations.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="index" title="Índice" href="../../../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../../../search.html" />
+    <link rel="next" title="Módulo Consultas SQL" href="4_lector_sql.html" />
+    <link rel="prev" title="Módulo Parser" href="2_parser.html" /> 
+  </head><body>
+      <div class="header" role="banner"><h1 class="heading"><a href="../../../index.html">
+          <span>documentación de Finlib - beta</span></a></h1>
+        <h2 class="heading"><span>Módulo de Lectura Archivos</span></h2>
+      </div>
+      <div class="topnav" role="navigation" aria-label="top navigation">
+      
+        <p>
+        «&#160;&#160;<a href="2_parser.html"><strong>Módulo Parser</strong></a>
+        &#160;&#160;::&#160;&#160;
+        <a class="uplink" href="../../../index.html">Contenidos</a>
+        &#160;&#160;::&#160;&#160;
+        <a href="4_lector_sql.html"><strong>Módulo Consultas SQL</strong></a>&#160;&#160;»
+        </p>
+
+      </div>
+      <div class="content" role="main">
+        
+        
+  <section id="module-data.filereader">
+<span id="modulo-de-lectura-archivos"></span><span id="modulo-lectura-archivos"></span><h1><strong>Módulo de Lectura Archivos</strong><a class="headerlink" href="#module-data.filereader" title="Enlace permanente a este encabezado">¶</a></h1>
+<p>Este módulo está enfocado en la lectura de archivos que puedan ser entendidos y procesados
+por la librería. Los archivos deben tener un formato específico, el cual será especificado en la
+documentación de cada función.</p>
+<p>La clase principal de este módulo es:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#lector-archivos"><span class="std std-ref">Lector Archivos Excel</span></a> (<a class="reference internal" href="#data.filereader.XlsReader" title="data.filereader.XlsReader"><code class="xref py py-class docutils literal notranslate"><span class="pre">XlsReader</span></code></a>): Lector de archivos Excel.</p></li>
+</ul>
+</section>
+<section id="lector-archivos-excel">
+<span id="lector-archivos"></span><h1>Lector Archivos Excel<a class="headerlink" href="#lector-archivos-excel" title="Enlace permanente a este encabezado">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="data.filereader.XlsReader">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">data.filereader.</span></span><span class="sig-name descname"><span class="pre">XlsReader</span></span><a class="headerlink" href="#data.filereader.XlsReader" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Clase dedicada a la lectura de datos en formato Excel.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="data.filereader.XlsReader.read_curve_data">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">read_curve_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">CurveDataSet</span></span></span><a class="headerlink" href="#data.filereader.XlsReader.read_curve_data" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Leer de archivo de curvas</p>
+<p>Lee un archivo excel con datos de una o más curvas y devuelve un diccionario con los nombres y las curvas
+inicializadas. El formato aceptado es:</p>
+<table class="docutils align-default" id="id1">
+<caption><span class="caption-text"><strong>Formato Tabla de Curvas</strong></span><a class="headerlink" href="#id1" title="Enlace permanente a esta tabla">¶</a></caption>
+<colgroup>
+<col style="width: 25.0%" />
+<col style="width: 25.0%" />
+<col style="width: 25.0%" />
+<col style="width: 25.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Fecha Proceso</p></th>
+<th class="head"><p>Código Curva</p></th>
+<th class="head"><p>Tenor</p></th>
+<th class="head"><p>Factor de descuento</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>2022/01/03</p></td>
+<td><p>CURVA_CLP_CL</p></td>
+<td><p>1</p></td>
+<td><p>0.998</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>file_name</strong> (<em>str</em>) – Nombre del archivo a leer.</p>
+</dd>
+<dt class="field-even">Devuelve<span class="colon">:</span></dt>
+<dd class="field-even"><p>CurveDataSet</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="data.filereader.XlsReader.read_fx_pair_data">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">read_fx_pair_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">FxDataSet</span></span></span><a class="headerlink" href="#data.filereader.XlsReader.read_fx_pair_data" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Lector de archivo Excel de Tipos de cambio</p>
+<p>Lee un archivo excel con datos de uno o más tipos de cambio para un día específico y devuelve una lista de
+objetos FxPair. El formato aceptado es:</p>
+<table class="docutils align-default" id="id2">
+<caption><span class="caption-text"><strong>Formato Tabla de Tipo de Cambio</strong></span><a class="headerlink" href="#id2" title="Enlace permanente a esta tabla">¶</a></caption>
+<colgroup>
+<col style="width: 25.0%" />
+<col style="width: 25.0%" />
+<col style="width: 25.0%" />
+<col style="width: 25.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Fecha Proceso</p></th>
+<th class="head"><p>Moneda Primaria</p></th>
+<th class="head"><p>Moneda Secundaria</p></th>
+<th class="head"><p>Tipo de Cambio</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>2022/01/03</p></td>
+<td><p>USD</p></td>
+<td><p>CLP</p></td>
+<td><p>850</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>file_name</strong> (<em>str</em>) – Nombre del archivo a leer.</p>
+</dd>
+<dt class="field-even">Devuelve<span class="colon">:</span></dt>
+<dd class="field-even"><p>Diccionario de objetos FxPair</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="data.filereader.XlsReader.read_index_data">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">read_index_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">IndexDataSet</span></span></span><a class="headerlink" href="#data.filereader.XlsReader.read_index_data" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Lector de archivo Excel de Data de índices</p>
+<p>Lee un archivo excel con datos de uno o más índices con información histórica y devuelve un diccionario con
+llave de objeto Index y valores históricos. El formato aceptado es:</p>
+<table class="docutils align-default" id="id3">
+<caption><span class="caption-text"><strong>Formato Tabla de Índices Financieros</strong></span><a class="headerlink" href="#id3" title="Enlace permanente a esta tabla">¶</a></caption>
+<colgroup>
+<col style="width: 33.3%" />
+<col style="width: 33.3%" />
+<col style="width: 33.3%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Código Indice</p></th>
+<th class="head"><p>Fecha Proceso</p></th>
+<th class="head"><p>Valor</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>ICP REAL</p></td>
+<td><p>2022/01/03</p></td>
+<td><p>17854.15</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>file_name</strong> (<em>str</em>) – Nombre del archivo a leer.</p>
+</dd>
+<dt class="field-even">Devuelve<span class="colon">:</span></dt>
+<dd class="field-even"><p>Diccionario de objetos Index</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="data.filereader.XlsReader.read_dataset_data">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">read_dataset_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">process_date</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">curve_file</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fx_file</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">index_file</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DataSet</span></span></span><a class="headerlink" href="#data.filereader.XlsReader.read_dataset_data" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Lector de dataset</p>
+<p>Lee la información de mercado provista en los distintos archivos.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>process_date</strong> (<em>date.</em>) – Fecha del dataset.</p></li>
+<li><p><strong>curve_file</strong> (<em>str.</em>) – Nombre del archivo con información de curvas.</p></li>
+<li><p><strong>fx_file</strong> (<em>str.</em>) – Nombre del archivo con información de tipo de cambio.</p></li>
+<li><p><strong>index_file</strong> (<em>str.</em>) – Nombre del archivo con información de índices.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Devuelve<span class="colon">:</span></dt>
+<dd class="field-even"><p>Objeto Dataset.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="data.filereader.XlsReader.read_derivados_data">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">read_derivados_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">portfolio_file</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#data.filereader.XlsReader.read_derivados_data" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Leer Archivo de Operaciones</p>
+<p>Lee un archivo con el formato de Cartera Derivados</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>portfolio_file</strong> – Dirección de archivo de portafolio</p>
+</dd>
+<dt class="field-even">Devuelve<span class="colon">:</span></dt>
+<dd class="field-even"><p>Portafolio</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="data.filereader.XlsReader.read_derivados_operation_data">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">read_derivados_operation_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">operation_file</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#data.filereader.XlsReader.read_derivados_operation_data" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Leer Archivo de Operación Individual</p>
+<p>Lee un archivo con el formato de Cartera Derivados de una sola operación.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>operation_file</strong> – Dirección de archivo de portafolio</p>
+</dd>
+<dt class="field-even">Devuelve<span class="colon">:</span></dt>
+<dd class="field-even"><p>Derivative</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="data.filereader.XlsReader.read_portfolio_data">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">read_portfolio_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">portfolio_file</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#data.filereader.XlsReader.read_portfolio_data" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Leer archivo de portafolio completo</p>
+<p>Obtiene todos los productos de la cartera</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>portfolio_file</strong> – Dirección de archivo de portafolio</p>
+</dd>
+<dt class="field-even">Devuelve<span class="colon">:</span></dt>
+<dd class="field-even"><p>Portfolio</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+      </div>
+      <div class="bottomnav" role="navigation" aria-label="bottom navigation">
+      
+        <p>
+        «&#160;&#160;<a href="2_parser.html"><strong>Módulo Parser</strong></a>
+        &#160;&#160;::&#160;&#160;
+        <a class="uplink" href="../../../index.html">Contenidos</a>
+        &#160;&#160;::&#160;&#160;
+        <a href="4_lector_sql.html"><strong>Módulo Consultas SQL</strong></a>&#160;&#160;»
+        </p>
+
+      </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Derechos de autor 2022, Riesgo Financiero.
+      Creado usando <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.0.0.
+    </div>
+  </body>
+</html>

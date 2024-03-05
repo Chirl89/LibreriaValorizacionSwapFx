@@ -1,0 +1,7 @@
+.. _dataset:
+
+**Datasets**
+------------
+
+.. automodule:: market.dataset
+   :members:

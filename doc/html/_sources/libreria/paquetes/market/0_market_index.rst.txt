@@ -1,0 +1,27 @@
+Paquete de Mercado
+==================
+
+El paquete de mercado se encuentra dedicado a almacenar clases que representen información de mercado. Dentro de este
+paquete contamos con los siguientes módulos:
+
+- :ref:`calendarios`: Clases para la generación y almacenamiento de datos relacionados a feriados y asociados a una
+  localidad especifica.
+- :ref:`curvas`: Clases dedicadas a la generación, almacenamiento y construcción de curvas de valorización y proyección.
+- :ref:`fx`: Clases de configuración y manejo de tipo de cambio.
+- :ref:`indices`: Clases de configuración y manejo de indices de mercado.
+- :ref:`volatilidad`: Clases dedicadas al almacenamiento, configuración y manejo de la volatilidades.
+- :ref:`dataset`: Clase que permite almacenar, manejar y utilizar con todos los datos de mercado de manera conjunta.
+
+.. toctree::
+    :hidden:
+
+    1_calendar
+    2_curvas
+    3_fx
+    4_indices
+    5_volatilidad
+    6_dataset
+
+
+
+

@@ -1,0 +1,19 @@
+.. _Módulo Lectura Archivos:
+
+**Módulo de Lectura Archivos**
+------------------------------
+
+.. automodule:: data.filereader
+
+La clase principal de este módulo es:
+
+- :ref:`lector_archivos` (:class:`XlsReader`): Lector de archivos Excel.
+
+.. _lector_archivos:
+
+Lector Archivos Excel
+---------------------
+
+.. autoclass:: data.filereader.XlsReader
+    :members:
+    :member-order: bysource

@@ -1,0 +1,12 @@
+Paquetes
+========
+
+La librería se encuentra divide en los siguientes paquetes:
+
+.. toctree::
+    modulos_base
+    data
+    math
+    market
+    instruments
+

@@ -1,0 +1,9 @@
+.. _indices:
+
+**Indices**
+-----------
+
+.. automodule:: market.index
+   :members:
+   :member-order: bysource
+

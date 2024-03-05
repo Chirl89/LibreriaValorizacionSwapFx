@@ -1,0 +1,32 @@
+Liberia de Funciones de Riesgo Financiero v2.0.0
+================================================
+
+La librería FinRIskLib cuenta con los siguientes objetivos:
+
+- Permitir un acceso rápido a la información oficial disponible dentro de los servidores.
+- Permitir la replica de los calculos calculos oficiales en valorización.
+- Estandarizar las fuentes y calculos realizados dentro del area de riesgo financiero.
+
+Para cumplir estos objetivos la librería se compone de distintos paquetes, con objetivos y finalidades diferenciadas,
+los cuales pueden ser usadas de manera individual o conjunta.
+
+Este documento cuenta con tres partes, la primera parte se dedica en mostrar la instalación de la librería,
+mientras que la segunda parte da una descripción detallada de los paquetes, módulos, clases y funciones que componen la
+librería. Finalmente la tercera parte muestra algunos ejemplos de uso de la librería.
+
+**Contenido**
+-------------
+
+.. toctree::
+   :maxdepth: 4
+
+   libreria/0_descripcion
+   notebooks/0_notebooks
+
+
+Indices y tablas
+================
+
+* :ref:`genindex`
+* :ref:`modindex`
+* :ref:`search`

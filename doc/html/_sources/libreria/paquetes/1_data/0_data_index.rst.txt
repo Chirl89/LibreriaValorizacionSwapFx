@@ -1,0 +1,42 @@
+Paquete de Datos
+================
+
+El paquete de datos se encuentra dedicado al manejo y extracción de datos desde servidores como desde archivos con
+formato especifico.
+
+La finalidad del paquete es la estandarización de la obtención de datos, al igual que centralizar y simplificar la
+traducción de archivos y consultas SQL en objetos nativos de la librería.
+
+Las módulos que se se encuentran en el paquete son:
+
+:ref:`Módulo Conexión`
+----------------------
+
+Clases dedicada a la conexión y obtención de datos abstractos desde servidores SQL.
+
+:ref:`Módulo Parser`
+--------------------
+
+Clase dedicada a la conversión de datos en objetos nativos de la librería.
+
+:ref:`Módulo Lectura Archivos`
+------------------------------
+
+Clase dedicada a la lectura de datos desde archivos con formato estandarizado.
+
+:ref:`Módulo Consultas SQL`
+---------------------------
+
+Clase dedicada a la lectura de datos desde los servidores internos.
+
+.. toctree::
+    :hidden:
+
+    1_conexion
+    2_parser
+    3_lector_archivos
+    4_lector_sql
+
+
+
+

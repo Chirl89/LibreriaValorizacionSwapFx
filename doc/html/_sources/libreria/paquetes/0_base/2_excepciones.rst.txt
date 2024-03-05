@@ -1,0 +1,110 @@
+.. _Módulo Excepciones:
+
+**Módulo de Excepciones**
+-------------------------
+
+.. automodule:: exceptions
+
+A continuación se presenta un listado de las excepciones contenidas en este módulo:
+
+- :ref:`excepción_enumerador` (:class:`EnumException`): Maneja errores asociados a Enumeradores.
+- :ref:`excepción_moneda` (:class:`CurrencyException`): Maneja errores asociados a Monedas.
+- :ref:`excepción_fx` (:class:`FxRateException`): Maneja errores asociados a Tasas de Cambio.
+- :ref:`excepción_calendario` (:class:`CalendarException`): Maneja errores asociados a calendarios de negociación.
+- :ref:`excepción_curvas` (:class:`CalendarException`): Maneja errores asociados con curvas.
+- :ref:`excepción_índices` (:class:`IndexException`): Maneja errores asociados con índices financieros.
+- :ref:`excepción_dataset` (:class:`DatasetException`): Maneja errores asociados con Dataset.
+- :ref:`excepción_portafolio` (:class:`PortfolioException`): Maneja errores asociados con Portafolio.
+- :ref:`excepción_lectura_archivo` (:class:`FileReadException`): Maneja errores asociados con Lectura de Archivos.
+- :ref:`excepción_query` (:class:`QueryException`): Maneja errores asociados con consultas a base de datos.
+
+
+.. _excepción_enumerador:
+
+Excepciones de Enumeradores
+---------------------------
+
+.. autoclass:: exceptions.EnumException
+    :members:
+    :member-order: bysource
+
+.. _excepción_moneda:
+
+Excepciones de Moneda
+---------------------
+
+.. autoclass:: exceptions.CurrencyException
+    :members:
+    :member-order: bysource
+
+.. _excepción_fx:
+
+Excepciones de Tasa de Cambio
+-----------------------------
+
+.. autoclass:: exceptions.FxRateException
+    :members:
+    :member-order: bysource
+
+.. _excepción_calendario:
+
+Excepciones de Calendario
+-------------------------
+
+.. autoclass:: exceptions.CalendarException
+    :members:
+    :member-order: bysource
+
+.. _excepción_curvas:
+
+Excepciones de Curva
+--------------------
+
+.. autoclass:: exceptions.CurveException
+    :members:
+    :member-order: bysource
+
+.. _excepción_índices:
+
+Excepciones de Índices
+----------------------
+
+.. autoclass:: exceptions.IndexException
+    :members:
+    :member-order: bysource
+
+.. _excepción_dataset:
+
+Excepciones de Dataset
+----------------------
+
+.. autoclass:: exceptions.DatasetException
+    :members:
+    :member-order: bysource
+
+.. _excepción_portafolio:
+
+Excepciones de Portafolio
+-------------------------
+
+.. autoclass:: exceptions.PortfolioException
+    :members:
+    :member-order: bysource
+
+.. _excepción_lectura_archivo:
+
+Excepciones de Lectura de Archivo
+---------------------------------
+
+.. autoclass:: exceptions.FileReadException
+    :members:
+    :member-order: bysource
+
+.. _excepción_query:
+
+Excepciones de Consulta
+-----------------------
+
+.. autoclass:: exceptions.QueryException
+    :members:
+    :member-order: bysource

@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Uso de calendario &#8212; documentación de Finlib - beta</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/haiku.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/nbsphinx-code-cells.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/translations.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../search.html" />
+    <link rel="next" title="Uso de Dataset" href="5%20dataset%20example.html" />
+    <link rel="prev" title="Uso y manipulación de curvas" href="3%20curve%20example.html" /> 
+  </head><body>
+      <div class="header" role="banner"><h1 class="heading"><a href="../index.html">
+          <span>documentación de Finlib - beta</span></a></h1>
+        <h2 class="heading"><span>Uso de calendario</span></h2>
+      </div>
+      <div class="topnav" role="navigation" aria-label="top navigation">
+      
+        <p>
+        «&#160;&#160;<a href="3%20curve%20example.html">Uso y manipulación de curvas</a>
+        &#160;&#160;::&#160;&#160;
+        <a class="uplink" href="../index.html">Contenidos</a>
+        &#160;&#160;::&#160;&#160;
+        <a href="5%20dataset%20example.html">Uso de Dataset</a>&#160;&#160;»
+        </p>
+
+      </div>
+      <div class="content" role="main">
+        
+        
+  <section id="Uso-de-calendario">
+<h1>Uso de calendario<a class="headerlink" href="#Uso-de-calendario" title="Enlace permanente a este encabezado">¶</a></h1>
+<p>La clase calendario permite la manipulación de fechas y la obtención de distancia entre las mismas, la clase se encuentra basada en los calendarios default de la libería pandas</p>
+<section id="Carga-de-librerías">
+<h2>Carga de librerías<a class="headerlink" href="#Carga-de-librerías" title="Enlace permanente a este encabezado">¶</a></h2>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">finrisklib.market.tradingcalendar</span> <span class="kn">import</span> <span class="n">TradingCalendar</span> <span class="c1"># Clase base de calendario</span>
+<span class="kn">from</span> <span class="nn">finrisklib.enums</span> <span class="kn">import</span> <span class="n">Locality</span>
+<span class="kn">from</span> <span class="nn">finrisklib.enums</span> <span class="kn">import</span> <span class="n">BusinessDay</span>
+<span class="kn">from</span> <span class="nn">finrisklib.enums</span> <span class="kn">import</span> <span class="n">Period</span>
+<span class="kn">from</span> <span class="nn">finrisklib.enums</span> <span class="kn">import</span> <span class="n">DayCount</span>
+<span class="kn">from</span> <span class="nn">finrisklib.data.dbreader</span> <span class="kn">import</span> <span class="n">DBReader</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">date</span>
+<span class="kn">from</span> <span class="nn">pandas.tseries.holiday</span> <span class="kn">import</span> <span class="n">AbstractHolidayCalendar</span><span class="p">,</span> <span class="n">Holiday</span><span class="p">,</span> <span class="n">GoodFriday</span><span class="p">,</span> <span class="n">nearest_workday</span> <span class="c1"># Calendario Pandas</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="Creación-de-un-calendario-personalizado">
+<h2>Creación de un calendario personalizado<a class="headerlink" href="#Creación-de-un-calendario-personalizado" title="Enlace permanente a este encabezado">¶</a></h2>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">locations</span> <span class="o">=</span> <span class="p">[</span><span class="n">Locality</span><span class="o">.</span><span class="n">CHL</span><span class="p">,</span> <span class="n">Locality</span><span class="o">.</span><span class="n">COL</span><span class="p">,</span> <span class="n">Locality</span><span class="o">.</span><span class="n">USA</span><span class="p">]</span>
+
+<span class="n">rules</span> <span class="o">=</span> <span class="p">[</span><span class="n">GoodFriday</span><span class="p">,</span>
+         <span class="n">Holiday</span><span class="p">(</span><span class="s1">&#39;NewYearsDay&#39;</span><span class="p">,</span> <span class="n">month</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">day</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">observance</span><span class="o">=</span><span class="n">nearest_workday</span><span class="p">),</span>
+         <span class="n">Holiday</span><span class="p">(</span><span class="s1">&#39;Christmas&#39;</span><span class="p">,</span> <span class="n">month</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">day</span><span class="o">=</span><span class="mi">25</span><span class="p">,</span> <span class="n">observance</span><span class="o">=</span><span class="n">nearest_workday</span><span class="p">)]</span>
+
+<span class="n">holidays</span> <span class="o">=</span> <span class="p">[</span><span class="n">date</span><span class="p">(</span><span class="n">year</span><span class="o">=</span><span class="mi">2022</span><span class="p">,</span> <span class="n">month</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span> <span class="n">day</span><span class="o">=</span><span class="mi">16</span><span class="p">)]</span>
+
+<span class="n">base_calendar</span> <span class="o">=</span> <span class="n">AbstractHolidayCalendar</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;STG-BGT-NY&#39;</span><span class="p">,</span> <span class="n">rules</span><span class="o">=</span><span class="n">rules</span><span class="p">)</span>
+<span class="n">custom_calendar</span> <span class="o">=</span> <span class="n">TradingCalendar</span><span class="p">(</span><span class="n">calendar_name</span><span class="o">=</span><span class="s1">&#39;STG-BGT-NY&#39;</span><span class="p">,</span> <span class="n">holidays</span><span class="o">=</span><span class="n">holidays</span><span class="p">,</span> <span class="n">base_calendar</span><span class="o">=</span><span class="n">base_calendar</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<section id="a)-Ajustar-fecha-laborable">
+<h3>a) Ajustar fecha laborable<a class="headerlink" href="#a)-Ajustar-fecha-laborable" title="Enlace permanente a este encabezado">¶</a></h3>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">date1</span> <span class="o">=</span> <span class="n">date</span><span class="p">(</span><span class="n">year</span><span class="o">=</span><span class="mi">2022</span><span class="p">,</span> <span class="n">month</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span> <span class="n">day</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+
+<span class="n">adjusted_date</span> <span class="o">=</span> <span class="n">custom_calendar</span><span class="o">.</span><span class="n">adjust_workday</span><span class="p">(</span><span class="n">workday</span><span class="o">=</span><span class="n">date1</span><span class="p">,</span> <span class="n">business_day_convention</span><span class="o">=</span><span class="n">BusinessDay</span><span class="o">.</span><span class="n">MODIFIED_FOLLOWING</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">adjusted_date</span><span class="p">)</span>
+<br/></pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+2022-09-19
+</pre></div></div>
+</div>
+</section>
+</section>
+<section id="Utilizar-Calendarios-Default">
+<h2>Utilizar Calendarios Default<a class="headerlink" href="#Utilizar-Calendarios-Default" title="Enlace permanente a este encabezado">¶</a></h2>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">reader</span> <span class="o">=</span> <span class="n">DBReader</span><span class="p">()</span>
+<span class="n">calendar_dataset</span> <span class="o">=</span> <span class="n">reader</span><span class="o">.</span><span class="n">get_calendar_dataset</span><span class="p">()</span>
+
+<span class="n">nyse_calendar</span> <span class="o">=</span> <span class="n">calendar_dataset</span><span class="o">.</span><span class="n">get_calendar</span><span class="p">([</span><span class="n">Locality</span><span class="o">.</span><span class="n">USA</span><span class="p">])</span>
+<span class="n">stg_calendar</span> <span class="o">=</span> <span class="n">calendar_dataset</span><span class="o">.</span><span class="n">get_calendar</span><span class="p">([</span><span class="n">Locality</span><span class="o">.</span><span class="n">CHL</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">asuncion_virgen</span> <span class="o">=</span> <span class="n">date</span><span class="p">(</span><span class="n">year</span><span class="o">=</span><span class="mi">2022</span><span class="p">,</span> <span class="n">month</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">day</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+
+<span class="n">adjusted_date</span> <span class="o">=</span> <span class="n">nyse_calendar</span><span class="o">.</span><span class="n">adjust_workday</span><span class="p">(</span><span class="n">workday</span><span class="o">=</span><span class="n">asuncion_virgen</span><span class="p">,</span> <span class="n">business_day_convention</span><span class="o">=</span><span class="n">BusinessDay</span><span class="o">.</span><span class="n">MODIFIED_FOLLOWING</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">adjusted_date</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+2022-08-15
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">asuncion_virgen</span> <span class="o">=</span> <span class="n">date</span><span class="p">(</span><span class="n">year</span><span class="o">=</span><span class="mi">2022</span><span class="p">,</span> <span class="n">month</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">day</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+
+<span class="n">adjusted_date</span> <span class="o">=</span> <span class="n">stg_calendar</span><span class="o">.</span><span class="n">adjust_workday</span><span class="p">(</span><span class="n">workday</span><span class="o">=</span><span class="n">asuncion_virgen</span><span class="p">,</span> <span class="n">business_day_convention</span><span class="o">=</span><span class="n">BusinessDay</span><span class="o">.</span><span class="n">MODIFIED_FOLLOWING</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">adjusted_date</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+2022-08-16
+</pre></div></div>
+</div>
+</section>
+<section id="Funcionalidades-Estáticas">
+<h2>Funcionalidades Estáticas<a class="headerlink" href="#Funcionalidades-Estáticas" title="Enlace permanente a este encabezado">¶</a></h2>
+<section id="a)-Offset-de-fechas">
+<h3>a) Offset de fechas<a class="headerlink" href="#a)-Offset-de-fechas" title="Enlace permanente a este encabezado">¶</a></h3>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">start_date</span> <span class="o">=</span> <span class="n">date</span><span class="p">(</span><span class="n">year</span><span class="o">=</span><span class="mi">2022</span><span class="p">,</span> <span class="n">month</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">day</span><span class="o">=</span><span class="mi">23</span><span class="p">)</span>
+<span class="n">n_periods</span> <span class="o">=</span> <span class="mi">6</span>
+<span class="n">period</span> <span class="o">=</span> <span class="n">Period</span><span class="o">.</span><span class="n">MONTH</span>
+<span class="n">end_date</span> <span class="o">=</span> <span class="n">nyse_calendar</span><span class="o">.</span><span class="n">offset_date</span><span class="p">(</span><span class="n">start_date</span><span class="o">=</span><span class="n">start_date</span><span class="p">,</span> <span class="n">n_periods</span><span class="o">=</span><span class="n">n_periods</span><span class="p">,</span> <span class="n">period</span><span class="o">=</span><span class="n">period</span><span class="p">,</span>
+                                     <span class="n">convention</span><span class="o">=</span><span class="n">BusinessDay</span><span class="o">.</span><span class="n">MODIFIED_FOLLOWING</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Start Date: </span><span class="si">{</span><span class="n">start_date</span><span class="si">}</span><span class="s1"> - End Date </span><span class="si">{</span><span class="n">end_date</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Start Date: 2022-08-23 - End Date 2023-02-23
+</pre></div></div>
+</div>
+</section>
+<section id="b)-Obtener-fracción-de-año">
+<h3>b) Obtener fracción de año<a class="headerlink" href="#b)-Obtener-fracción-de-año" title="Enlace permanente a este encabezado">¶</a></h3>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">yf</span> <span class="o">=</span> <span class="n">TradingCalendar</span><span class="o">.</span><span class="n">get_year_fraction</span><span class="p">(</span><span class="n">start_date</span><span class="o">=</span><span class="n">start_date</span><span class="p">,</span> <span class="n">end_date</span><span class="o">=</span><span class="n">end_date</span><span class="p">,</span> <span class="n">day_count</span><span class="o">=</span><span class="n">DayCount</span><span class="o">.</span><span class="n">DC_ACT_360</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;year fraction: </span><span class="si">{</span><span class="n">yf</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+year fraction: 0.5111111111111111
+</pre></div></div>
+</div>
+</section>
+</section>
+</section>
+
+
+      </div>
+      <div class="bottomnav" role="navigation" aria-label="bottom navigation">
+      
+        <p>
+        «&#160;&#160;<a href="3%20curve%20example.html">Uso y manipulación de curvas</a>
+        &#160;&#160;::&#160;&#160;
+        <a class="uplink" href="../index.html">Contenidos</a>
+        &#160;&#160;::&#160;&#160;
+        <a href="5%20dataset%20example.html">Uso de Dataset</a>&#160;&#160;»
+        </p>
+
+      </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Derechos de autor 2022, Riesgo Financiero.
+      Creado usando <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.0.0.
+    </div>
+  </body>
+</html>

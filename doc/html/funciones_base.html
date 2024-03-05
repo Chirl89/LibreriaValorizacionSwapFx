@@ -1,0 +1,801 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <title>Funciones Base &#8212; documentación de Finlib - beta</title>
+    <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/translations.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Índice" href="genindex.html" />
+    <link rel="search" title="Búsqueda" href="search.html" />
+    <link rel="next" title="Módulo Matemático" href="math.html" />
+    <link rel="prev" title="Modulos" href="modulos.html" /> 
+  </head><body>
+      <div class="header" role="banner"><h1 class="heading"><a href="index.html">
+          <span>documentación de Finlib - beta</span></a></h1>
+        <h2 class="heading"><span>Funciones Base</span></h2>
+      </div>
+      <div class="topnav" role="navigation" aria-label="top navigation">
+      
+        <p>
+        «&#160;&#160;<a href="modulos.html">Modulos</a>
+        &#160;&#160;::&#160;&#160;
+        <a class="uplink" href="index.html">Contenidos</a>
+        &#160;&#160;::&#160;&#160;
+        <a href="math.html">Módulo Matemático</a>&#160;&#160;»
+        </p>
+
+      </div>
+      <div class="content" role="main">
+        
+        
+  <div class="section" id="funciones-base">
+<h1>Funciones Base<a class="headerlink" href="#funciones-base" title="Enlazar permanentemente con este título">¶</a></h1>
+<p>Llamamos función base a toda aquella que se encuentra dentro del namespace de Finlib, estas funciones se encuentran
+«a la mano» debido a que son funciones (y clases) que alimentan a los demás módulos de la librería.</p>
+<p>Dentro de estas funciones, y sin ningún orden en particular, tenemos:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#enums"><span class="std std-ref">Enumeradores</span></a>: Clases estáticos con  listados enfocados en estandarizar los códigos utilizados dentro de la librería.</p></li>
+<li><p><a class="reference internal" href="#excepciones"><span class="std std-ref">Excepciones</span></a>: Clases dedicadas a estandarizar los distintos errores que puede generar la librería.</p></li>
+<li><p><a class="reference internal" href="#configuracion"><span class="std std-ref">Configuración</span></a>: Clases dedicadas a reducir el tiempo de configuración con estándares de mercado o internos.</p></li>
+</ul>
+<div class="section" id="module-enums">
+<span id="enumeradores"></span><span id="enums"></span><h2><strong>Enumeradores</strong><a class="headerlink" href="#module-enums" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Los enumeradores dentro de este código se utilizan para estandarizar la utilización de la librería entre los distintos
+usuarios y asi evitar que distintos programas que utilicen la librería utilicen parametrizaciones distintas.</p>
+<p>Dentro de estos enumeradores tenemos:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#enums.Locality" title="enums.Locality"><code class="xref py py-class docutils literal notranslate"><span class="pre">Locality</span></code></a>: Listado de localizaciones.</p></li>
+<li><p><a class="reference internal" href="#enums.Currency" title="enums.Currency"><code class="xref py py-class docutils literal notranslate"><span class="pre">Currency</span></code></a>: Listado de monedas.</p></li>
+<li><p><a class="reference internal" href="#enums.MaxMin" title="enums.MaxMin"><code class="xref py py-class docutils literal notranslate"><span class="pre">MaxMin</span></code></a>: Estandarización de representación de Máximo y Minimo.</p></li>
+<li><p><a class="reference internal" href="#enums.FinancialPosition" title="enums.FinancialPosition"><code class="xref py py-class docutils literal notranslate"><span class="pre">FinancialPosition</span></code></a>: Estandarización de posición larga o corta.</p></li>
+<li><p><a class="reference internal" href="#enums.Periodicity" title="enums.Periodicity"><code class="xref py py-class docutils literal notranslate"><span class="pre">Periodicity</span></code></a>: Listado de periodicidades.</p></li>
+<li><p><code class="xref py py-class docutils literal notranslate"><span class="pre">BusinessDays</span></code>: Listado de convenciones de días hábiles.</p></li>
+<li><p><a class="reference internal" href="#enums.DayCount" title="enums.DayCount"><code class="xref py py-class docutils literal notranslate"><span class="pre">DayCount</span></code></a>: Listado de convenciones de conteo de días.</p></li>
+<li><p><a class="reference internal" href="#enums.Compounding" title="enums.Compounding"><code class="xref py py-class docutils literal notranslate"><span class="pre">Compounding</span></code></a>: Listado de convenciones de composición de tasas.</p></li>
+<li><p><a class="reference internal" href="#enums.InterpolationMethod" title="enums.InterpolationMethod"><code class="xref py py-class docutils literal notranslate"><span class="pre">InterpolationMethod</span></code></a>: Listado de métodos de interpolación.</p></li>
+<li><p><a class="reference internal" href="#enums.ExtrapolationMethod" title="enums.ExtrapolationMethod"><code class="xref py py-class docutils literal notranslate"><span class="pre">ExtrapolationMethod</span></code></a>: Listado de métodos de extrapolación.</p></li>
+<li><p><a class="reference internal" href="#enums.IndexType" title="enums.IndexType"><code class="xref py py-class docutils literal notranslate"><span class="pre">IndexType</span></code></a>: Listado de tipos de índices financieros.</p></li>
+</ul>
+<dl class="class">
+<dt id="enums.Locality">
+<em class="property">class </em><code class="sig-prename descclassname">enums.</code><code class="sig-name descname">Locality</code><a class="headerlink" href="#enums.Locality" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">enum.Enum</span></code></p>
+<p>Enumerador de localidades.</p>
+<p>Sigue el ISO 3166, cada localización tiene representación abreviada (letras) y un código numérico.</p>
+<dl class="attribute">
+<dt id="enums.Locality.IMF">
+<code class="sig-name descname">IMF</code><em class="property"> = 999</em><a class="headerlink" href="#enums.Locality.IMF" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Fondo Monetario Internacional(NON - ISO CODE)</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="enums.Locality.USA">
+<code class="sig-name descname">USA</code><em class="property"> = 840</em><a class="headerlink" href="#enums.Locality.USA" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Estados Unidos</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="enums.Locality.CAN">
+<code class="sig-name descname">CAN</code><em class="property"> = 124</em><a class="headerlink" href="#enums.Locality.CAN" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Canada</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="enums.Locality.CHL">
+<code class="sig-name descname">CHL</code><em class="property"> = 152</em><a class="headerlink" href="#enums.Locality.CHL" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Chile</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="enums.Locality.PER">
+<code class="sig-name descname">PER</code><em class="property"> = 604</em><a class="headerlink" href="#enums.Locality.PER" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Peru</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="enums.Locality.COL">
+<code class="sig-name descname">COL</code><em class="property"> = 170</em><a class="headerlink" href="#enums.Locality.COL" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Colombia</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="enums.Locality.VEN">
+<code class="sig-name descname">VEN</code><em class="property"> = 862</em><a class="headerlink" href="#enums.Locality.VEN" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Venezuela</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="enums.Locality.ARG">
+<code class="sig-name descname">ARG</code><em class="property"> = 32</em><a class="headerlink" href="#enums.Locality.ARG" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Argentina</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="enums.Locality.BRA">
+<code class="sig-name descname">BRA</code><em class="property"> = 76</em><a class="headerlink" href="#enums.Locality.BRA" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Brasil</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="enums.Locality.MEX">
+<code class="sig-name descname">MEX</code><em class="property"> = 484</em><a class="headerlink" href="#enums.Locality.MEX" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Mexico</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="enums.Locality.EUR">
+<code class="sig-name descname">EUR</code><em class="property"> = 998</em><a class="headerlink" href="#enums.Locality.EUR" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Union Europea</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="enums.Locality.GBR">
+<code class="sig-name descname">GBR</code><em class="property"> = 826</em><a class="headerlink" href="#enums.Locality.GBR" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Reino Unido</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="enums.Locality.CHE">
+<code class="sig-name descname">CHE</code><em class="property"> = 756</em><a class="headerlink" href="#enums.Locality.CHE" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Suiza</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="enums.Locality.SWE">
+<code class="sig-name descname">SWE</code><em class="property"> = 752</em><a class="headerlink" href="#enums.Locality.SWE" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Suecia</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="enums.Locality.DNK">
+<code class="sig-name descname">DNK</code><em class="property"> = 208</em><a class="headerlink" href="#enums.Locality.DNK" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Dinamarca</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="enums.Locality.NOR">
+<code class="sig-name descname">NOR</code><em class="property"> = 578</em><a class="headerlink" href="#enums.Locality.NOR" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Noruega</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="enums.Locality.ZAF">
+<code class="sig-name descname">ZAF</code><em class="property"> = 710</em><a class="headerlink" href="#enums.Locality.ZAF" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Sudafrica</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="enums.Locality.CN">
+<code class="sig-name descname">CN</code><em class="property"> = 156</em><a class="headerlink" href="#enums.Locality.CN" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>China</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="enums.Locality.HKG">
+<code class="sig-name descname">HKG</code><em class="property"> = 344</em><a class="headerlink" href="#enums.Locality.HKG" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Hong Kong</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="enums.Locality.JPN">
+<code class="sig-name descname">JPN</code><em class="property"> = 392</em><a class="headerlink" href="#enums.Locality.JPN" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Japon</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="enums.Locality.KOR">
+<code class="sig-name descname">KOR</code><em class="property"> = 410</em><a class="headerlink" href="#enums.Locality.KOR" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Corea del sur</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="enums.Locality.AUS">
+<code class="sig-name descname">AUS</code><em class="property"> = 36</em><a class="headerlink" href="#enums.Locality.AUS" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Australia</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="enums.Locality.NZL">
+<code class="sig-name descname">NZL</code><em class="property"> = 554</em><a class="headerlink" href="#enums.Locality.NZL" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Nueva Zelanda</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="enums.Currency">
+<em class="property">class </em><code class="sig-prename descclassname">enums.</code><code class="sig-name descname">Currency</code><a class="headerlink" href="#enums.Currency" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">enum.Enum</span></code></p>
+<p>Enumerador de para codigos ISO de moneda</p>
+<dl class="attribute">
+<dt id="enums.Currency.USD">
+<code class="sig-name descname">USD</code><em class="property"> = (&lt;enum.auto object&gt;,)</em><a class="headerlink" href="#enums.Currency.USD" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Dolar estadounidense</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="enums.Currency.CAD">
+<code class="sig-name descname">CAD</code><em class="property"> = (&lt;enum.auto object&gt;,)</em><a class="headerlink" href="#enums.Currency.CAD" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Dolar Canadiense</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="enums.Currency.CLP">
+<code class="sig-name descname">CLP</code><em class="property"> = (&lt;enum.auto object&gt;,)</em><a class="headerlink" href="#enums.Currency.CLP" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Peso Chileno</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="enums.Currency.CLF">
+<code class="sig-name descname">CLF</code><em class="property"> = (&lt;enum.auto object&gt;,)</em><a class="headerlink" href="#enums.Currency.CLF" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Unidad de Fomento</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="enums.Currency.PEN">
+<code class="sig-name descname">PEN</code><em class="property"> = (&lt;enum.auto object&gt;,)</em><a class="headerlink" href="#enums.Currency.PEN" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Sol Peruano</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="enums.Currency.COP">
+<code class="sig-name descname">COP</code><em class="property"> = (&lt;enum.auto object&gt;,)</em><a class="headerlink" href="#enums.Currency.COP" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Peso Colombiano</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="enums.Currency.BRL">
+<code class="sig-name descname">BRL</code><em class="property"> = (&lt;enum.auto object&gt;,)</em><a class="headerlink" href="#enums.Currency.BRL" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Real Brasilero</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="enums.Currency.MXN">
+<code class="sig-name descname">MXN</code><em class="property"> = (&lt;enum.auto object&gt;,)</em><a class="headerlink" href="#enums.Currency.MXN" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Peso Mexicano</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="enums.Currency.EUR">
+<code class="sig-name descname">EUR</code><em class="property"> = (&lt;enum.auto object&gt;,)</em><a class="headerlink" href="#enums.Currency.EUR" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Euro</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="enums.Currency.GBP">
+<code class="sig-name descname">GBP</code><em class="property"> = (&lt;enum.auto object&gt;,)</em><a class="headerlink" href="#enums.Currency.GBP" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Libra Britanica</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="enums.Currency.CHF">
+<code class="sig-name descname">CHF</code><em class="property"> = (&lt;enum.auto object&gt;,)</em><a class="headerlink" href="#enums.Currency.CHF" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Franco Suizo</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="enums.Currency.SEK">
+<code class="sig-name descname">SEK</code><em class="property"> = (&lt;enum.auto object&gt;,)</em><a class="headerlink" href="#enums.Currency.SEK" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Corona Sueca</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="enums.Currency.DKK">
+<code class="sig-name descname">DKK</code><em class="property"> = (&lt;enum.auto object&gt;,)</em><a class="headerlink" href="#enums.Currency.DKK" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Corona Danesa</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="enums.Currency.NOK">
+<code class="sig-name descname">NOK</code><em class="property"> = (&lt;enum.auto object&gt;,)</em><a class="headerlink" href="#enums.Currency.NOK" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Corana Noruega</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="enums.Currency.JPY">
+<code class="sig-name descname">JPY</code><em class="property"> = (&lt;enum.auto object&gt;,)</em><a class="headerlink" href="#enums.Currency.JPY" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Yen japones</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="enums.Currency.CNY">
+<code class="sig-name descname">CNY</code><em class="property"> = (&lt;enum.auto object&gt;,)</em><a class="headerlink" href="#enums.Currency.CNY" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Yuan Renminbi Chino</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="enums.Currency.CNH">
+<code class="sig-name descname">CNH</code><em class="property"> = (&lt;enum.auto object&gt;,)</em><a class="headerlink" href="#enums.Currency.CNH" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Yuan Renminbi Chino</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="enums.Currency.KRW">
+<code class="sig-name descname">KRW</code><em class="property"> = (&lt;enum.auto object&gt;,)</em><a class="headerlink" href="#enums.Currency.KRW" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Won Surcoreano</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="enums.Currency.HKD">
+<code class="sig-name descname">HKD</code><em class="property"> = (&lt;enum.auto object&gt;,)</em><a class="headerlink" href="#enums.Currency.HKD" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Dolar Hong Kong</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="enums.Currency.AUD">
+<code class="sig-name descname">AUD</code><em class="property"> = (&lt;enum.auto object&gt;,)</em><a class="headerlink" href="#enums.Currency.AUD" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>DolarAustraliano</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="enums.Currency.NZD">
+<code class="sig-name descname">NZD</code><em class="property"> = (&lt;enum.auto object&gt;,)</em><a class="headerlink" href="#enums.Currency.NZD" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Dolar Neozelandes</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="enums.Currency.ZAR">
+<code class="sig-name descname">ZAR</code><em class="property"> = (&lt;enum.auto object&gt;,)</em><a class="headerlink" href="#enums.Currency.ZAR" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Rand Sudafricano</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="enums.MaxMin">
+<em class="property">class </em><code class="sig-prename descclassname">enums.</code><code class="sig-name descname">MaxMin</code><a class="headerlink" href="#enums.MaxMin" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">enum.Enum</span></code></p>
+<p>Enumerador para determinación de Maximo y Minimo</p>
+<dl class="attribute">
+<dt id="enums.MaxMin.MAX">
+<code class="sig-name descname">MAX</code><em class="property"> = (1,)</em><a class="headerlink" href="#enums.MaxMin.MAX" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Maximo</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="enums.MaxMin.MIN">
+<code class="sig-name descname">MIN</code><em class="property"> = -1</em><a class="headerlink" href="#enums.MaxMin.MIN" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Minimo</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="enums.FinancialPosition">
+<em class="property">class </em><code class="sig-prename descclassname">enums.</code><code class="sig-name descname">FinancialPosition</code><a class="headerlink" href="#enums.FinancialPosition" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">enum.Enum</span></code></p>
+<p>Enumerador de posición financiera</p>
+<dl class="attribute">
+<dt id="enums.FinancialPosition.LONG">
+<code class="sig-name descname">LONG</code><em class="property"> = 1</em><a class="headerlink" href="#enums.FinancialPosition.LONG" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Largo</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="enums.FinancialPosition.SHORT">
+<code class="sig-name descname">SHORT</code><em class="property"> = -1</em><a class="headerlink" href="#enums.FinancialPosition.SHORT" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Corto</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="enums.Quotation">
+<em class="property">class </em><code class="sig-prename descclassname">enums.</code><code class="sig-name descname">Quotation</code><a class="headerlink" href="#enums.Quotation" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">enum.Enum</span></code></p>
+<p>Enumerador de la punta de negociación</p>
+<dl class="attribute">
+<dt id="enums.Quotation.BID">
+<code class="sig-name descname">BID</code><em class="property"> = -1</em><a class="headerlink" href="#enums.Quotation.BID" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Bid</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="enums.Quotation.MID">
+<code class="sig-name descname">MID</code><em class="property"> = 0</em><a class="headerlink" href="#enums.Quotation.MID" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Mid</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="enums.Quotation.ASK">
+<code class="sig-name descname">ASK</code><em class="property"> = 1</em><a class="headerlink" href="#enums.Quotation.ASK" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Ask</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="enums.Periodicity">
+<em class="property">class </em><code class="sig-prename descclassname">enums.</code><code class="sig-name descname">Periodicity</code><a class="headerlink" href="#enums.Periodicity" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">enum.Enum</span></code></p>
+<p>Enumerador para determinación de periodicidad</p>
+<dl class="attribute">
+<dt id="enums.Periodicity.UNIQUE">
+<code class="sig-name descname">UNIQUE</code><em class="property"> = 0</em><a class="headerlink" href="#enums.Periodicity.UNIQUE" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Pago unico</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="enums.Periodicity.ANNUAL">
+<code class="sig-name descname">ANNUAL</code><em class="property"> = 1</em><a class="headerlink" href="#enums.Periodicity.ANNUAL" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Anual</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="enums.Periodicity.BIANNUAL">
+<code class="sig-name descname">BIANNUAL</code><em class="property"> = 2</em><a class="headerlink" href="#enums.Periodicity.BIANNUAL" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Semestral</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="enums.Periodicity.QUATERLY">
+<code class="sig-name descname">QUATERLY</code><em class="property"> = 4</em><a class="headerlink" href="#enums.Periodicity.QUATERLY" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Trimestral</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="enums.Periodicity.MONTHLY">
+<code class="sig-name descname">MONTHLY</code><em class="property"> = 12</em><a class="headerlink" href="#enums.Periodicity.MONTHLY" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Mensual</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="enums.Periodicity.WEEKLY">
+<code class="sig-name descname">WEEKLY</code><em class="property"> = 52</em><a class="headerlink" href="#enums.Periodicity.WEEKLY" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Semanal</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="enums.Periodicity.TN">
+<code class="sig-name descname">TN</code><em class="property"> = 182</em><a class="headerlink" href="#enums.Periodicity.TN" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Cada dos días</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="enums.Periodicity.OVERNIGHT">
+<code class="sig-name descname">OVERNIGHT</code><em class="property"> = 365</em><a class="headerlink" href="#enums.Periodicity.OVERNIGHT" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Pago diario</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="enums.Periodicity.ON">
+<code class="sig-name descname">ON</code><em class="property"> = 365</em><a class="headerlink" href="#enums.Periodicity.ON" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Pago diario</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="enums.Periodicity.TAILOR_MADE">
+<code class="sig-name descname">TAILOR_MADE</code><em class="property"> = 999</em><a class="headerlink" href="#enums.Periodicity.TAILOR_MADE" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Pagos hechos a la medida</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="enums.BusinessDay">
+<em class="property">class </em><code class="sig-prename descclassname">enums.</code><code class="sig-name descname">BusinessDay</code><a class="headerlink" href="#enums.BusinessDay" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">enum.Enum</span></code></p>
+<p>Enumerador de convenciónes de redondeo de días</p>
+<dl class="attribute">
+<dt id="enums.BusinessDay.FOLLOWING">
+<code class="sig-name descname">FOLLOWING</code><em class="property"> = 1</em><a class="headerlink" href="#enums.BusinessDay.FOLLOWING" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Convención Following</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="enums.BusinessDay.MODIFIED_FOLLOWING">
+<code class="sig-name descname">MODIFIED_FOLLOWING</code><em class="property"> = 2</em><a class="headerlink" href="#enums.BusinessDay.MODIFIED_FOLLOWING" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Convención Modified Following</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="enums.BusinessDay.PRECEDING">
+<code class="sig-name descname">PRECEDING</code><em class="property"> = 3</em><a class="headerlink" href="#enums.BusinessDay.PRECEDING" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Convención Preceding</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="enums.BusinessDay.MODIFIED_PRECEDING">
+<code class="sig-name descname">MODIFIED_PRECEDING</code><em class="property"> = 4</em><a class="headerlink" href="#enums.BusinessDay.MODIFIED_PRECEDING" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Convención Modified Preceding</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="enums.BusinessDay.UNADJUSTED">
+<code class="sig-name descname">UNADJUSTED</code><em class="property"> = 5</em><a class="headerlink" href="#enums.BusinessDay.UNADJUSTED" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Sin ajuste por fecha</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="enums.BusinessDay.END_OF_MONTH">
+<code class="sig-name descname">END_OF_MONTH</code><em class="property"> = 6</em><a class="headerlink" href="#enums.BusinessDay.END_OF_MONTH" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Fin de mes</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="enums.BusinessDay.NEAREST">
+<code class="sig-name descname">NEAREST</code><em class="property"> = 7</em><a class="headerlink" href="#enums.BusinessDay.NEAREST" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Día mas cercano</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="enums.BusinessDay.PUBLISH_UF">
+<code class="sig-name descname">PUBLISH_UF</code><em class="property"> = 8</em><a class="headerlink" href="#enums.BusinessDay.PUBLISH_UF" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Convención UF</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="enums.DayCount">
+<em class="property">class </em><code class="sig-prename descclassname">enums.</code><code class="sig-name descname">DayCount</code><a class="headerlink" href="#enums.DayCount" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">enum.Enum</span></code></p>
+<p>Enumerador de convenciones de conteo de días</p>
+<dl class="attribute">
+<dt id="enums.DayCount.DC_30_360">
+<code class="sig-name descname">DC_30_360</code><em class="property"> = 1</em><a class="headerlink" href="#enums.DayCount.DC_30_360" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Convención 30/360</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="enums.DayCount.DC_30E_360">
+<code class="sig-name descname">DC_30E_360</code><em class="property"> = 2</em><a class="headerlink" href="#enums.DayCount.DC_30E_360" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Convención 30/360 Europeo</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="enums.DayCount.DC_30_365">
+<code class="sig-name descname">DC_30_365</code><em class="property"> = 3</em><a class="headerlink" href="#enums.DayCount.DC_30_365" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Convención 30/365</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="enums.DayCount.DC_30E_365">
+<code class="sig-name descname">DC_30E_365</code><em class="property"> = 4</em><a class="headerlink" href="#enums.DayCount.DC_30E_365" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Convención 30/365 Europep</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="enums.DayCount.DC_30E_360_ISDA">
+<code class="sig-name descname">DC_30E_360_ISDA</code><em class="property"> = 5</em><a class="headerlink" href="#enums.DayCount.DC_30E_360_ISDA" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Convención 30/360 ISDA</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="enums.DayCount.DC_ACT_360">
+<code class="sig-name descname">DC_ACT_360</code><em class="property"> = 6</em><a class="headerlink" href="#enums.DayCount.DC_ACT_360" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Convención Act/360</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="enums.DayCount.DC_ACT_ACT">
+<code class="sig-name descname">DC_ACT_ACT</code><em class="property"> = 7</em><a class="headerlink" href="#enums.DayCount.DC_ACT_ACT" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Convención Act/Act</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="enums.DayCount.DC_BUSINESS_252">
+<code class="sig-name descname">DC_BUSINESS_252</code><em class="property"> = 8</em><a class="headerlink" href="#enums.DayCount.DC_BUSINESS_252" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Dìas Laborales</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="enums.Compounding">
+<em class="property">class </em><code class="sig-prename descclassname">enums.</code><code class="sig-name descname">Compounding</code><a class="headerlink" href="#enums.Compounding" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">enum.Enum</span></code></p>
+<p>Enumerador para composición de tasas</p>
+<dl class="attribute">
+<dt id="enums.Compounding.LINEAR">
+<code class="sig-name descname">LINEAR</code><em class="property"> = 1</em><a class="headerlink" href="#enums.Compounding.LINEAR" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Lineal</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="enums.Compounding.YIELD">
+<code class="sig-name descname">YIELD</code><em class="property"> = 2</em><a class="headerlink" href="#enums.Compounding.YIELD" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Compuesta</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="enums.Compounding.EXPONENTIAL">
+<code class="sig-name descname">EXPONENTIAL</code><em class="property"> = 3</em><a class="headerlink" href="#enums.Compounding.EXPONENTIAL" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Exponencial</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="enums.InterpolationMethod">
+<em class="property">class </em><code class="sig-prename descclassname">enums.</code><code class="sig-name descname">InterpolationMethod</code><a class="headerlink" href="#enums.InterpolationMethod" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">enum.Enum</span></code></p>
+<p>Enumerador para metodos de interpolación</p>
+<dl class="attribute">
+<dt id="enums.InterpolationMethod.LINEAR">
+<code class="sig-name descname">LINEAR</code><em class="property"> = 1</em><a class="headerlink" href="#enums.InterpolationMethod.LINEAR" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Lineal</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="enums.InterpolationMethod.LOG_LINEAR">
+<code class="sig-name descname">LOG_LINEAR</code><em class="property"> = 2</em><a class="headerlink" href="#enums.InterpolationMethod.LOG_LINEAR" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Log Lineal</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="enums.ExtrapolationMethod">
+<em class="property">class </em><code class="sig-prename descclassname">enums.</code><code class="sig-name descname">ExtrapolationMethod</code><a class="headerlink" href="#enums.ExtrapolationMethod" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">enum.Enum</span></code></p>
+<p>Enumerador para metodos de extrapolacion</p>
+<dl class="attribute">
+<dt id="enums.ExtrapolationMethod.SLOPE">
+<code class="sig-name descname">SLOPE</code><em class="property"> = 1</em><a class="headerlink" href="#enums.ExtrapolationMethod.SLOPE" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Mantiene la pendiente</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="enums.ExtrapolationMethod.LOG_SLOPE">
+<code class="sig-name descname">LOG_SLOPE</code><em class="property"> = 2</em><a class="headerlink" href="#enums.ExtrapolationMethod.LOG_SLOPE" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Mantiene la pendiente del logaritmo</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="enums.ExtrapolationMethod.RATE_SLOPE">
+<code class="sig-name descname">RATE_SLOPE</code><em class="property"> = 3</em><a class="headerlink" href="#enums.ExtrapolationMethod.RATE_SLOPE" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Mantiene la pendiente convirtiendo a una tasa convención Yield ACT/360</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="enums.ExtrapolationMethod.FLAT">
+<code class="sig-name descname">FLAT</code><em class="property"> = 4</em><a class="headerlink" href="#enums.ExtrapolationMethod.FLAT" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Mantiene el valor mas cercano</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="enums.ExtrapolationMethod.FLAT_RATE">
+<code class="sig-name descname">FLAT_RATE</code><em class="property"> = 5</em><a class="headerlink" href="#enums.ExtrapolationMethod.FLAT_RATE" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Mantiene el valor mas cercano tratándolo como tasa</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="enums.IndexType">
+<em class="property">class </em><code class="sig-prename descclassname">enums.</code><code class="sig-name descname">IndexType</code><a class="headerlink" href="#enums.IndexType" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">enum.Enum</span></code></p>
+<p>An enumeration.</p>
+<dl class="attribute">
+<dt id="enums.IndexType.MPR">
+<code class="sig-name descname">MPR</code><em class="property"> = 1</em><a class="headerlink" href="#enums.IndexType.MPR" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Monetary Policy Rate</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="enums.IndexType.ON">
+<code class="sig-name descname">ON</code><em class="property"> = 2</em><a class="headerlink" href="#enums.IndexType.ON" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Tasa Overnight</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="enums.IndexType.IBOR">
+<code class="sig-name descname">IBOR</code><em class="property"> = 3</em><a class="headerlink" href="#enums.IndexType.IBOR" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Interbancarias</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="enums.IndexType.CPI">
+<code class="sig-name descname">CPI</code><em class="property"> = 4</em><a class="headerlink" href="#enums.IndexType.CPI" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Indices de inflación</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="excepciones">
+<span id="id1"></span><h2><strong>Excepciones</strong><a class="headerlink" href="#excepciones" title="Enlazar permanentemente con este título">¶</a></h2>
+<span class="target" id="module-exceptions"></span><dl class="exception">
+<dt id="exceptions.CurrencyException">
+<em class="property">exception </em><code class="sig-name descname">CurrencyException</code><span class="sig-paren">(</span><em class="sig-param">message</em><span class="sig-paren">)</span><a class="headerlink" href="#exceptions.CurrencyException" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
+<p>Excepción dedicada a los errores en asignación de monedas.</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="exceptions.CurveException">
+<em class="property">exception </em><code class="sig-name descname">CurveException</code><span class="sig-paren">(</span><em class="sig-param">curve_name</em>, <em class="sig-param">message</em><span class="sig-paren">)</span><a class="headerlink" href="#exceptions.CurveException" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
+<p>Excepción dedicada a los errores en la construcción o utilización de curvas.</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="exceptions.DatasetException">
+<em class="property">exception </em><code class="sig-name descname">DatasetException</code><span class="sig-paren">(</span><em class="sig-param">message</em><span class="sig-paren">)</span><a class="headerlink" href="#exceptions.DatasetException" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
+<p>Excepción dedicada a los errores en Datasets</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="exceptions.FileReadException">
+<em class="property">exception </em><code class="sig-name descname">FileReadException</code><span class="sig-paren">(</span><em class="sig-param">file_path</em>, <em class="sig-param">file_alias</em>, <em class="sig-param">message</em><span class="sig-paren">)</span><a class="headerlink" href="#exceptions.FileReadException" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
+<p>Excepción dedicada a los errores en la lectura de archivos</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="exceptions.FxRateException">
+<em class="property">exception </em><code class="sig-name descname">FxRateException</code><span class="sig-paren">(</span><em class="sig-param">fx_rate</em>, <em class="sig-param">message</em><span class="sig-paren">)</span><a class="headerlink" href="#exceptions.FxRateException" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
+<p>Excepción dedicada a los errores en la construcción o utilización de tipo de cambio.</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="exceptions.QueryException">
+<em class="property">exception </em><code class="sig-name descname">QueryException</code><span class="sig-paren">(</span><em class="sig-param">query</em>, <em class="sig-param">message</em><span class="sig-paren">)</span><a class="headerlink" href="#exceptions.QueryException" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
+<p>Excepción dedicada a los errores de querys en la base de datos</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-config">
+<span id="id2"></span><span id="configuracion"></span><h2><strong>Configuración</strong><a class="headerlink" href="#module-config" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Este módulo contiene estandarizaciones de configuración para distintas clases.</p>
+<dl class="class">
+<dt id="config.ConfigGenerator">
+<em class="property">class </em><code class="sig-prename descclassname">config.</code><code class="sig-name descname">ConfigGenerator</code><a class="headerlink" href="#config.ConfigGenerator" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Clase estática dedicada a la generación de diccionarios de configuraciones de otras funciones.</p>
+<dl class="method">
+<dt id="config.ConfigGenerator.generate_curve_config">
+<em class="property">static </em><code class="sig-name descname">generate_curve_config</code><span class="sig-paren">(</span><em class="sig-param">interpolation_method=LOG_LINEAR</em>, <em class="sig-param">low_point_extrapolation_method=FLAT_RATE</em>, <em class="sig-param">high_point_extrapolation_method=RATE_SLOPE</em><span class="sig-paren">)</span><a class="headerlink" href="#config.ConfigGenerator.generate_curve_config" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Genera un diccionario con el formato adecuado para configurar la clase <a class="reference internal" href="market.html#market.curve.Curve" title="market.curve.Curve"><code class="xref py py-class docutils literal notranslate"><span class="pre">Curve</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>interpolation_method</strong> (<em>InterpolationMethod.</em>) – Método de interpolación. (default Log-Linear)</p></li>
+<li><p><strong>low_point_extrapolation_method</strong> (<em>ExtrapolationMethod.</em>) – Método de extrapolación en punto bajo. (default Flat Rate)</p></li>
+<li><p><strong>high_point_extrapolation_method</strong> (<em>ExtrapolationMethod.</em>) – Método de extrapolación en punto alto. (default Rate Slope)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Devuelve</dt>
+<dd class="field-even"><p>Diccionario con configuración de curva</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+      </div>
+      <div class="bottomnav" role="navigation" aria-label="bottom navigation">
+      
+        <p>
+        «&#160;&#160;<a href="modulos.html">Modulos</a>
+        &#160;&#160;::&#160;&#160;
+        <a class="uplink" href="index.html">Contenidos</a>
+        &#160;&#160;::&#160;&#160;
+        <a href="math.html">Módulo Matemático</a>&#160;&#160;»
+        </p>
+
+      </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Derechos de autor 2022, Riesgo Financiero.
+      Creado con <a href="http://sphinx-doc.org/">Sphinx</a> 2.4.0.
+    </div>
+  </body>
+</html>

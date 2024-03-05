@@ -1,0 +1,971 @@
+
+<!DOCTYPE html>
+
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Módulos Base &#8212; documentación de Finlib - beta</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/haiku.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/translations.js"></script>
+    <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({startOnLoad:true});</script>
+    <link rel="index" title="Índice" href="genindex.html" />
+    <link rel="search" title="Búsqueda" href="search.html" />
+    <link rel="next" title="Paquete de Datos" href="data.html" />
+    <link rel="prev" title="Paquetes" href="paquetes.html" /> 
+  </head><body>
+      <div class="header" role="banner"><h1 class="heading"><a href="index.html">
+          <span>documentación de Finlib - beta</span></a></h1>
+        <h2 class="heading"><span>Módulos Base</span></h2>
+      </div>
+      <div class="topnav" role="navigation" aria-label="top navigation">
+      
+        <p>
+        «&#160;&#160;<a href="paquetes.html">Paquetes</a>
+        &#160;&#160;::&#160;&#160;
+        <a class="uplink" href="index.html">Contenidos</a>
+        &#160;&#160;::&#160;&#160;
+        <a href="data.html">Paquete de Datos</a>&#160;&#160;»
+        </p>
+
+      </div>
+      <div class="content" role="main">
+        
+        
+  <section id="modulos-base">
+<h1>Módulos Base<a class="headerlink" href="#modulos-base" title="Enlace permanente a este encabezado">¶</a></h1>
+<p>Se considera como módulo base a todo aquel que se encuentra dentro del namespace de Finlib, es decir que se encuentran
+«a la mano» debido a que son funciones (y clases) que alimentan a los demás módulos de la librería.</p>
+<p>Dentro de estos módulos, y sin ningún orden en particular, tenemos:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#enums"><span class="std std-ref">Enumeradores</span></a>: Colección de clases de enumeración con listados que estandarizan los conceptos y códigos utilizados
+dentro de la librería.</p></li>
+<li><p><a class="reference internal" href="#excepciones"><span class="std std-ref">Excepciones</span></a>: Colección de excepciones hechas a la medida para manejar los distintos errores que puede generar
+la librería.</p></li>
+</ul>
+<section id="module-enums">
+<span id="enumeradores"></span><span id="enums"></span><h2><strong>Enumeradores</strong><a class="headerlink" href="#module-enums" title="Enlace permanente a este encabezado">¶</a></h2>
+<p>Los enumeradores dentro de este módulo se utilizan para estandarizar la utilización de la librería entre los distintos
+usuarios y asi evitar que distintos programas que utilicen la librería utilicen parametrizaciones distintas.</p>
+<p>Dentro de estos enumeradores tenemos:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#enums.Locality" title="enums.Locality"><code class="xref py py-class docutils literal notranslate"><span class="pre">Locality</span></code></a>: Listado de localizaciones.</p></li>
+<li><p><a class="reference internal" href="#enums.Currency" title="enums.Currency"><code class="xref py py-class docutils literal notranslate"><span class="pre">Currency</span></code></a>: Listado de monedas.</p></li>
+<li><p><a class="reference internal" href="#enums.MaxMin" title="enums.MaxMin"><code class="xref py py-class docutils literal notranslate"><span class="pre">MaxMin</span></code></a>: Estandarización de representación de Máximo y Minimo.</p></li>
+<li><p><a class="reference internal" href="#enums.FinancialPosition" title="enums.FinancialPosition"><code class="xref py py-class docutils literal notranslate"><span class="pre">FinancialPosition</span></code></a>: Estandarización de posición larga o corta.</p></li>
+<li><p><a class="reference internal" href="#enums.Periodicity" title="enums.Periodicity"><code class="xref py py-class docutils literal notranslate"><span class="pre">Periodicity</span></code></a>: Listado de periodicidades.</p></li>
+<li><p><a class="reference internal" href="#enums.BusinessDay" title="enums.BusinessDay"><code class="xref py py-class docutils literal notranslate"><span class="pre">BusinessDay</span></code></a>: Listado de convenciones de días hábiles.</p></li>
+<li><p><a class="reference internal" href="#enums.DayCount" title="enums.DayCount"><code class="xref py py-class docutils literal notranslate"><span class="pre">DayCount</span></code></a>: Listado de convenciones de conteo de días.</p></li>
+<li><p><a class="reference internal" href="#enums.Compounding" title="enums.Compounding"><code class="xref py py-class docutils literal notranslate"><span class="pre">Compounding</span></code></a>: Listado de convenciones de composición de tasas.</p></li>
+<li><p><a class="reference internal" href="#enums.InterpolationMethod" title="enums.InterpolationMethod"><code class="xref py py-class docutils literal notranslate"><span class="pre">InterpolationMethod</span></code></a>: Listado de métodos de interpolación.</p></li>
+<li><p><a class="reference internal" href="#enums.ExtrapolationMethod" title="enums.ExtrapolationMethod"><code class="xref py py-class docutils literal notranslate"><span class="pre">ExtrapolationMethod</span></code></a>: Listado de métodos de extrapolación.</p></li>
+<li><p><a class="reference internal" href="#enums.IndexType" title="enums.IndexType"><code class="xref py py-class docutils literal notranslate"><span class="pre">IndexType</span></code></a>: Listado de tipos de índices financieros.</p></li>
+<li><p><a class="reference internal" href="#enums.OptionType" title="enums.OptionType"><code class="xref py py-class docutils literal notranslate"><span class="pre">OptionType</span></code></a>: Listado de tipo de opciones.</p></li>
+</ul>
+<dl class="py class">
+<dt class="sig sig-object py" id="enums.Locality">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">enums.</span></span><span class="sig-name descname"><span class="pre">Locality</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#enums.Locality" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Enum</span></code></p>
+<p>Enumerador de localidades.</p>
+<p>Sigue el ISO 3166, cada localización tiene representación abreviada (letras) y un código numérico.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="enums.Locality.NDL">
+<span class="sig-name descname"><span class="pre">NDL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#enums.Locality.NDL" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Non Determined Location</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="enums.Locality.IMF">
+<span class="sig-name descname"><span class="pre">IMF</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">999</span></em><a class="headerlink" href="#enums.Locality.IMF" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Fondo Monetario Internacional(NON - ISO CODE)</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="enums.Locality.USA">
+<span class="sig-name descname"><span class="pre">USA</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">840</span></em><a class="headerlink" href="#enums.Locality.USA" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Estados Unidos</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="enums.Locality.CAN">
+<span class="sig-name descname"><span class="pre">CAN</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">124</span></em><a class="headerlink" href="#enums.Locality.CAN" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Canada</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="enums.Locality.CHL">
+<span class="sig-name descname"><span class="pre">CHL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">152</span></em><a class="headerlink" href="#enums.Locality.CHL" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Chile</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="enums.Locality.PER">
+<span class="sig-name descname"><span class="pre">PER</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">604</span></em><a class="headerlink" href="#enums.Locality.PER" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Peru</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="enums.Locality.COL">
+<span class="sig-name descname"><span class="pre">COL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">170</span></em><a class="headerlink" href="#enums.Locality.COL" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Colombia</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="enums.Locality.VEN">
+<span class="sig-name descname"><span class="pre">VEN</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">862</span></em><a class="headerlink" href="#enums.Locality.VEN" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Venezuela</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="enums.Locality.ARG">
+<span class="sig-name descname"><span class="pre">ARG</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">32</span></em><a class="headerlink" href="#enums.Locality.ARG" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Argentina</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="enums.Locality.BRA">
+<span class="sig-name descname"><span class="pre">BRA</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">76</span></em><a class="headerlink" href="#enums.Locality.BRA" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Brasil</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="enums.Locality.MEX">
+<span class="sig-name descname"><span class="pre">MEX</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">484</span></em><a class="headerlink" href="#enums.Locality.MEX" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Mexico</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="enums.Locality.EUR">
+<span class="sig-name descname"><span class="pre">EUR</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">998</span></em><a class="headerlink" href="#enums.Locality.EUR" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Union Europea</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="enums.Locality.GBR">
+<span class="sig-name descname"><span class="pre">GBR</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">826</span></em><a class="headerlink" href="#enums.Locality.GBR" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Reino Unido</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="enums.Locality.CHE">
+<span class="sig-name descname"><span class="pre">CHE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">756</span></em><a class="headerlink" href="#enums.Locality.CHE" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Suiza</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="enums.Locality.SWE">
+<span class="sig-name descname"><span class="pre">SWE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">752</span></em><a class="headerlink" href="#enums.Locality.SWE" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Suecia</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="enums.Locality.DNK">
+<span class="sig-name descname"><span class="pre">DNK</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">208</span></em><a class="headerlink" href="#enums.Locality.DNK" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Dinamarca</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="enums.Locality.NOR">
+<span class="sig-name descname"><span class="pre">NOR</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">578</span></em><a class="headerlink" href="#enums.Locality.NOR" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Noruega</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="enums.Locality.ZAF">
+<span class="sig-name descname"><span class="pre">ZAF</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">710</span></em><a class="headerlink" href="#enums.Locality.ZAF" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Sudáfrica</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="enums.Locality.CN">
+<span class="sig-name descname"><span class="pre">CN</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">156</span></em><a class="headerlink" href="#enums.Locality.CN" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>China</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="enums.Locality.HKG">
+<span class="sig-name descname"><span class="pre">HKG</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">344</span></em><a class="headerlink" href="#enums.Locality.HKG" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Hong Kong</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="enums.Locality.JPN">
+<span class="sig-name descname"><span class="pre">JPN</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">392</span></em><a class="headerlink" href="#enums.Locality.JPN" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Japón</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="enums.Locality.KOR">
+<span class="sig-name descname"><span class="pre">KOR</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">410</span></em><a class="headerlink" href="#enums.Locality.KOR" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Corea del sur</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="enums.Locality.AUS">
+<span class="sig-name descname"><span class="pre">AUS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">36</span></em><a class="headerlink" href="#enums.Locality.AUS" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Australia</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="enums.Locality.NZL">
+<span class="sig-name descname"><span class="pre">NZL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">554</span></em><a class="headerlink" href="#enums.Locality.NZL" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Nueva Zelanda</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="enums.Currency">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">enums.</span></span><span class="sig-name descname"><span class="pre">Currency</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#enums.Currency" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Enum</span></code></p>
+<p>Enumerador de para códigos ISO de moneda</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="enums.Currency.NDC">
+<span class="sig-name descname"><span class="pre">NDC</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></em><a class="headerlink" href="#enums.Currency.NDC" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Non Determined Currency</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="enums.Currency.USD">
+<span class="sig-name descname"><span class="pre">USD</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">(&lt;enum.auto</span> <span class="pre">object&gt;,)</span></em><a class="headerlink" href="#enums.Currency.USD" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Dólar Estadounidense</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="enums.Currency.CAD">
+<span class="sig-name descname"><span class="pre">CAD</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">(&lt;enum.auto</span> <span class="pre">object&gt;,)</span></em><a class="headerlink" href="#enums.Currency.CAD" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Dólar Canadiense</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="enums.Currency.CLP">
+<span class="sig-name descname"><span class="pre">CLP</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">(&lt;enum.auto</span> <span class="pre">object&gt;,)</span></em><a class="headerlink" href="#enums.Currency.CLP" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Peso Chileno</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="enums.Currency.CLF">
+<span class="sig-name descname"><span class="pre">CLF</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">(&lt;enum.auto</span> <span class="pre">object&gt;,)</span></em><a class="headerlink" href="#enums.Currency.CLF" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Unidad de Fomento</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="enums.Currency.PEN">
+<span class="sig-name descname"><span class="pre">PEN</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">(&lt;enum.auto</span> <span class="pre">object&gt;,)</span></em><a class="headerlink" href="#enums.Currency.PEN" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Sol Peruano</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="enums.Currency.COP">
+<span class="sig-name descname"><span class="pre">COP</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">(&lt;enum.auto</span> <span class="pre">object&gt;,)</span></em><a class="headerlink" href="#enums.Currency.COP" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Peso Colombiano</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="enums.Currency.BRL">
+<span class="sig-name descname"><span class="pre">BRL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">(&lt;enum.auto</span> <span class="pre">object&gt;,)</span></em><a class="headerlink" href="#enums.Currency.BRL" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Real Brasilero</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="enums.Currency.MXN">
+<span class="sig-name descname"><span class="pre">MXN</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">(&lt;enum.auto</span> <span class="pre">object&gt;,)</span></em><a class="headerlink" href="#enums.Currency.MXN" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Peso Mexicano</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="enums.Currency.EUR">
+<span class="sig-name descname"><span class="pre">EUR</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">(&lt;enum.auto</span> <span class="pre">object&gt;,)</span></em><a class="headerlink" href="#enums.Currency.EUR" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Euro</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="enums.Currency.GBP">
+<span class="sig-name descname"><span class="pre">GBP</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">(&lt;enum.auto</span> <span class="pre">object&gt;,)</span></em><a class="headerlink" href="#enums.Currency.GBP" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Libra Británica</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="enums.Currency.CHF">
+<span class="sig-name descname"><span class="pre">CHF</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">(&lt;enum.auto</span> <span class="pre">object&gt;,)</span></em><a class="headerlink" href="#enums.Currency.CHF" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Franco Suizo</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="enums.Currency.SEK">
+<span class="sig-name descname"><span class="pre">SEK</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">(&lt;enum.auto</span> <span class="pre">object&gt;,)</span></em><a class="headerlink" href="#enums.Currency.SEK" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Corona Sueca</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="enums.Currency.DKK">
+<span class="sig-name descname"><span class="pre">DKK</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">(&lt;enum.auto</span> <span class="pre">object&gt;,)</span></em><a class="headerlink" href="#enums.Currency.DKK" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Corona Danesa</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="enums.Currency.NOK">
+<span class="sig-name descname"><span class="pre">NOK</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">(&lt;enum.auto</span> <span class="pre">object&gt;,)</span></em><a class="headerlink" href="#enums.Currency.NOK" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Corana Noruega</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="enums.Currency.JPY">
+<span class="sig-name descname"><span class="pre">JPY</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">(&lt;enum.auto</span> <span class="pre">object&gt;,)</span></em><a class="headerlink" href="#enums.Currency.JPY" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Yen japones</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="enums.Currency.CNY">
+<span class="sig-name descname"><span class="pre">CNY</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">(&lt;enum.auto</span> <span class="pre">object&gt;,)</span></em><a class="headerlink" href="#enums.Currency.CNY" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Yuan Renminbi Chino</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="enums.Currency.CNH">
+<span class="sig-name descname"><span class="pre">CNH</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">(&lt;enum.auto</span> <span class="pre">object&gt;,)</span></em><a class="headerlink" href="#enums.Currency.CNH" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Yuan Renminbi Chino</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="enums.Currency.KRW">
+<span class="sig-name descname"><span class="pre">KRW</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">(&lt;enum.auto</span> <span class="pre">object&gt;,)</span></em><a class="headerlink" href="#enums.Currency.KRW" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Won Surcoreano</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="enums.Currency.HKD">
+<span class="sig-name descname"><span class="pre">HKD</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">(&lt;enum.auto</span> <span class="pre">object&gt;,)</span></em><a class="headerlink" href="#enums.Currency.HKD" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Dólar Hong Kong</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="enums.Currency.AUD">
+<span class="sig-name descname"><span class="pre">AUD</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">(&lt;enum.auto</span> <span class="pre">object&gt;,)</span></em><a class="headerlink" href="#enums.Currency.AUD" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Dólar Australiano</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="enums.Currency.NZD">
+<span class="sig-name descname"><span class="pre">NZD</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">(&lt;enum.auto</span> <span class="pre">object&gt;,)</span></em><a class="headerlink" href="#enums.Currency.NZD" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Dólar Neozelandés</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="enums.Currency.ZAR">
+<span class="sig-name descname"><span class="pre">ZAR</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">(&lt;enum.auto</span> <span class="pre">object&gt;,)</span></em><a class="headerlink" href="#enums.Currency.ZAR" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Rand Sudafricano</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="enums.MaxMin">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">enums.</span></span><span class="sig-name descname"><span class="pre">MaxMin</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#enums.MaxMin" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Enum</span></code></p>
+<p>Enumerador para determinación de Máximo y Minimo</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="enums.MaxMin.MAX">
+<span class="sig-name descname"><span class="pre">MAX</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">(1,)</span></em><a class="headerlink" href="#enums.MaxMin.MAX" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Máximo</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="enums.MaxMin.MIN">
+<span class="sig-name descname"><span class="pre">MIN</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">-1</span></em><a class="headerlink" href="#enums.MaxMin.MIN" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Minimo</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="enums.FinancialPosition">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">enums.</span></span><span class="sig-name descname"><span class="pre">FinancialPosition</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#enums.FinancialPosition" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Enum</span></code></p>
+<p>Enumerador de posición financiera</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="enums.FinancialPosition.LONG">
+<span class="sig-name descname"><span class="pre">LONG</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></em><a class="headerlink" href="#enums.FinancialPosition.LONG" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Largo</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="enums.FinancialPosition.SHORT">
+<span class="sig-name descname"><span class="pre">SHORT</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">-1</span></em><a class="headerlink" href="#enums.FinancialPosition.SHORT" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Corto</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="enums.Quotation">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">enums.</span></span><span class="sig-name descname"><span class="pre">Quotation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#enums.Quotation" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Enum</span></code></p>
+<p>Enumerador de la punta de negociación</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="enums.Quotation.BID">
+<span class="sig-name descname"><span class="pre">BID</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">-1</span></em><a class="headerlink" href="#enums.Quotation.BID" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Bid</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="enums.Quotation.MID">
+<span class="sig-name descname"><span class="pre">MID</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#enums.Quotation.MID" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Mid</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="enums.Quotation.ASK">
+<span class="sig-name descname"><span class="pre">ASK</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></em><a class="headerlink" href="#enums.Quotation.ASK" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Ask</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="enums.Period">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">enums.</span></span><span class="sig-name descname"><span class="pre">Period</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#enums.Period" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Enum</span></code></p>
+<p>Enumerador de periodos</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="enums.Period.DAY">
+<span class="sig-name descname"><span class="pre">DAY</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></em><a class="headerlink" href="#enums.Period.DAY" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Día</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="enums.Period.MONTH">
+<span class="sig-name descname"><span class="pre">MONTH</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">2</span></em><a class="headerlink" href="#enums.Period.MONTH" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Mes</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="enums.Period.QUARTER">
+<span class="sig-name descname"><span class="pre">QUARTER</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">3</span></em><a class="headerlink" href="#enums.Period.QUARTER" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Trimestre</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="enums.Period.SEMESTER">
+<span class="sig-name descname"><span class="pre">SEMESTER</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">4</span></em><a class="headerlink" href="#enums.Period.SEMESTER" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Semestre</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="enums.Period.YEAR">
+<span class="sig-name descname"><span class="pre">YEAR</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">5</span></em><a class="headerlink" href="#enums.Period.YEAR" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Año</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="enums.Periodicity">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">enums.</span></span><span class="sig-name descname"><span class="pre">Periodicity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#enums.Periodicity" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Enum</span></code></p>
+<p>Enumerador para determinación de periodicidad</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="enums.Periodicity.UNIQUE">
+<span class="sig-name descname"><span class="pre">UNIQUE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#enums.Periodicity.UNIQUE" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Pago unico</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="enums.Periodicity.ANNUAL">
+<span class="sig-name descname"><span class="pre">ANNUAL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></em><a class="headerlink" href="#enums.Periodicity.ANNUAL" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Anual</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="enums.Periodicity.BIANNUAL">
+<span class="sig-name descname"><span class="pre">BIANNUAL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">2</span></em><a class="headerlink" href="#enums.Periodicity.BIANNUAL" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Semestral</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="enums.Periodicity.QUARTERLY">
+<span class="sig-name descname"><span class="pre">QUARTERLY</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">4</span></em><a class="headerlink" href="#enums.Periodicity.QUARTERLY" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Trimestral</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="enums.Periodicity.MONTHLY">
+<span class="sig-name descname"><span class="pre">MONTHLY</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">12</span></em><a class="headerlink" href="#enums.Periodicity.MONTHLY" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Mensual</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="enums.Periodicity.WEEKLY">
+<span class="sig-name descname"><span class="pre">WEEKLY</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">52</span></em><a class="headerlink" href="#enums.Periodicity.WEEKLY" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Semanal</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="enums.Periodicity.TN">
+<span class="sig-name descname"><span class="pre">TN</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">182</span></em><a class="headerlink" href="#enums.Periodicity.TN" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Cada dos días</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="enums.Periodicity.OVERNIGHT">
+<span class="sig-name descname"><span class="pre">OVERNIGHT</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">365</span></em><a class="headerlink" href="#enums.Periodicity.OVERNIGHT" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Pago diario</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="enums.Periodicity.ON">
+<span class="sig-name descname"><span class="pre">ON</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">365</span></em><a class="headerlink" href="#enums.Periodicity.ON" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Pago diario</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="enums.Periodicity.TAILOR_MADE">
+<span class="sig-name descname"><span class="pre">TAILOR_MADE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">999</span></em><a class="headerlink" href="#enums.Periodicity.TAILOR_MADE" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Pagos hechos a la medida</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="enums.BusinessDay">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">enums.</span></span><span class="sig-name descname"><span class="pre">BusinessDay</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#enums.BusinessDay" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Enum</span></code></p>
+<p>Enumerador de convenciones de redondeo de días</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="enums.BusinessDay.UNADJUSTED">
+<span class="sig-name descname"><span class="pre">UNADJUSTED</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></em><a class="headerlink" href="#enums.BusinessDay.UNADJUSTED" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Sin ajuste por fecha</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="enums.BusinessDay.FOLLOWING">
+<span class="sig-name descname"><span class="pre">FOLLOWING</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">2</span></em><a class="headerlink" href="#enums.BusinessDay.FOLLOWING" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Convención Following</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="enums.BusinessDay.MODIFIED_FOLLOWING">
+<span class="sig-name descname"><span class="pre">MODIFIED_FOLLOWING</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">3</span></em><a class="headerlink" href="#enums.BusinessDay.MODIFIED_FOLLOWING" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Convención Modified Following</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="enums.BusinessDay.PRECEDING">
+<span class="sig-name descname"><span class="pre">PRECEDING</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">4</span></em><a class="headerlink" href="#enums.BusinessDay.PRECEDING" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Convención Preceding</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="enums.BusinessDay.MODIFIED_PRECEDING">
+<span class="sig-name descname"><span class="pre">MODIFIED_PRECEDING</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">5</span></em><a class="headerlink" href="#enums.BusinessDay.MODIFIED_PRECEDING" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Convención Modified Preceding</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="enums.BusinessDay.END_OF_MONTH">
+<span class="sig-name descname"><span class="pre">END_OF_MONTH</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">6</span></em><a class="headerlink" href="#enums.BusinessDay.END_OF_MONTH" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Fin de mes</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="enums.BusinessDay.PUBLISH_UF">
+<span class="sig-name descname"><span class="pre">PUBLISH_UF</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">7</span></em><a class="headerlink" href="#enums.BusinessDay.PUBLISH_UF" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Convención UF</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="enums.DayCount">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">enums.</span></span><span class="sig-name descname"><span class="pre">DayCount</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#enums.DayCount" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Enum</span></code></p>
+<p>Enumerador de convenciones de conteo de días</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="enums.DayCount.DC_30_360">
+<span class="sig-name descname"><span class="pre">DC_30_360</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></em><a class="headerlink" href="#enums.DayCount.DC_30_360" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Convención 30/360</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="enums.DayCount.DC_30_365">
+<span class="sig-name descname"><span class="pre">DC_30_365</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">2</span></em><a class="headerlink" href="#enums.DayCount.DC_30_365" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Convención 30/365</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="enums.DayCount.DC_30E_360">
+<span class="sig-name descname"><span class="pre">DC_30E_360</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">3</span></em><a class="headerlink" href="#enums.DayCount.DC_30E_360" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Convención 30/360 Europeo</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="enums.DayCount.DC_30E_365">
+<span class="sig-name descname"><span class="pre">DC_30E_365</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">4</span></em><a class="headerlink" href="#enums.DayCount.DC_30E_365" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Convención 30/365 Europeo</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="enums.DayCount.DC_30E_360_ISDA">
+<span class="sig-name descname"><span class="pre">DC_30E_360_ISDA</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">5</span></em><a class="headerlink" href="#enums.DayCount.DC_30E_360_ISDA" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Convención 30/360 Europeo ISDA</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="enums.DayCount.DC_30E_365_ISDA">
+<span class="sig-name descname"><span class="pre">DC_30E_365_ISDA</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">6</span></em><a class="headerlink" href="#enums.DayCount.DC_30E_365_ISDA" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Convención 30/365 Europeo ISDA</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="enums.DayCount.DC_ACT_360">
+<span class="sig-name descname"><span class="pre">DC_ACT_360</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">7</span></em><a class="headerlink" href="#enums.DayCount.DC_ACT_360" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Convención Act/360</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="enums.DayCount.DC_ACT_365">
+<span class="sig-name descname"><span class="pre">DC_ACT_365</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">8</span></em><a class="headerlink" href="#enums.DayCount.DC_ACT_365" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Convención Act/365</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="enums.Compounding">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">enums.</span></span><span class="sig-name descname"><span class="pre">Compounding</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#enums.Compounding" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Enum</span></code></p>
+<p>Enumerador para composición de tasas</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="enums.Compounding.LINEAR">
+<span class="sig-name descname"><span class="pre">LINEAR</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></em><a class="headerlink" href="#enums.Compounding.LINEAR" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Lineal</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="enums.Compounding.YIELD">
+<span class="sig-name descname"><span class="pre">YIELD</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">2</span></em><a class="headerlink" href="#enums.Compounding.YIELD" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Compuesta</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="enums.Compounding.EXPONENTIAL">
+<span class="sig-name descname"><span class="pre">EXPONENTIAL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">3</span></em><a class="headerlink" href="#enums.Compounding.EXPONENTIAL" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Exponencial</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="enums.InterpolationMethod">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">enums.</span></span><span class="sig-name descname"><span class="pre">InterpolationMethod</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#enums.InterpolationMethod" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Enum</span></code></p>
+<p>Enumerador para métodos de interpolación</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="enums.InterpolationMethod.LINEAR">
+<span class="sig-name descname"><span class="pre">LINEAR</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></em><a class="headerlink" href="#enums.InterpolationMethod.LINEAR" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Lineal</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="enums.InterpolationMethod.LOG_LINEAR">
+<span class="sig-name descname"><span class="pre">LOG_LINEAR</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">2</span></em><a class="headerlink" href="#enums.InterpolationMethod.LOG_LINEAR" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Log Lineal</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="enums.ExtrapolationMethod">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">enums.</span></span><span class="sig-name descname"><span class="pre">ExtrapolationMethod</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#enums.ExtrapolationMethod" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Enum</span></code></p>
+<p>Enumerador para métodos de extrapolación</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="enums.ExtrapolationMethod.SLOPE">
+<span class="sig-name descname"><span class="pre">SLOPE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></em><a class="headerlink" href="#enums.ExtrapolationMethod.SLOPE" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Mantiene la pendiente</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="enums.ExtrapolationMethod.LOG_SLOPE">
+<span class="sig-name descname"><span class="pre">LOG_SLOPE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">2</span></em><a class="headerlink" href="#enums.ExtrapolationMethod.LOG_SLOPE" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Mantiene la pendiente del logaritmo</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="enums.ExtrapolationMethod.RATE_SLOPE">
+<span class="sig-name descname"><span class="pre">RATE_SLOPE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">3</span></em><a class="headerlink" href="#enums.ExtrapolationMethod.RATE_SLOPE" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Mantiene la pendiente convirtiendo a una tasa convención Yield ACT/360</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="enums.ExtrapolationMethod.FLAT">
+<span class="sig-name descname"><span class="pre">FLAT</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">4</span></em><a class="headerlink" href="#enums.ExtrapolationMethod.FLAT" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Mantiene el valor mas cercano</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="enums.ExtrapolationMethod.FLAT_RATE">
+<span class="sig-name descname"><span class="pre">FLAT_RATE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">5</span></em><a class="headerlink" href="#enums.ExtrapolationMethod.FLAT_RATE" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Mantiene el valor mas cercano tratándolo como tasa</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="enums.IndexType">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">enums.</span></span><span class="sig-name descname"><span class="pre">IndexType</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#enums.IndexType" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Enum</span></code></p>
+<p>Enumerador de tipos de índices</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="enums.IndexType.FIXED">
+<span class="sig-name descname"><span class="pre">FIXED</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></em><a class="headerlink" href="#enums.IndexType.FIXED" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Fijo</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="enums.IndexType.MPR">
+<span class="sig-name descname"><span class="pre">MPR</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">2</span></em><a class="headerlink" href="#enums.IndexType.MPR" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Monetary Policy Rate</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="enums.IndexType.ON">
+<span class="sig-name descname"><span class="pre">ON</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">3</span></em><a class="headerlink" href="#enums.IndexType.ON" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Tasa Overnight</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="enums.IndexType.IBOR">
+<span class="sig-name descname"><span class="pre">IBOR</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">4</span></em><a class="headerlink" href="#enums.IndexType.IBOR" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Interbancarias</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="enums.IndexType.CPI">
+<span class="sig-name descname"><span class="pre">CPI</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">5</span></em><a class="headerlink" href="#enums.IndexType.CPI" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Indices de inflación</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="enums.OptionType">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">enums.</span></span><span class="sig-name descname"><span class="pre">OptionType</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#enums.OptionType" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Enum</span></code></p>
+<p>Enumerador de tipos de opciones</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="enums.OptionType.CALL">
+<span class="sig-name descname"><span class="pre">CALL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></em><a class="headerlink" href="#enums.OptionType.CALL" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Call</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="enums.OptionType.PUT">
+<span class="sig-name descname"><span class="pre">PUT</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">-1</span></em><a class="headerlink" href="#enums.OptionType.PUT" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Put</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="enums.QuoteType">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">enums.</span></span><span class="sig-name descname"><span class="pre">QuoteType</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#enums.QuoteType" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Enum</span></code></p>
+<p>Enumerador para tipo de Quotes</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="enums.QuoteType.RATE">
+<span class="sig-name descname"><span class="pre">RATE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></em><a class="headerlink" href="#enums.QuoteType.RATE" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Tasa</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="enums.QuoteType.FUTURE">
+<span class="sig-name descname"><span class="pre">FUTURE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">2</span></em><a class="headerlink" href="#enums.QuoteType.FUTURE" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Futuro</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="enums.QuoteType.FORWARD">
+<span class="sig-name descname"><span class="pre">FORWARD</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">3</span></em><a class="headerlink" href="#enums.QuoteType.FORWARD" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Forward</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="enums.QuoteType.IRS">
+<span class="sig-name descname"><span class="pre">IRS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">4</span></em><a class="headerlink" href="#enums.QuoteType.IRS" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Interest Rate Swap</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="enums.QuoteType.CCS">
+<span class="sig-name descname"><span class="pre">CCS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">5</span></em><a class="headerlink" href="#enums.QuoteType.CCS" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Cross Currency</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="enums.QuoteType.BASIS">
+<span class="sig-name descname"><span class="pre">BASIS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">6</span></em><a class="headerlink" href="#enums.QuoteType.BASIS" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Interest Rate Basis Swap</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="excepciones">
+<span id="id1"></span><h2><strong>Excepciones</strong><a class="headerlink" href="#excepciones" title="Enlace permanente a este encabezado">¶</a></h2>
+<span class="target" id="module-exceptions"></span><p>Las excepciones contenidas en este módulo fueron diseñadas para manejar los errores internos de la librería. Estos
+errores pueden ser causados por multiples razones entre ellas: tipo equivocado de parámetros, operación inválida,
+falta de información disponible, etc.</p>
+<p>Estas excepciones customizadas son:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#exceptions.CalendarException" title="exceptions.CalendarException"><code class="xref py py-class docutils literal notranslate"><span class="pre">CalendarException</span></code></a>: Maneja errores asociados a calendarios de negociación. (<code class="xref py py-class docutils literal notranslate"><span class="pre">TradingCalendars</span></code>)</p></li>
+<li><p><a class="reference internal" href="#exceptions.CurrencyException" title="exceptions.CurrencyException"><code class="xref py py-class docutils literal notranslate"><span class="pre">CurrencyException</span></code></a>: Maneja errores asociados con el enumerador de monedas. (<code class="xref py py-class docutils literal notranslate"><span class="pre">Currency</span></code>)</p></li>
+<li><p><a class="reference internal" href="#exceptions.CurveException" title="exceptions.CurveException"><code class="xref py py-class docutils literal notranslate"><span class="pre">CurveException</span></code></a>: Maneja errores asociados con la clase curvas. (<code class="xref py py-class docutils literal notranslate"><span class="pre">Curve</span></code>)</p></li>
+<li><p><a class="reference internal" href="#exceptions.QueryException" title="exceptions.QueryException"><code class="xref py py-class docutils literal notranslate"><span class="pre">QueryException</span></code></a>: Maneja errores asociados con consultas a base de datos.</p></li>
+<li><p><a class="reference internal" href="#exceptions.FxRateException" title="exceptions.FxRateException"><code class="xref py py-class docutils literal notranslate"><span class="pre">FxRateException</span></code></a>: Maneja errores asociados a la tasa de cambio. (<code class="xref py py-class docutils literal notranslate"><span class="pre">FxRate</span></code>)</p></li>
+<li><p><a class="reference internal" href="#exceptions.DatasetException" title="exceptions.DatasetException"><code class="xref py py-class docutils literal notranslate"><span class="pre">DatasetException</span></code></a>: Maneja los errores en Datasets (<a class="reference internal" href="market.html#market.dataset.DataSet" title="market.dataset.DataSet"><code class="xref py py-class docutils literal notranslate"><span class="pre">market.dataset.DataSet</span></code></a>)</p></li>
+<li><dl class="field-list simple">
+<dt class="field-odd">class<span class="colon">:</span></dt>
+<dd class="field-odd"><p><cite>FileReadException</cite>: Maneja los errores en la lectura de archivos.</p>
+</dd>
+</dl>
+</li>
+</ul>
+<dl class="py exception">
+<dt class="sig sig-object py" id="exceptions.CalendarException">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">exceptions.</span></span><span class="sig-name descname"><span class="pre">CalendarException</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#exceptions.CalendarException" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
+<p>Excepción de Calendario</p>
+<p>Maneja los errores en la aplicación de calendarios.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>message</strong> (<em>str</em>) – Mensaje.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="exceptions.CurrencyException">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">exceptions.</span></span><span class="sig-name descname"><span class="pre">CurrencyException</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#exceptions.CurrencyException" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
+<p>Excepción de Moneda</p>
+<p>Maneja los errores asociados con el enumerador de monedas. (<a class="reference internal" href="#enums.Currency" title="enums.Currency"><code class="xref py py-class docutils literal notranslate"><span class="pre">enums.Currency</span></code></a>)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>message</strong> – Mensaje</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="exceptions.CurveException">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">exceptions.</span></span><span class="sig-name descname"><span class="pre">CurveException</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">curve_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">message</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#exceptions.CurveException" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
+<p>Excepción de Curva</p>
+<p>Maneja los errores en la construcción o utilización de curvas. (<code class="xref py py-class docutils literal notranslate"><span class="pre">market.curves.Curve</span></code>)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>curve_name</strong> (<em>str</em>) – Nombre de la curva.</p></li>
+<li><p><strong>message</strong> (<em>str</em>) – Mensaje.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="exceptions.DatasetException">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">exceptions.</span></span><span class="sig-name descname"><span class="pre">DatasetException</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#exceptions.DatasetException" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
+<p>Excepción de Data de Mercado</p>
+<p>Maneja los errores en Datasets (<a class="reference internal" href="market.html#market.dataset.DataSet" title="market.dataset.DataSet"><code class="xref py py-class docutils literal notranslate"><span class="pre">market.dataset.DataSet</span></code></a>)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>message</strong> – Mensaje</p></li>
+<li><p><strong>message</strong> – str</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="exceptions.FileReadException">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">exceptions.</span></span><span class="sig-name descname"><span class="pre">FileReadException</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_alias</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">message</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#exceptions.FileReadException" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
+<p>Excepción de Lectura de archivos</p>
+<p>Maneja los errores en la lectura de archivos.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>file_path</strong> (<em>str</em>) – Localización del archivo.</p></li>
+<li><p><strong>file_alias</strong> (<em>str</em>) – Nombre o Alias del archivo.</p></li>
+<li><p><strong>message</strong> (<em>str</em>) – Mensaje.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="exceptions.FxRateException">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">exceptions.</span></span><span class="sig-name descname"><span class="pre">FxRateException</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fx_pair_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">message</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#exceptions.FxRateException" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
+<p>Excepción de tasa de cambio</p>
+<p>Maneja errores asociados a la tasa de cambio. (<code class="xref py py-class docutils literal notranslate"><span class="pre">FxPair</span></code>)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>fx_pair_name</strong> (<em>FxRate.</em>) – Tasa de Cambio.</p></li>
+<li><p><strong>message</strong> (<em>str</em>) – Mensaje.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="exceptions.QueryException">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">exceptions.</span></span><span class="sig-name descname"><span class="pre">QueryException</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">query</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">message</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#exceptions.QueryException" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
+<p>Excepción de consulta</p>
+<p>Maneja los errores de queries en la base de datos.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>query</strong> (<em>str.</em>) – Consulta SQL.</p></li>
+<li><p><strong>message</strong> (<em>str</em>) – Mensaje.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</section>
+
+
+      </div>
+      <div class="bottomnav" role="navigation" aria-label="bottom navigation">
+      
+        <p>
+        «&#160;&#160;<a href="paquetes.html">Paquetes</a>
+        &#160;&#160;::&#160;&#160;
+        <a class="uplink" href="index.html">Contenidos</a>
+        &#160;&#160;::&#160;&#160;
+        <a href="data.html">Paquete de Datos</a>&#160;&#160;»
+        </p>
+
+      </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Derechos de autor 2022, Riesgo Financiero.
+      Creado usando <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1.
+    </div>
+  </body>
+</html>

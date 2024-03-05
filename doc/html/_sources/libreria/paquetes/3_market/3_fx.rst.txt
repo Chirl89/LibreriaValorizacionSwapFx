@@ -1,0 +1,20 @@
+.. _Módulo Tasas de Cambio:
+
+**Módulos Tipo de cambio**
+--------------------------
+
+.. automodule:: market.fxrate
+
+La principal clase de este módulo es:
+
+- :ref:`fxrate` (:class:`FxPair`): Clase dedicada a representación de tipos de cambio.
+
+.. _fxrate:
+
+Tasa de Cambio
+--------------
+
+.. autoclass:: market.fxrate.FxPair
+   :members:
+   :member-order: bysource
+

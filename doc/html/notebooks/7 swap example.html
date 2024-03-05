@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Construcción y valorización de Swaps &#8212; documentación de Finlib - beta</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/haiku.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/nbsphinx-code-cells.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/translations.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../search.html" />
+    <link rel="prev" title="Construcción y valorización de producto Forward" href="6%20forward%20example.html" /> 
+  </head><body>
+      <div class="header" role="banner"><h1 class="heading"><a href="../index.html">
+          <span>documentación de Finlib - beta</span></a></h1>
+        <h2 class="heading"><span>Construcción y valorización de Swaps</span></h2>
+      </div>
+      <div class="topnav" role="navigation" aria-label="top navigation">
+      
+        <p>
+        «&#160;&#160;<a href="6%20forward%20example.html">Construcción y valorización de producto Forward</a>
+        &#160;&#160;::&#160;&#160;
+        <a class="uplink" href="../index.html">Contenidos</a>
+        </p>
+
+      </div>
+      <div class="content" role="main">
+        
+        
+  <section id="Construcción-y-valorización-de-Swaps">
+<h1>Construcción y valorización de Swaps<a class="headerlink" href="#Construcción-y-valorización-de-Swaps" title="Enlace permanente a este encabezado">¶</a></h1>
+<section id="Carga-de-librerías">
+<h2>Carga de librerías<a class="headerlink" href="#Carga-de-librerías" title="Enlace permanente a este encabezado">¶</a></h2>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">finrisklib.enums</span> <span class="kn">import</span> <span class="n">Currency</span>
+<span class="kn">from</span> <span class="nn">finrisklib.data.dbreader</span> <span class="kn">import</span> <span class="n">DBReader</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">date</span>
+<br/></pre></div>
+</div>
+</div>
+</section>
+<section id="Obtención-desde-base-de-datos">
+<h2>Obtención desde base de datos<a class="headerlink" href="#Obtención-desde-base-de-datos" title="Enlace permanente a este encabezado">¶</a></h2>
+<section id="a)-Obtención-de-Instrumento">
+<h3>a) Obtención de Instrumento<a class="headerlink" href="#a)-Obtención-de-Instrumento" title="Enlace permanente a este encabezado">¶</a></h3>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Fecha de valorización</span>
+<span class="n">valuation_date</span> <span class="o">=</span> <span class="n">date</span><span class="p">(</span><span class="n">year</span><span class="o">=</span><span class="mi">2022</span><span class="p">,</span> <span class="n">month</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">day</span><span class="o">=</span><span class="mi">23</span><span class="p">)</span>
+
+<span class="c1"># Inicializamos el lector de base de datos</span>
+<span class="n">reader</span> <span class="o">=</span> <span class="n">DBReader</span><span class="p">()</span>
+
+<span class="n">id_number</span> <span class="o">=</span> <span class="mi">1001268</span>
+<span class="n">op</span> <span class="o">=</span> <span class="n">reader</span><span class="o">.</span><span class="n">get_operation</span><span class="p">(</span><span class="n">id_number</span><span class="o">=</span><span class="n">id_number</span><span class="p">,</span> <span class="n">process_date</span><span class="o">=</span><span class="n">valuation_date</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</section>
+</section>
+<section id="Valorización">
+<h2>Valorización<a class="headerlink" href="#Valorización" title="Enlace permanente a este encabezado">¶</a></h2>
+<section id="a)-Valorización-independiente">
+<h3>a) Valorización independiente<a class="headerlink" href="#a)-Valorización-independiente" title="Enlace permanente a este encabezado">¶</a></h3>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dataset</span> <span class="o">=</span> <span class="n">reader</span><span class="o">.</span><span class="n">get_dataset</span><span class="p">(</span><span class="n">process_date</span><span class="o">=</span><span class="n">valuation_date</span><span class="p">)</span>
+
+<span class="n">val</span> <span class="o">=</span> <span class="n">op</span><span class="o">.</span><span class="n">valuate</span><span class="p">(</span><span class="n">dataset</span><span class="o">=</span><span class="n">dataset</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">val</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+-453,219,506.79 CLP
+</pre></div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Fecha de valorización</span>
+<span class="n">valuation_date2</span> <span class="o">=</span> <span class="n">date</span><span class="p">(</span><span class="n">year</span><span class="o">=</span><span class="mi">2022</span><span class="p">,</span> <span class="n">month</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">day</span><span class="o">=</span><span class="mi">24</span><span class="p">)</span>
+<span class="n">dataset2</span> <span class="o">=</span> <span class="n">reader</span><span class="o">.</span><span class="n">get_dataset</span><span class="p">(</span><span class="n">process_date</span><span class="o">=</span><span class="n">valuation_date2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dataset2</span><span class="o">.</span><span class="n">set_default_valuation_currency</span><span class="p">(</span><span class="n">Currency</span><span class="o">.</span><span class="n">USD</span><span class="p">)</span>
+
+<span class="n">val2</span> <span class="o">=</span> <span class="n">op</span><span class="o">.</span><span class="n">valuate</span><span class="p">(</span><span class="n">dataset</span><span class="o">=</span><span class="n">dataset2</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">val2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+-495,699.55 USD
+</pre></div></div>
+</div>
+</section>
+<section id="b)-Valorización-de-sistema">
+<h3>b) Valorización de sistema<a class="headerlink" href="#b)-Valorización-de-sistema" title="Enlace permanente a este encabezado">¶</a></h3>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sys_val</span> <span class="o">=</span> <span class="n">reader</span><span class="o">.</span><span class="n">get_official_mtm</span><span class="p">(</span><span class="n">id_number</span><span class="o">=</span><span class="n">id_number</span><span class="p">,</span> <span class="n">process_date</span><span class="o">=</span><span class="n">valuation_date</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">sys_val</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+-461,698,346.00 CLP
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dif</span> <span class="o">=</span> <span class="n">sys_val</span><span class="o">-</span><span class="n">val</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">dif</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+-8,478,839.21 CLP
+</pre></div></div>
+</div>
+</section>
+</section>
+</section>
+
+
+      </div>
+      <div class="bottomnav" role="navigation" aria-label="bottom navigation">
+      
+        <p>
+        «&#160;&#160;<a href="6%20forward%20example.html">Construcción y valorización de producto Forward</a>
+        &#160;&#160;::&#160;&#160;
+        <a class="uplink" href="../index.html">Contenidos</a>
+        </p>
+
+      </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Derechos de autor 2022, Riesgo Financiero.
+      Creado usando <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.0.0.
+    </div>
+  </body>
+</html>

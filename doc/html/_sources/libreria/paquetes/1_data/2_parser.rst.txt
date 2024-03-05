@@ -1,0 +1,20 @@
+.. _Módulo Parser:
+
+**Módulo Parser**
+-----------------
+
+.. automodule:: data.dataparser
+
+Cuenta con una clase estática principal:
+
+- :ref:`parser` (:class:`DataParser`): Clase estática con funciones de conversión de datos.
+
+
+.. _parser:
+
+Conversor de Data
+-----------------
+
+.. autoclass:: data.dataparser.DataParser
+    :members:
+    :member-order: bysource
